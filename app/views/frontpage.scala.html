@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <meta charset="utf-8">
+        <link rel = "stylesheet" href="@routes.Assets.versioned("stylesheets/frontpage.css")">
+
+    </head>
+
+    <header class = "header">
+        <h1 id = "title">bitBooking.ba <input id="login-button-header" type="submit" value="Log in" ></h1>
+
+        <div id="ac-wrapper">
+            <div id="popup">
+                <input type="button" value="X" id="x-button" onclick="PopUp();">
+
+                <div class = "login-popup">
+                    <div>
+                        <label for = "Username">Email: </label>
+                    </div>
+
+                    <input type = "email" id = "username"
+                    name = "login">
+
+                    <br>
+                    <br>
+
+                    <div>
+                        <label for = "password">Password: </label>
+                    </div>
+
+                    <input type = "password" id ="password"
+                    name = "login">
+                    <div id = "nesto">
+                    <div>
+                        <input type="submit" class="submit" name="submit" value="Log in" onClick=" PopUp()" />
+
+                    </div>
+                </div>
+                    <br>
+
+                    <hr>
+                    <label>No account yet? <a id ="here" href="">Register here</a></label>
+
+
+                </div>
+            </div>
+        </div>
+
+    </header>
+
+    <body>
+
+        <script>
+          function PopUp(){
+                document.getElementById('ac-wrapper').style.display="none";
+            }
+        </script>
+
+    </body>
+</html>

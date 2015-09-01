@@ -6,7 +6,7 @@ import java.util.Date;
 /**
  * Model of User type. Defines permissions for user.
  */
-@Entity
+
 public class UserType {
     /*
      * User type attributes
@@ -26,7 +26,7 @@ public class UserType {
      *
      * @param name        - User's type.
      */
-    public User(String name) {
+    public UserType(String name) {
         this.name = name;
     }
 }
