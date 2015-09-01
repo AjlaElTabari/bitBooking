@@ -7,7 +7,7 @@ import java.util.Date;
  * Model of User. User is a person who sign up into database on bitBooking.com web page
  * and has permissions depending on type of user
  */
-@Entity
+
 public class User {
    
     /*
