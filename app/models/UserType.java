@@ -23,16 +23,8 @@ public class UserType {
      *
      * @param name        - User's type.
      */
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-    public User(String name) {
-=======
+
     public UserType(String name) {
-        this.id = 1;
->>>>>>> Stashed changes
-=======
-    public UserType(String name) {
->>>>>>> develop
         this.name = name;
     }
 }
