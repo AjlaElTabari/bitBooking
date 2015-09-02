@@ -11,18 +11,10 @@ import javax.persistence.Id;
  * Model of User. User is a person who sign up into database on bitBooking.com web page
  * and has permissions depending on type of user
  */
-<<<<<<< HEAD
 @Entity
-<<<<<<< Updated upstream
-=======
-
->>>>>>> develop
-public class User {
-=======
 public class User extends Model{
 
     private static Finder<String,User> finder = new Finder<>(String.class, User.class);
->>>>>>> Stashed changes
    
     /*
      * User attributes
