@@ -1,27 +1,43 @@
 package models;
 
-import java.util.Calendar;
-import java.util.Date;
+import org.mindrot.jbcrypt.BCrypt;
+import com.avaje.ebean.Model;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 /**
  * Model of User. User is a person who sign up into database on bitBooking.com web page
  * and has permissions depending on type of user
  */
+<<<<<<< HEAD
+@Entity
+<<<<<<< Updated upstream
+=======
 
+>>>>>>> develop
 public class User {
+=======
+public class User extends Model{
+
+    private static Finder<String,User> finder = new Finder<>(String.class, User.class);
+>>>>>>> Stashed changes
    
     /*
      * User attributes
      */
+    @Id
     public Integer id;
+    @Column
     public String firstName;
+    @Column
     public String lastName;
+    @Column
     public String email;
-    public String cityZipCode;
-    public UserType userType;
+    @Column
     public String password;
-    public Boolean gender;
-    public Date date;
+
 
     /**
      * Default constructor
@@ -35,19 +51,25 @@ public class User {
      * @param firstName   - User's first name.
      * @param lastName    - User's last name.
      * @param email       - User's email address.
-     * @param cityZipCode - User's postal code.
-     * @param userType    - Type of buyer.
      * @param password    - User's password.
-     * @param gender      - Male or female
      */
-    public User(String firstName, String lastName, String email, String cityZipCode, UserType userType, String password, Boolean gender) {
+    public User(String firstName, String lastName, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.cityZipCode = cityZipCode;
-        this.userType = userType;
-        this.password = password;
-        this.gender = gender;
-        this.date = Calendar.getInstance().getTime();
+        this.password = BCrypt.hashpw(password, BCrypt.gensalt());
+    }
+
+
+
+
+    public static User authenticate(String email, String password) {
+        User user = finder.where().eq("email", email.toString()).findUnique();
+
+        if (user != null && BCrypt.checkpw(password, user.password)) {
+            return user;
+        } else {
+            return null;
+        }
     }
 }
