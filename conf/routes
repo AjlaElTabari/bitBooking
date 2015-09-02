@@ -11,3 +11,4 @@ GET        /register                   @controllers.Application.register()
 GET        /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
 
 POST       /register/                  @controllers.Users.insertUser()
+GET        /frontpage                  @controllers.Users.login()
