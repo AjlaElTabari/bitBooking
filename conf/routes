@@ -9,3 +9,5 @@ GET        /registrationmessage        @controllers.Application.registrationmess
 GET        /register                   @controllers.Application.register()
 # Map static resources from the /public folder to the /assets URL path
 GET        /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+
+POST       /register/                  @controllers.Users.insertUser()

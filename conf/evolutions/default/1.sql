@@ -3,13 +3,14 @@
 
 # --- !Ups
 
-create table user (
+create table app_user (
   id                        integer auto_increment not null,
-  first_name                varchar(255),
-  last_name                 varchar(255),
+  firstname                 varchar(255),
+  lastname                  varchar(255),
   email                     varchar(255),
   password                  varchar(255),
-  constraint pk_user primary key (id))
+  phone_number              varchar(255),
+  constraint pk_app_user primary key (id))
 ;
 
 
@@ -19,7 +20,7 @@ create table user (
 
 SET FOREIGN_KEY_CHECKS=0;
 
-drop table user;
+drop table app_user;
 
 SET FOREIGN_KEY_CHECKS=1;
 

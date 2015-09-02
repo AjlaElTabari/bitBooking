@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+@import helper._
 <html>
   <head>
     <meta charset="utf-8">
@@ -8,40 +9,42 @@
   <body>
 
     <div class="register">
-      <fieldset>
-        <form>
+      @helper.form(action=routes.Users.insertUser()) {
+        <fieldset>
+          <form>
 
-          <label for="email">Email:</label>
+            <label for="email">Email:</label>
 
-          <input type="text" id="email" required>
+            <input type="text" id="email" name = "email" required>
 
-          <label for="password">Password: </label>
+            <label for="password">Password: </label>
 
-          <input type="password" id="password">
+            <input type="password" id="password" name = "password">
 
-          <label for="password">Confirm Password: </label>
+            <label for="password">Confirm Password: </label>
 
-          <input type="password" id="password-retype">
+            <input type="password" id="password-retype">
 
-          <label for="name">First Name:</label>
+            <label for="name">First Name:</label>
 
-          <input type="text" id="name" required>
+            <input type="text" id="name" name="firstname" required>
 
-          <label for="last-name">Last Name:</label>
+            <label for="last-name">Last Name:</label>
 
-          <input type="text" id="last-name" required>
+            <input type="text" id="last-name" name="lastname" required>
 
-          <label for="phone-number">Phone Number:</label>
+            <label for="phone-number">Phone Number:</label>
 
-          <input type="number" id="phone-number">
+            <input type="number" id="phone-number" name="phoneNumber">
 
 
-          <input type="submit" id="submit" onclick="call();"  value="Register">
-        </form>
-        <hr>
+            <input type="submit" id="submit" onclick="call();"  value="Register">
+          </form>
+          <hr>
 
-        <label>Already have an account? <a id ="here" href="/">Log In!</a></label>
-      </fieldset>
+          <label>Already have an account? <a id ="here" href="/">Log In!</a></label>
+        </fieldset>
+      }
     </div>
   </body>
 </html>
