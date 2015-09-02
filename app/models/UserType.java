@@ -1,8 +1,5 @@
 package models;
 
-import java.util.Calendar;
-import java.util.Date;
-
 /**
  * Model of User type. Defines permissions for user.
  */
@@ -26,7 +23,13 @@ public class UserType {
      *
      * @param name        - User's type.
      */
+<<<<<<< Updated upstream
     public User(String name) {
+=======
+    public UserType(String name) {
+        this.id = 1;
+>>>>>>> Stashed changes
         this.name = name;
     }
 }
+
