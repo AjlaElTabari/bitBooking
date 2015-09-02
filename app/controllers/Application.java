@@ -10,5 +10,10 @@ public class Application extends Controller {
     public Result index() {
         return ok(frontpage.render());
     }
-
+    public Result loginmessage() {
+        return ok(loginmessage.render());
+    }
+    public Result registrationmessage() {
+        return ok(registrationmessage.render());
+    }
 }
