@@ -104,9 +104,9 @@ body{
     margin: 10px; border-radius:5px;
 }
 #login-button-header{
+
     float: right;
     margin-right: 10%;
-    margin-top: 5px;
-
+    margin-top: 10px;
 
 }
