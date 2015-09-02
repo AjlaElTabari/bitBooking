@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel = "stylesheet" href="@routes.Assets.versioned("stylesheets/register.css")">
+    <title>Register form</title>
+  </head>
+  <body>
+
+    <div class="register">
+      <fieldset>
+        <form>
+
+          <label for="email">Email:</label>
+
+          <input type="text" id="email" required>
+
+          <label for="password">Password: </label>
+
+          <input type="password" id="password">
+
+          <label for="password">Confirm Password: </label>
+
+          <input type="password" id="password-retype">
+
+          <label for="name">First Name:</label>
+
+          <input type="text" id="name" required>
+
+          <label for="last-name">Last Name:</label>
+
+          <input type="text" id="last-name" required>
+
+          <label for="phone-number">Phone Number:</label>
+
+          <input type="number" id="phone-number">
+
+
+          <input type="submit" id="submit" onclick="call();"  value="Register">
+        </form>
+        <hr>
+        <label>Already have an account? <a id ="here" href="/">Log In!</a></label>
+      </fieldset>
+    </div>
+
+  </body>
+</html>

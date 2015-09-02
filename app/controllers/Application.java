@@ -16,4 +16,7 @@ public class Application extends Controller {
     public Result registrationmessage() {
         return ok(registrationmessage.render());
     }
+    public Result register(){
+        return ok(register.render());
+    }
 }
