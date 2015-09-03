@@ -58,3 +58,8 @@ fieldset {
     font-size: 15px;
     text-decoration: underline;
 }
+
+.duplicate-email {
+    font-size: 15px;
+    color: red;
+}
