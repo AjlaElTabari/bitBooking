@@ -8,6 +8,7 @@ import play.mvc.Controller;
 import views.html.frontpage;
 import views.html.loginmessage;
 import views.html.registrationmessage;
+import views.html.register;
 
 /**
  * Created by ajla on 9/2/15.
@@ -20,8 +21,14 @@ public class Users extends Controller {
 
         App_User user = boundForm.get();
         user.hashPass();
-        Ebean.save(user);
-        return ok(registrationmessage.render());
+
+        try {
+            Ebean.save(user);
+            return ok(registrationmessage.render());
+        } catch (Exception e) {
+            flash("error", "Email already exists.");
+            return ok(register.render());
+        }
     }
 
     public Result login() {
