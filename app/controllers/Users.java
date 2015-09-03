@@ -40,7 +40,8 @@ public class Users extends Controller {
         App_User user = App_User.authenticate(email, password);
 
         if (user == null) {
-            return ok(frontpage.render());
+            flash("error","Incorrect email or password! Please try again!");
+            return badRequest(frontpage.render());
         } else {
             return ok(loginmessage.render());
         }
