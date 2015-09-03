@@ -12,7 +12,11 @@
       @helper.form(action=routes.Users.insertUser()) {
         <fieldset>
           <form>
-
+            <div>
+                @if(flash.containsKey("error")) {
+                @flash.get("error")
+              }
+            </div>
             <label for="email">Email:</label>
 
             <input type="text" id="email" name = "email" required>
