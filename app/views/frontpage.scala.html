@@ -4,25 +4,21 @@
             <head>
 
                 <meta charset="utf-8">
-                    <!--connectig front page html with front page css-->
                 <link rel = "stylesheet" href="@routes.Assets.versioned("stylesheets/frontpage.css")">
-                <script src="@routes.Assets.versioned("javascripts/frontpage.js")"></script>
+
             </head>
 
             <header >
-                    <!--creating header with title and button for log in-->
+
+
         <h1 id = "title">bitBooking.ba <button type="button" id="login-button-header"  class="btn btn-default" onclick="logIn()">Log In</button> </h1>
 
-                    <!--pop up, that opens on start with login form, and with link to sign up-->
+
         <div id="ac-wrapper" >
             @helper.form(action=routes.Users.login()) {
                 <div>
-                    <p id="error-message">
-                    @if(flash.containsKey("error")){
-                        @flash.get("error")
-                    }
-                    </p>
                     <div id="popup">
+
                         <input type="button" value="X" id="x-button" onclick="PopUp();">
 
                         <div class = "login-popup">
@@ -32,8 +28,6 @@
 
                             <input type = "email" id = "username"
                             name = "email" placeholder="email">
-
-                            <br>
                             <br>
 
                             <div>
@@ -42,6 +36,12 @@
 
                             <input type = "password" id ="password"
                             name = "password" placeholder="password">
+                            <br>
+                            <label id="error-message">
+                            @if(flash.containsKey("error")){
+                                @flash.get("error")
+                            }
+                            </label>
 
                             <div>
                                 <input type="submit" class="submit" name="submit" value="Log in" onClick=" PopUp()" />
@@ -49,8 +49,10 @@
                             </div>
                             <br>
 
+
                             <hr>
                             <label>No account yet? <a id ="here" href="register">Register here</a></label>
+
 
 
                         </div>
@@ -63,7 +65,15 @@
 
     <body>
 
+        <script>
+          function PopUp(){
+                document.getElementById('ac-wrapper').style.display="none";
+            }
+            function logIn(){
+            document.getElementById('ac-wrapper').style.display="";
+            }
 
+        </script>
 
     </body>
 </html>

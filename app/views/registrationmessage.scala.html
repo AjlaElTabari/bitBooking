@@ -3,10 +3,71 @@
 <head>
   <meta charset="UTF-8">
   <title>Registration </title>
+  <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/frontpage.css")">
+  <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/frontpage.css")">
 </head>
 <body>
-  <h1>Registration message</h1>
-    <p>Registration successful!</p>
+  <header >
+    <h1 id = "title">bitBooking.ba <button type="button" id="login-button-header"  class="btn btn-default" onclick="logIn()">Log In</button> </h1>
+    <div id="ac-wrapper" >
+    @helper.form(action=routes.Users.login()) {
+      <div>
+        <div id="popup">
 
+          <input type="button" value="X" id="x-button" onclick="PopUp();">
+
+          <div class = "login-popup">
+            <div>
+              <label for = "Username">Email: </label>
+            </div>
+
+            <input type = "email" id = "username"
+            name = "email" placeholder="email">
+            <br>
+
+            <div>
+              <label for = "password">Password: </label>
+            </div>
+
+            <input type = "password" id ="password"
+            name = "password" placeholder="password">
+            <br>
+            <label id="error-message">
+            @if(flash.containsKey("error")){
+              @flash.get("error")
+            }
+            </label>
+
+            <div>
+              <input type="submit" class="submit" name="submit" value="Log in" onClick=" PopUp()" />
+
+            </div>
+            <br>
+
+
+            <hr>
+            <label>No account yet? <a id ="here" href="register">Register here</a></label>
+
+
+
+          </div>
+        </div>
+      </div>
+    }
+    </div>
+  </header>
+  <div style="text-align: center">
+    <h2>Registration message</h2>
+    <p>Registration successful!</p>
+  </div>
+  <script>
+          function PopUp(){
+                document.getElementById('ac-wrapper').style.display="none";
+            }
+           function logIn(){
+            document.getElementById('ac-wrapper').style.display="";
+            }
+
+   </script>
 </body>
 </html>
