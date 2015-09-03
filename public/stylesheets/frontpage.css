@@ -2,7 +2,7 @@ header{
 	height: 50px;
 	background-image: url(http://ish-tmc.org/wp-content/uploads/2013/02/light-blue-header.jpg);
 	width: 100%;
-	}
+}
 
 #title{
 	padding-left: 20%;
@@ -115,4 +115,5 @@ body{
     text-align: center;
     margin-top: 100px;
     color: red;
+    font-size: 11px;
 }
