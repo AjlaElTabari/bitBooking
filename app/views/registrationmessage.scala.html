@@ -1,29 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Registration </title>
-  <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/frontpage.css")">
-  <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/frontpage.css")">
-</head>
-<body>
-  <header >
-    <h1 id = "title">bitBooking.ba <button type="button" id="login-button-header"  class="btn btn-default" onclick="logIn()">Log In</button> </h1>
+    <head>
+        <meta charset="UTF-8">
+        <title>Registration </title>
+            <!--connecting to frontpage css and -->
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/frontpage.css")">
+        <script src="@routes.Assets.versioned("javascripts/frontpage.js")"> </script>
+    </head>
 
-  </header>
-  <div style="text-align: center">
-    <h2>Registration message</h2>
-    <p>Registration successful!</p>
-  </div>
-  <script>
-          function PopUp(){
-                document.getElementById('ac-wrapper').style.display="none";
-            }
-           function logIn(){
-           /** document.getElementById('ac-wrapper').style.display="";**/
-           window.location.href="/";
-            }
+    <body>
+        <!--creating header and text for registration page-->
+        <header >
+            <h1 id = "title">bitBooking.ba <button type="button" id="login-button-header" class="btn btn-default" onclick="logIn()">Log In</button> </h1>
 
-   </script>
-</body>
+        </header>
+
+        <div style="text-align : center">
+            <h2>Registration message</h2>
+            <p>Registration successful!</p>
+        </div>
+
+    </body>
 </html>
