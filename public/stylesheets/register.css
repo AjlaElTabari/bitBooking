@@ -1,3 +1,50 @@
+#email_error {
+    font-size: 15px;
+    color: red;
+}
+
+#password_error {
+    font-size: 15px;
+    color: red;
+}
+
+#password2_error {
+    font-size: 15px;
+    color: red;
+}
+
+#name_error {
+
+    font-size: 15px;
+    color: red;
+}
+
+#namelength_error{
+    font-size:15px;
+    color:red;
+}
+
+#lastname_error{
+    font-size:15px;
+    color:red;
+}
+
+#lastnamelength_error{
+    font-size:15px;
+    color:red;
+}
+
+#number_error{
+    font-size: 15px;
+    color: red;
+}
+
+#numberlength_error{
+    font-size: 15px;
+    color:red;
+}
+
+
 .register {
     font-family: sans-serif;
     font-size: 20px;

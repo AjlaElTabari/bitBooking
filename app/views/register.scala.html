@@ -3,10 +3,14 @@
 <html>
   <head>
     <meta charset="utf-8">
+
     <link rel = "stylesheet" href="@routes.Assets.versioned("stylesheets/register.css")">
+    <script src="@routes.Assets.versioned("javascripts/register.js")"></script>
+
     <title>Register form</title>
   </head>
   <body>
+
 
     <div class="register">
       @helper.form(action=routes.Users.insertUser()) {
@@ -18,31 +22,35 @@
               }
             </div>
             <label for="email">Email:</label>
-
-            <input type="text" id="email" name = "email" required>
+            <input type="text" id="email" name = "email" required placeholder="e.g. john.doe&#64example.com" required onblur="checkEmail();">
+            <div id="email_error"></div>
 
             <label for="password">Password: </label>
-
-            <input type="password" id="password" name = "password">
+            <input type="password" id="password" name = "password" placeholder="min 6 characters" required onblur="checkPasswordLength();" >
+            <div id="password_error"></div>
 
             <label for="password">Confirm Password: </label>
-
-            <input type="password" id="password-retype">
+            <input type="password" id="password-retype" name="passwordretype" placeholder="Please confirm your password" required onblur="checkPasswordMatch();" >
+            <div id="password2_error"></div>
 
             <label for="name">First Name:</label>
 
-            <input type="text" id="name" name="firstname" required>
+            <input type="text" id="name" name="firstname" placeholder="Please enter your name" required onblur="checkName(); checkNameLength();">
+            <div id="name_error"></div>
+            <div id="namelength_error"></div>
 
             <label for="last-name">Last Name:</label>
 
-            <input type="text" id="last-name" name="lastname" required>
+            <input type="text" id="last-name" name="lastname"  placeholder="Please enter your lastname" required onblur="checkLastname(); checkLastnameLength();">
+            <div id="lastname_error"></div>
+            <div id="lastnamelength_error"></div>
 
             <label for="phone-number">Phone Number:</label>
+            <input type="text" id="phone-number" name="phoneNumber" placeholder="Please enter your number" required onblur="numberLength(); isNumber();">
+            <div id="numberlength_error"></div>
+            <div id="number_error"></div>
 
-            <input type="tel" id="phone-number" name="phoneNumber">
-
-
-            <input type="submit" id="submit" onclick="call();"  value="Register">
+            <input type="submit" id="submit"   value="Register">
           </form>
           <hr>
 
