@@ -10,7 +10,7 @@ function checkEmail() {
     var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 
     if (!filter.test(email.value)) {
-        document.getElementById('email_error').innerHTML = "Please provide a valid email adress!";
+        document.getElementById('email_error').innerHTML = "Please provide a valid email address!";
         document.getElementById('submit').disable="true";
         return false;
     }else{
@@ -43,7 +43,7 @@ function checkPasswordMatch() {
 
 
     if (pass1 != pass2) {
-        document.getElementById('password2_error').innerHTML="Passwords Do not match";
+        document.getElementById('password2_error').innerHTML="Passwords do not match";
         document.getElementById('submit').disable="true";
         return false;
     }else {
@@ -67,7 +67,7 @@ function checkName(){
 
         return true;
     } else  {
-        document.getElementById('name_error').innerHTML="Name must have alphabet characters only!";
+        document.getElementById('name_error').innerHTML="Name must contain alphabet characters only!";
         document.getElementById('submit').disable="true";
         return false;
     }
@@ -84,7 +84,7 @@ function checkLastname(){
         document.getElementById('submit').disable="false";
         return true;
     } else  {
-        document.getElementById('lastname_error').innerHTML="Last Name must have alphabet characters only!";
+        document.getElementById('lastname_error').innerHTML="Lastname must contain alphabet characters only!";
         document.getElementById('submit').disable="true";
         return false;
     }
