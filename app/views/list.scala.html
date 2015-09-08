@@ -1,0 +1,24 @@
+@(hotels: List[Hotel])
+@frontpage{
+    @helper.form(action = routes.Hotels.insertHotel()) {
+
+
+    @for(hotel <- hotels){
+        <div class="col-md-3 hero-feature">
+            <div class="thumbnail">
+                <img src="http://placehold.it/800x500" alt="">
+                <div class="caption">
+                    <h3>@hotel.name</h3>
+                    <p>@hotel.description</p>
+                    <p>@hotel.location</p>
+                    <p>
+                        <a href="#" class="btn btn-primary">Make reservation!</a> <a href="#" class="btn btn-default">More Info</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+}
+    }
+}
+    <!-- /.row -->

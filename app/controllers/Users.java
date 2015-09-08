@@ -2,17 +2,20 @@ package controllers;
 
 import com.avaje.ebean.Ebean;
 import models.App_User;
-import play.    mvc.Result;
+import models.Hotel;
+import play.mvc.Result;
 import play.data.Form;
 import play.mvc.Controller;
 import views.html.*;
+import java.util.List;
+
 
 /**
  * Created by ajla on 9/2/15.
  */
 public class Users extends Controller {
     private static final Form<App_User> userForm = Form.form(App_User.class);
-
+    private static List<Hotel> hotels = Hotel.finder.all();
     public Result insertUser() {
        Form<App_User> boundForm = userForm.bindFromRequest();
 
@@ -38,7 +41,7 @@ public class Users extends Controller {
 
         if (user == null) {
             flash("error","Incorrect email or password! Please try again!");
-            return badRequest(frontpage.render());
+            return badRequest(list.render(hotels));
         } else {
             return ok(loginmessage.render());
         }
