@@ -5,10 +5,7 @@ import models.App_User;
 import play.    mvc.Result;
 import play.data.Form;
 import play.mvc.Controller;
-import views.html.frontpage;
-import views.html.loginmessage;
-import views.html.registrationmessage;
-import views.html.register;
+import views.html.*;
 
 /**
  * Created by ajla on 9/2/15.
@@ -45,5 +42,12 @@ public class Users extends Controller {
         } else {
             return ok(loginmessage.render());
         }
+    }
+
+    public Result editUser(){
+        return ok(userProfilPage.render());
+    }
+    public Result showHotel(){
+        return ok(hotel.render());
     }
 }
