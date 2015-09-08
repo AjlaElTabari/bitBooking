@@ -8,10 +8,14 @@ GET         /loginmessage               @controllers.Application.loginmessage()
 GET         /registrationmessage        @controllers.Application.registrationmessage()
 GET         /register                   @controllers.Application.register()
 GET         /addhotel                   @controllers.Application.registerHotel()
+GET         /edit_user                  @controllers.Users.editUser()
+GET         /hotel                      @controllers.Users.showHotel()
 
 # Map static resources from the /public folder to the /assets URL path
 GET         /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
 
 POST        /register/                  @controllers.Users.insertUser()
 POST        /frontpage                  @controllers.Users.login()
+
 POST        /addhotel                   @controllers.Hotels.insertHotel()
+

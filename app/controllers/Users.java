@@ -3,19 +3,19 @@ package controllers;
 import com.avaje.ebean.Ebean;
 import models.App_User;
 import models.Hotel;
-import play.    mvc.Result;
+import play.mvc.Result;
 import play.data.Form;
 import play.mvc.Controller;
 import views.html.*;
-
 import java.util.List;
+
 
 /**
  * Created by ajla on 9/2/15.
  */
 public class Users extends Controller {
     private static final Form<App_User> userForm = Form.form(App_User.class);
-    List<Hotel> hotels = Hotel.finder.all();
+    private static List<Hotel> hotels = Hotel.finder.all();
     public Result insertUser() {
        Form<App_User> boundForm = userForm.bindFromRequest();
 
@@ -45,5 +45,12 @@ public class Users extends Controller {
         } else {
             return ok(loginmessage.render());
         }
+    }
+
+    public Result editUser(){
+        return ok(userProfilPage.render());
+    }
+    public Result showHotel(){
+        return ok(hotel.render());
     }
 }
