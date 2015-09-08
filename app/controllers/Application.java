@@ -30,6 +30,6 @@ public class Application extends Controller {
 
     public Result registerHotel(){
         List<Hotel> hotels = Hotel.finder.all();
-        return ok(hotel.render(hotels));
+        return ok(addhotel.render(hotels));
     }
 }
