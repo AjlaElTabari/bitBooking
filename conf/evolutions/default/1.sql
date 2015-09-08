@@ -16,7 +16,6 @@ create table app_user (
 create table feature (
   id                        integer auto_increment not null,
   name                      varchar(255),
-  hotel_id                  integer,
   constraint pk_feature primary key (id))
 ;
 
@@ -34,8 +33,6 @@ create table hotel_feature (
   feature_id                     integer not null,
   constraint pk_hotel_feature primary key (hotel_id, feature_id))
 ;
-alter table feature add constraint fk_feature_hotel_1 foreign key (hotel_id) references hotel (id) on delete restrict on update restrict;
-create index ix_feature_hotel_1 on feature (hotel_id);
 
 
 
