@@ -1,0 +1,35 @@
+@(hotels: List[Hotel])
+<!DOCTYPE html>
+
+@import helper._
+<html>
+    <head>
+        <meta charset="utf-8">
+
+
+        <title></title>
+    </head>
+    <body>
+    @helper.form(action = routes.Hotels.insertHotel()) {
+        <label>name</label>
+        <input name="name">
+        <label>location</label>
+        <input name="location">
+        <label>description</label>
+        <input name="description">
+        <button name="submit" onclick="insertHotel()">submit</button>
+
+        <button name="list" onclick="listOfHotels()">list</button>
+
+        @for(hotel <- hotels) {
+            @hotel.name
+            @hotel.location
+            @hotel.description
+        }
+
+
+    }
+
+    </body>
+
+</html>

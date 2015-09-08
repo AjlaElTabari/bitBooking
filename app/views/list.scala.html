@@ -1,0 +1,19 @@
+@(hotels: List[Hotel])
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+    </head>
+    <body>
+
+        <button name="list" onclick="listOfHotels()">list</button>
+
+        @for(hotel <- hotels) {
+            @hotel.name
+            @hotel.location
+            @hotel.description
+        }
+
+    </body>
+</html>
