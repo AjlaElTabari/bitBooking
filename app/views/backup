@@ -1,0 +1,46 @@
+<div id="ac-wrapper">
+            @helper.form(action=routes.Users.login()) {
+                <div>
+                    <div id="popup">
+
+                        <input type="button" value="X" id="x-button" onclick="PopUp();">
+
+                        <div class = "login-popup">
+                            <div>
+                                <label for = "Username">Email: </label>
+                            </div>
+
+                            <input type = "email" id = "username"
+                            name = "email" placeholder="email">
+                            <br>
+
+                            <div>
+                                <label for = "password">Password: </label>
+                            </div>
+
+                            <input type = "password" id ="password"
+                            name = "password" placeholder="password">
+                            <br>
+                            <label id="error-message">
+                            @if(flash.containsKey("error")){
+                                @flash.get("error")
+                            }
+                            </label>
+
+                            <div>
+                                <input type="submit" class="submit" name="submit" value="Log in" onClick="PopUp()" />
+
+                            </div>
+                            <br>
+
+
+                            <hr>
+                            <label>No account yet? <a id ="here" href="register">Register here</a></label>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>

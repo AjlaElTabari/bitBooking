@@ -1,16 +1,10 @@
-<!DOCTYPE html>
 @import helper._
-<html>
-<head>
-  <meta charset="utf-8">
+@main("Register form"){
 
-  <link rel = "stylesheet" href="@routes.Assets.versioned("stylesheets/register.css")">
-  <script src="@routes.Assets.versioned("javascripts/register.js")"></script>
-
-        <title>Register form</title>
-    </head>
-    <body>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="@routes.Assets.versioned("stylesheets/register.css")"/>
+    <script src="@routes.Assets.versioned("javascripts/register.js")"></script>
         <div class="register">
         @helper.form(action = routes.Users.insertUser()) {
             <fieldset>
@@ -62,5 +56,5 @@
             </fieldset>
         }
         </div>
-    </body>
-</html>
+
+}
