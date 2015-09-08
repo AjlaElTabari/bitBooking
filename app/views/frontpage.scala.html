@@ -1,3 +1,4 @@
+@(hotels: List[Hotel])
 <!DOCTYPE html>
 @import helper._
 <!DOCTYPE html>
@@ -69,6 +70,7 @@
                     <!-- /.row -->
 
                     <!-- Page Features -->
+                @for(hotel <- hotels){
                 <div class="row text-center">
 
                     <div class="col-md-3 col-sm-6 hero-feature">
@@ -124,6 +126,7 @@
                     </div>
 
                 </div>
+                }
                     <!-- /.row -->
 
                 <hr>
