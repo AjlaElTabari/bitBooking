@@ -1,7 +1,7 @@
 package controllers;
 
 import com.avaje.ebean.Ebean;
-import models.App_User;
+import models.AppUser;
 import models.Hotel;
 import play.mvc.Result;
 import play.data.Form;
@@ -14,12 +14,12 @@ import java.util.List;
  * Created by ajla on 9/2/15.
  */
 public class Users extends Controller {
-    private static final Form<App_User> userForm = Form.form(App_User.class);
+    private static final Form<AppUser> userForm = Form.form(AppUser.class);
     private static List<Hotel> hotels = Hotel.finder.all();
     public Result insertUser() {
-       Form<App_User> boundForm = userForm.bindFromRequest();
+       Form<AppUser> boundForm = userForm.bindFromRequest();
 
-        App_User user = boundForm.get();
+        AppUser user = boundForm.get();
         user.hashPass();
 
         try {
@@ -32,12 +32,12 @@ public class Users extends Controller {
     }
 
     public Result login() {
-        Form<App_User> boundForm = userForm.bindFromRequest();
+        Form<AppUser> boundForm = userForm.bindFromRequest();
 
         String email = boundForm.bindFromRequest().field("email").value();
         String password = boundForm.bindFromRequest().field("password").value();
 
-        App_User user = App_User.authenticate(email, password);
+        AppUser user = AppUser.authenticate(email, password);
 
         if (user == null) {
             flash("error","Incorrect email or password! Please try again!");
