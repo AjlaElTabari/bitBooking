@@ -16,15 +16,14 @@ public class Hotels extends Controller {
 
     private static final Form<Hotel> hotelForm = Form.form(Hotel.class);
     private static Model.Finder<String, Hotel> finder = new Model.Finder<>(String.class, Hotel.class);
-    private static Form<Hotel> boundForm = hotelForm.bindFromRequest();
-
-
 
     public Result insertHotel() {
 
+        Form<Hotel> boundForm = hotelForm.bindFromRequest();
         Hotel hotel = boundForm.get();
+
         Ebean.save(hotel);
-            return ok();
+            return ok(hotel.toString());
     }
 
     public Result deleteHotel(Hotel hotel) {

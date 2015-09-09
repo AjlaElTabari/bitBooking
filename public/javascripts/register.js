@@ -48,7 +48,7 @@ function checkPasswordMatch() {
 
 
     if (pass1 != pass2) {
-        document.getElementById('password2_error').innerHTML="Passwords Do not match";
+        document.getElementById('password2_error').innerHTML="Passwords do not match";
         document.getElementById('submit').disable="true";
         return false;
     }else {
