@@ -53,4 +53,7 @@ public class Users extends Controller {
     public Result showHotel(){
         return ok(hotel.render());
     }
+    public Result logAdmin(){
+        return ok(adminpanel.render());
+    }
 }
