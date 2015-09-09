@@ -36,6 +36,12 @@ public class Hotel extends Model {
         this.feature = feature;
     }
 
+    @Override
+    public String toString()
+    {
+        return (id.toString() + " " + name);
+    }
+
 
 
 

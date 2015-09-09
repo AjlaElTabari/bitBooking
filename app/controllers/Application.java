@@ -1,10 +1,9 @@
 package controllers;
 
 import models.Hotel;
-import play.*;
 import play.mvc.*;
-
 import views.html.*;
+
 
 import java.util.List;
 
@@ -23,13 +22,17 @@ public class Application extends Controller {
     public Result registrationmessage() {
         return ok(registrationmessage.render());
     }
-    /*opening register form */
-    public Result register(){
-        return ok(register.render());
-    }
+//    /*opening register form */
+//    public Result register(){
+//        return ok(register.render(userForm));
+//    }
 
     public Result registerHotel(){
         List<Hotel> hotels = Hotel.finder.all();
         return ok(addhotel.render(hotels));
+    }
+
+    public Result insertFeature(){
+        return ok(feature.render());
     }
 }
