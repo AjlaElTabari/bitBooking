@@ -7,16 +7,16 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
- * Model of AppUser. AppUser is a person who sign up into database on bitBooking.com web page
+ * Model of App_User. App_User is a person who sign up into database on bitBooking.com web page
  * and has permissions depending on type of user
  */
 @Entity
-public class AppUser extends Model{
+public class App_User extends Model{
 
-    private static Finder<String, AppUser> finder = new Finder<>(String.class, AppUser.class);
+    private static Finder<String, App_User> finder = new Finder<>(String.class, App_User.class);
    
     /*
-     * AppUser attributes
+     * App_User attributes
      */
     @Id
     public Integer id;
@@ -30,19 +30,19 @@ public class AppUser extends Model{
     /**
      * Default constructor
      */
-    public AppUser() {
+    public App_User() {
     }
 
     /**
-     * Constructor for creating new AppUser object.
+     * Constructor for creating new App_User object.
      *
-     * @param firstName   - AppUser's first name.
-     * @param lastName    - AppUser's last name.
-     * @param email       - AppUser's email address.
-     * @param password    - AppUser's password.
-     * @param phoneNumber - AppUser's phone number.
+     * @param firstName   - App_User's first name.
+     * @param lastName    - App_User's last name.
+     * @param email       - App_User's email address.
+     * @param password    - App_User's password.
+     * @param phoneNumber - App_User's phone number.
      */
-    public AppUser(String firstName, String lastName, String email, String password, String phoneNumber) {
+    public App_User(String firstName, String lastName, String email, String password, String phoneNumber) {
         this.firstname = firstName;
         this.lastname = lastName;
         this.email = email;
@@ -54,8 +54,8 @@ public class AppUser extends Model{
 
 
 
-    public static AppUser authenticate(String email, String password) {
-        AppUser user = finder.where().eq("email", email.toString()).findUnique();
+    public static App_User authenticate(String email, String password) {
+        App_User user = finder.where().eq("email", email.toString()).findUnique();
 
         if (user != null && BCrypt.checkpw(password, user.password)) {
             return user;
