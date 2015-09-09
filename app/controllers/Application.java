@@ -22,10 +22,10 @@ public class Application extends Controller {
     public Result registrationmessage() {
         return ok(registrationmessage.render());
     }
-    /*opening register form */
-    public Result register(){
-        return ok(register.render());
-    }
+//    /*opening register form */
+//    public Result register(){
+//        return ok(register.render(userForm));
+//    }
 
     public Result registerHotel(){
         List<Hotel> hotels = Hotel.finder.all();
