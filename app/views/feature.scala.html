@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+
+@import helper._
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Insert feature</title>
+    </head>
+    <body>
+        @helper.form(action = routes.Features.insertFeature()) {
+            <label>name</label>
+            <input name="name">
+            <button name="submit" onclick="insertFeature()">submit</button>
+        }
+    </body>
+</html>
