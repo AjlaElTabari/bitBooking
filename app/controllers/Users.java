@@ -1,25 +1,25 @@
 package controllers;
 
 import com.avaje.ebean.Ebean;
-import models.App_User;
+import models.AppUser;
 import models.Hotel;
-import play.    mvc.Result;
+import play.mvc.Result;
 import play.data.Form;
 import play.mvc.Controller;
 import views.html.*;
-
 import java.util.List;
+
 
 /**
  * Created by ajla on 9/2/15.
  */
 public class Users extends Controller {
-    private static final Form<App_User> userForm = Form.form(App_User.class);
-    List<Hotel> hotels = Hotel.finder.all();
+    private static final Form<AppUser> userForm = Form.form(AppUser.class);
+    private static List<Hotel> hotels = Hotel.finder.all();
     public Result insertUser() {
-       Form<App_User> boundForm = userForm.bindFromRequest();
+       Form<AppUser> boundForm = userForm.bindFromRequest();
 
-        App_User user = boundForm.get();
+        AppUser user = boundForm.get();
         user.hashPass();
 
         try {
@@ -32,12 +32,12 @@ public class Users extends Controller {
     }
 
     public Result login() {
-        Form<App_User> boundForm = userForm.bindFromRequest();
+        Form<AppUser> boundForm = userForm.bindFromRequest();
 
         String email = boundForm.bindFromRequest().field("email").value();
         String password = boundForm.bindFromRequest().field("password").value();
 
-        App_User user = App_User.authenticate(email, password);
+        AppUser user = AppUser.authenticate(email, password);
 
         if (user == null) {
             flash("error","Incorrect email or password! Please try again!");
@@ -45,5 +45,12 @@ public class Users extends Controller {
         } else {
             return ok(loginmessage.render());
         }
+    }
+
+    public Result editUser(){
+        return ok(userProfilPage.render());
+    }
+    public Result showHotel(){
+        return ok(hotel.render());
     }
 }

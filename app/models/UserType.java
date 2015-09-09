@@ -1,12 +1,12 @@
 package models;
 
 /**
- * Model of App_User type. Defines permissions for user.
+ * Model of AppUser type. Defines permissions for user.
  */
 
 public class UserType {
     /*
-     * App_User type attributes
+     * AppUser type attributes
      */
     public Integer id;
     public String name;
@@ -21,7 +21,7 @@ public class UserType {
     /**
      * Constructor for creating new UserType object.
      *
-     * @param name        - App_User's type.
+     * @param name        - AppUser's type.
      */
 
     public UserType(String name) {

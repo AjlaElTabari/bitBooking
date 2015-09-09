@@ -1,35 +1,44 @@
 @(hotels: List[Hotel])
-<!DOCTYPE html>
-
 @import helper._
-<html>
-    <head>
-        <meta charset="utf-8">
-
-
-        <title></title>
-    </head>
-    <body>
+@main("Add hotel"){
+    <div class="container" style="background-color: white">
+        <h3>Register your hotel</h3>
+        <hr/>
     @helper.form(action = routes.Hotels.insertHotel()) {
-        <label>name</label>
-        <input name="name">
-        <label>location</label>
-        <input name="location">
-        <label>description</label>
-        <input name="description">
-        <button name="submit" onclick="insertHotel()">submit</button>
+        <div class="row">
 
-        <button name="list" onclick="listOfHotels()">list</button>
+            <form role="form">
+                <div class="col-md-6">
 
-        @for(hotel <- hotels) {
-            @hotel.name
-            @hotel.location
-            @hotel.description
-        }
+                    <div class="form-group">
+                        <label for="InputName">Hotel name:</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="hotelname" id="InputName" placeholder="Hotel Name" style="width: 350px" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address:</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="address" id="address" placeholder="Address" style="width: 350px">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description:</label>
+                        <textarea class="form-control" rows="10" style="width: 350px;resize: none" id="description"></textarea>
+                    </div>
+                    <div class="form-group">
+                            <input type="submit" name="submit" id="submit" value="Register" class="btn btn-info">
+                    </div>
+                </div>
+            </form>
+            <div class="col-md-6">
+                <img src="http://placehold.it/500x400" alt=""/>
+            </div>
+        </div>
+    </div>
+
+
 
 
     }
-
-    </body>
-
-</html>
+}
