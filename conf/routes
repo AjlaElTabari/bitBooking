@@ -10,6 +10,7 @@ GET         /register                   @controllers.Users.register()
 GET         /addhotel                   @controllers.Application.registerHotel()
 GET         /edit_user                  @controllers.Users.editUser()
 GET         /hotel                      @controllers.Users.showHotel()
+GET         /admin                      @controllers.Users.logAdmin()
 GET         /feature                    @controllers.Application.insertFeature()
 
 # Map static resources from the /public folder to the /assets URL path
