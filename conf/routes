@@ -6,7 +6,7 @@
 GET         /                           @controllers.Application.index()
 GET         /loginmessage               @controllers.Application.loginmessage()
 GET         /registrationmessage        @controllers.Application.registrationmessage()
-GET         /register                   @controllers.Application.register()
+GET         /register                   @controllers.Users.register()
 GET         /addhotel                   @controllers.Application.registerHotel()
 GET         /edit_user                  @controllers.Users.editUser()
 GET         /hotel                      @controllers.Users.showHotel()

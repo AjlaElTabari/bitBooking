@@ -2,7 +2,9 @@ package models;
 
 import org.mindrot.jbcrypt.BCrypt;
 import com.avaje.ebean.Model;
+import play.data.validation.Constraints;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -20,10 +22,28 @@ public class App_User extends Model{
      */
     @Id
     public Integer id;
+
+    @Constraints.Required(message = "Please input your first name")
+    @Constraints.MinLength(value=2, message = "First name must be at least 2 letters long!")
+    @Constraints.Pattern("^[a-zA-Z]+$")
     public String firstname;
+
+    @Constraints.Required(message = "Please input your last name")
+    @Constraints.MinLength(value=2, message="Last name must be at leastt 2 letters long!")
+    @Constraints.Pattern("^[a-zA-Z]+$")
     public String lastname;
+
+    @Constraints.Required(message = "Please input email!")
+    @Column(unique = true)
     public String email;
+
+    @Constraints.Required(message = "Please input password!")
+    @Constraints.MinLength(6)
     public String password;
+
+    @Constraints.Required
+    @Constraints.MaxLength(15)
+    @Constraints.Pattern(value="\\d+", message = "Phone number can contain digits only!")
     public String phoneNumber;
 
 
