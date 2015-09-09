@@ -34,7 +34,7 @@ public class Users extends Controller {
         String lastname = boundForm.bindFromRequest().field("lastname").value();
         String phone = boundForm.bindFromRequest().field("phoneNumber").value();
 
-        //patterns and filters
+
 
         //validation of the form
 
