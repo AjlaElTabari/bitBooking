@@ -8,11 +8,13 @@ GET         /login                      @controllers.Application.index()
 GET         /registrationmessage        @controllers.Application.registrationmessage()
 GET         /register                   @controllers.Users.register()
 GET         /addhotel                   @controllers.Application.registerHotel()
-GET         /edit_user/:email            @controllers.Users.editUser(email: String)
-GET         /hotel                      @controllers.Users.showHotel()
+GET         /edit_user/:email           @controllers.Users.editUser(email: String)
 GET         /admin                      @controllers.Users.logAdmin()
 GET         /feature                    @controllers.Application.insertFeature()
 GET         /logout                     @controllers.Users.logOut()
+GET         /hotel/:id                  @controllers.Hotels.showHotel(id: Integer)
+GET         /editHotel/:id              @controllers.Hotels.editHotel(id: Integer)
+
 
 # Map static resources from the /public folder to the /assets URL path
 GET         /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

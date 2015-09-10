@@ -8,6 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import java.util.List;
+import javax.persistence.*;
+
+import java.util.ArrayList;
 
 /**
  * Created by Edvin on 9/6/2015.
@@ -38,6 +41,11 @@ public class Hotel extends Model {
         this.feature = feature;
     }
 
+    public static Hotel findHotelById(Integer id) {
+        Hotel hotel = finder.where().eq("id", id).findUnique();
+
+        return hotel;
+    }
     @Override
     public String toString()
     {

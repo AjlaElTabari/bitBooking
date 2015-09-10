@@ -109,10 +109,6 @@ public class Users extends Controller {
         return ok(userProfilPage.render(user));
     }
 
-    public Result showHotel() {
-        return ok(hotel.render());
-    }
-
     public Result logAdmin() {
         return ok(adminpanel.render());
     }

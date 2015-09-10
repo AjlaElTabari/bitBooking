@@ -7,6 +7,10 @@ import models.Hotel;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
+import views.html.editHotel;
+import views.html.hotel;
+import views.html.list;
+import views.html.main;
 
 import java.util.List;
 
@@ -42,4 +46,13 @@ public class Hotels extends Controller {
         return features;
     }
 
+    public Result showHotel(Integer id) {
+        Hotel hotel = Hotel.findHotelById(id);
+        return ok(views.html.hotel.render(hotel));
+    }
+
+    public Result editHotel(Integer id) {
+        Hotel hotel = Hotel.findHotelById(id);
+        return ok(editHotel.render(hotel));
+    }
 }
