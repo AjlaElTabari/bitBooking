@@ -96,16 +96,17 @@ public class Users extends Controller {
             return badRequest(list.render(hotels));
         } else {
             session().clear();
-            session("email",email);
+            session("email", email);
             session("name",user.firstname);
             session("id", user.userTypeId.toString());
 
-            return ok(userProfilPage.render());
+            return ok(userProfilPage.render(user));
         }
     }
 
-    public Result editUser() {
-        return ok(userProfilPage.render());
+    public Result editUser(String email) {
+        App_User user = App_User.getUserByEmail(email);
+        return ok(userProfilPage.render(user));
     }
 
     public Result showHotel() {
