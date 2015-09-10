@@ -72,8 +72,6 @@ public class App_User extends Model{
     }
 
 
-
-
     public static App_User authenticate(String email, String password) {
         App_User user = finder.where().eq("email", email.toString()).findUnique();
 
@@ -87,4 +85,11 @@ public class App_User extends Model{
     public void hashPass() {
        this.password = BCrypt.hashpw(this.password, BCrypt.gensalt());
     }
+
+
+    public App_User getUserByEmail(String email){
+        App_User user = finder.where().eq("email",email).findUnique();
+        return user;
+    }
+
 }

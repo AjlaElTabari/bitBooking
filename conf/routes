@@ -4,7 +4,7 @@
 
 # Home page
 GET         /                           @controllers.Application.index()
-GET         /loginmessage               @controllers.Application.loginmessage()
+GET         /login                      @controllers.Application.index()
 GET         /registrationmessage        @controllers.Application.registrationmessage()
 GET         /register                   @controllers.Users.register()
 GET         /addhotel                   @controllers.Application.registerHotel()
@@ -12,6 +12,7 @@ GET         /edit_user                  @controllers.Users.editUser()
 GET         /hotel                      @controllers.Users.showHotel()
 GET         /admin                      @controllers.Users.logAdmin()
 GET         /feature                    @controllers.Application.insertFeature()
+GET         /logout                     @controllers.Users.logOut()
 
 # Map static resources from the /public folder to the /assets URL path
 GET         /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

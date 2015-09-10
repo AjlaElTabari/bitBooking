@@ -1,5 +1,6 @@
 package controllers;
 
+import models.Feature;
 import models.Hotel;
 import play.mvc.*;
 import views.html.*;
@@ -28,8 +29,8 @@ public class Application extends Controller {
 //    }
 
     public Result registerHotel(){
-        List<Hotel> hotels = Hotel.finder.all();
-        return ok(addhotel.render(hotels));
+        List<Feature> features = Hotels.featureFinder.all();
+        return ok(addhotel.render(features));
     }
 
     public Result insertFeature(){

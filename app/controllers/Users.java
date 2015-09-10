@@ -93,7 +93,10 @@ public class Users extends Controller {
             flash("error","Incorrect email or password! Please try again!");
             return badRequest(list.render(hotels));
         } else {
-            return ok(loginmessage.render());
+            session().clear();
+            session("email",email);
+            session("name",user.firstname);
+            return ok(userProfilPage.render());
         }
     }
 
@@ -105,5 +108,10 @@ public class Users extends Controller {
     }
     public Result logAdmin(){
         return ok(adminpanel.render());
+    }
+
+    public Result logOut(){
+        session().clear();
+        return ok(list.render(hotels));
     }
 }
