@@ -73,14 +73,16 @@ public class Users extends Controller {
                 flash("error", "Email already exist in our database, please try with another email!");
                 return ok(register.render(boundForm));
             }
-
-
-
-
         }
     }
 
-
+    /**
+     * Collects user info from the login form, calls method for authentication,
+     * and if it is successful, logs the user in. Stores the data in the session
+     * and redirect user to the corresponding profile page.
+     *
+     * @return
+     */
     public Result login() {
         Form<App_User> boundForm = userForm.bindFromRequest();
 
@@ -96,21 +98,25 @@ public class Users extends Controller {
             session().clear();
             session("email",email);
             session("name",user.firstname);
+            session("id", user.userTypeId.toString());
+
             return ok(userProfilPage.render());
         }
     }
 
-    public Result editUser(){
+    public Result editUser() {
         return ok(userProfilPage.render());
     }
-    public Result showHotel(){
+
+    public Result showHotel() {
         return ok(hotel.render());
     }
-    public Result logAdmin(){
+
+    public Result logAdmin() {
         return ok(adminpanel.render());
     }
 
-    public Result logOut(){
+    public Result logOut() {
         session().clear();
         return ok(list.render(hotels));
     }
