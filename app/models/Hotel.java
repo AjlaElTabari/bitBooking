@@ -3,9 +3,10 @@ package models;
 
 import com.avaje.ebean.Model;
 
-import javax.persistence.*;
-
-import java.util.ArrayList;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import java.util.List;
 
 /**
@@ -39,7 +40,7 @@ public class Hotel extends Model {
     @Override
     public String toString()
     {
-        return (id.toString() + " " + name);
+        return (id.toString() + " " + name + " " + feature);
     }
 
 

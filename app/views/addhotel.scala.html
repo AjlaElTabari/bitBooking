@@ -1,4 +1,4 @@
-@(hotels: List[Hotel])
+@(features: List[Feature])
 @import helper._
 @main("Add hotel"){
     <div class="container" style="background-color: white">
@@ -6,7 +6,6 @@
         <hr/>
         @helper.form(action = routes.Hotels.insertHotel()) {
             <div class="row">
-
                 <form role="form">
                     <div class="col-md-6">
 
@@ -32,7 +31,20 @@
                     </div>
                 </form>
                 <div class="col-md-6">
-                    <img src="http://placehold.it/500x400" alt=""/>
+                    <img src="http://placehold.it/500x200" style="width: 100%" alt=""/>
+                    <hr/>
+                    <div class="row">
+                        <div class="col-md-6">
+                            @for(feature <- features){
+                            <div>
+                                <span>
+                                    <input  id="@feature.id" name="@feature.name" type="checkbox"/>
+                                    <label for="@feature.name">@feature.name</label>
+                                </span>
+                            </div>
+                            }
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
