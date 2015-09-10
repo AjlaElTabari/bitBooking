@@ -14,26 +14,27 @@ import java.util.List;
  */
 @Entity
 public class Hotel extends Model {
-
     public static Finder<String, Hotel> finder = new Finder<>(String.class, Hotel.class);
-
-
 
     @Id
     public Integer id;
     public String name;
     public String location;
     public String description;
+    public String coordinateX;
+    public String coordinateY;
 
     @ManyToMany(cascade=CascadeType.ALL)
     public List<Feature> feature;
 
 
-    public Hotel(Integer id, String name, String location, String description, List<Feature> feature){
+    public Hotel(Integer id, String name, String location, String description, String coordinateX, String coordinateY, List<Feature> feature){
         this.id = id;
         this.name = name;
         this.location = location;
         this.description = description;
+        this.coordinateX = coordinateX;
+        this.coordinateY = coordinateY;
         this.feature = feature;
     }
 
@@ -42,8 +43,5 @@ public class Hotel extends Model {
     {
         return (id.toString() + " " + name + " " + feature);
     }
-
-
-
 
 }

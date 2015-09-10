@@ -10,6 +10,7 @@ create table app_user (
   email                     varchar(255),
   password                  varchar(255),
   phone_number              varchar(255),
+  user_type_id              integer,
   constraint uq_app_user_email unique (email),
   constraint pk_app_user primary key (id))
 ;
@@ -25,6 +26,8 @@ create table hotel (
   name                      varchar(255),
   location                  varchar(255),
   description               varchar(255),
+  coordinate_x              varchar(255),
+  coordinate_y              varchar(255),
   constraint pk_hotel primary key (id))
 ;
 

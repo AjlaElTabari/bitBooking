@@ -1,5 +1,7 @@
 package models;
 
+import javax.persistence.OneToMany;
+
 /**
  * Model of App_User type. Defines permissions for user.
  */
@@ -10,6 +12,9 @@ public class UserType {
      */
     public Integer id;
     public String name;
+
+    @OneToMany(mappedBy = "UserType")
+    public App_User user;
 
 
     /**
