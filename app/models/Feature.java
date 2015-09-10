@@ -10,6 +10,10 @@ import javax.persistence.*;
  */
 @Entity
 public class Feature extends Model {
+
+    public static Finder<String, Feature> finder = new Finder<>(String.class, Feature.class);
+
+
     @Id
     public Integer id;
     public String name;
