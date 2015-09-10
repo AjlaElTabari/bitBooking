@@ -126,7 +126,7 @@ public class App_User extends Model {
      * @param email
      * @return
      */
-    public App_User getUserByEmail(String email) {
+    public static App_User getUserByEmail(String email) {
         App_User user = finder.where().eq("email", email).findUnique();
         return user;
     }
