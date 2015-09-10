@@ -19,6 +19,5 @@ GET         /assets/*file               controllers.Assets.versioned(path="/publ
 
 POST        /register/                  @controllers.Users.insertUser()
 POST        /frontpage                  @controllers.Users.login()
-
 POST        /addhotel                   @controllers.Hotels.insertHotel()
 POST        /feature                    @controllers.Features.insertFeature()
