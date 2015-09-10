@@ -8,9 +8,6 @@ import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.editHotel;
-import views.html.hotel;
-import views.html.list;
-import views.html.main;
 
 import java.util.List;
 
@@ -26,27 +23,35 @@ public class Hotels extends Controller {
         Form<Hotel> boundForm = hotelForm.bindFromRequest();
         Hotel hotel = boundForm.get();
 
-        Ebean.save(hotel);
+            Ebean.save(hotel);
             return ok(hotel.toString());
+
     }
+    public Result updateHotel(Integer id){
 
-    public Result deleteHotel(Hotel hotel) {
-        Ebean.delete(hotel);
+        Hotel hotel = Hotel.findHotelById(id);
+        Form<Hotel> hotelForm1 = hotelForm.bindFromRequest();
 
-        return ok("Nesto");
+        String name = hotelForm1.bindFromRequest().field("name").value();
+        String location = hotelForm1.bindFromRequest().field("location").value();
+        String description = hotelForm1.bindFromRequest().field("description").value();
+
+        hotel.name = name;
+        hotel.location = location;
+        hotel.description = description;
+
+                Ebean.update(hotel);
+
+
+        return ok(hotel.toString());
     }
-
-    public List<Hotel> listOfHotels() {
-        List<Hotel> hotels = finder.all();
-            return hotels;
-    }
-
     public List<Feature> listOfFeatures(){
         List<Feature> features = featureFinder.all();
         return features;
     }
 
     public Result showHotel(Integer id) {
+        session("hotel_id", id.toString());
         Hotel hotel = Hotel.findHotelById(id);
         return ok(views.html.hotel.render(hotel));
     }
