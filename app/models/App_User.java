@@ -17,7 +17,7 @@ import javax.persistence.ManyToOne;
 public class App_User extends Model {
 
     public static final Integer USR_TYPE_BUYER = 3;
-    private static Finder<String, App_User> finder = new Finder<>(String.class, App_User.class);
+    public static Finder<String, App_User> finder = new Finder<>(String.class, App_User.class);
 
     /*
      * App_User attributes
