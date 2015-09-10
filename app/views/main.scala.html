@@ -46,7 +46,7 @@
                             <li><a href="@routes.Application.index()" data-toggle="modal" data-target="#myModal">Log in</a></li>
 
                         }else{
-                            <li><a href="@routes.Users.editUser()" data-toggle="modal" data-target="#myModal">@session().get("name")</a></li>
+                            <li><a href="@routes.Users.editUser(user.email)" data-toggle="modal" data-target="#myModal">@session().get("name")</a></li>
                             <li><a href="@routes.Users.logOut()" data-toggle="modal" data-target="#myModal">Log out</a></li>
                         }
                     </ul>
