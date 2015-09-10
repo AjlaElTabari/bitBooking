@@ -1,7 +1,9 @@
 package controllers;
 
 import com.avaje.ebean.Ebean;
+import com.avaje.ebean.Model;
 import models.App_User;
+import models.Feature;
 import models.Hotel;
 import play.mvc.Result;
 import play.data.Form;
@@ -15,7 +17,15 @@ import java.util.List;
  */
 public class Users extends Controller {
     private static final Form<App_User> userForm = Form.form(App_User.class);
+
     private static List<Hotel> hotels = Hotel.finder.all();
+    private static Model.Finder<String, Hotel> finder = new Model.Finder<>(String.class, Hotel.class);
+
+    private static List<App_User> users = App_User.finder.all();
+    private static Model.Finder<String, App_User> userFinder = new Model.Finder<>(String.class, App_User.class);
+
+    private static List<Feature> features = Feature.finder.all();
+    private static Model.Finder<String, Feature> featureFinder = new Model.Finder<>(String.class, Feature.class);
 
 
     /*opening register form */
@@ -73,16 +83,14 @@ public class Users extends Controller {
                 flash("error", "Email already exist in our database, please try with another email!");
                 return ok(register.render(boundForm));
             }
+
+
+
+
         }
     }
 
-    /**
-     * Collects user info from the login form, calls method for authentication,
-     * and if it is successful, logs the user in. Stores the data in the session
-     * and redirect user to the corresponding profile page.
-     *
-     * @return
-     */
+
     public Result login() {
         Form<App_User> boundForm = userForm.bindFromRequest();
 
@@ -95,26 +103,41 @@ public class Users extends Controller {
             flash("error","Incorrect email or password! Please try again!");
             return badRequest(list.render(hotels));
         } else {
-            session().clear();
-            session("email", email);
-            session("name",user.firstname);
-            session("id", user.userTypeId.toString());
-
-            return ok(userProfilPage.render(user));
+            return ok(loginmessage.render());
         }
     }
 
-    public Result editUser(String email) {
+    public Result editUser(String email){
         App_User user = App_User.getUserByEmail(email);
         return ok(userProfilPage.render(user));
     }
 
-    public Result logAdmin() {
+    public Result logAdmin(){
         return ok(adminpanel.render());
     }
 
-    public Result logOut() {
+    public Result logOut(){
         session().clear();
         return ok(list.render(hotels));
     }
+
+    /*shows the list of hotels to admin*/
+    public Result showAdminHotels() {
+        List<Hotel> hotels = finder.all();
+        return ok (adminhotels.render(hotels));
+
+
+    }
+
+    public Result showAdminUsers(){
+        List<App_User> users = userFinder.all();
+        return ok(adminusers.render(users));
+    }
+
+    public Result showAdminFeatures(){
+        List<Feature> features = featureFinder.all();
+        return ok(adminfeatures.render(features));
+
+    }
+
 }

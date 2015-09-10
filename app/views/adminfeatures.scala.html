@@ -1,4 +1,4 @@
-@import helper._
+@(features: List[Feature])
 @main("Admin"){
   <div class="container" style="background-color: #204d74">
     <div class="row">
@@ -23,13 +23,42 @@
       <div class="col-md-4">
         <br/>
         <a href="@routes.Users.showAdminFeatures()">
-          <button class="btn-primary" style="width: 100%;height: 200px; font-size: 30px">
-            Features
-          </button>
+        <button class="btn-primary" style="width: 100%;height: 200px; font-size: 30px">
+          Features
+        </button>
         </a>
       </div>
     </div>
     <hr/>
+  </div>
+
+  <div class="container">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+      @for(feature <- features){
+        <tr>
+          <td>@feature.name</td>
+
+          <td> <button class="btn btn-danger">Delete</button></td>
+        </tr>
+      }
+        <tr>
+          <td>
+            <a href="@routes.Application.insertFeature()">
+              <button class="btn btn-success">Add</button>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
   </div>
 
 
