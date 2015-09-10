@@ -9,6 +9,9 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>@title</title>
+        <script src = "@routes.Assets.versioned("/javascripts/coordinate.js")"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?callback=initialize" async defer></script>
+        <link rel="stylesheet" href="@routes.Assets.versioned("/stylesheets/coordinate.css")"/>
         <link rel="stylesheet" href="@routes.Assets.versioned("/bootstrap/css/bootstrap.css")"/>
         <link rel="stylesheet" href="@routes.Assets.versioned("/bootstrap/css/bootstrap-theme.css")"/>
         <link rel="stylesheet" href="@routes.Assets.versioned("/bootstrap/js/bootstrap.js")"/>
@@ -43,7 +46,7 @@
                             <li><a href="@routes.Application.index()" data-toggle="modal" data-target="#myModal">Log in</a></li>
 
                         }else{
-                            <li><a href="@routes.Users.editUser(user.email)" data-toggle="modal" data-target="#myModal">@session().get("name")</a></li>
+                            <li><a href="@routes.Users.editUser()" data-toggle="modal" data-target="#myModal">@session().get("name")</a></li>
                             <li><a href="@routes.Users.logOut()" data-toggle="modal" data-target="#myModal">Log out</a></li>
                         }
                     </ul>

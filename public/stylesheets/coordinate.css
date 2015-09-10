@@ -1,0 +1,11 @@
+
+#map {
+    width: 500px;
+    height: 400px;
+}
+
+#infoPanel {
+    float: left;
+    margin-left: 10px;
+    margin-top: 10px;
+}
