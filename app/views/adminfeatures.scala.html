@@ -46,7 +46,13 @@
         <tr>
           <td>@feature.name</td>
 
-          <td> <button class="btn btn-danger">Delete</button></td>
+          <form method="delete" action="@routes.Features.deleteFeature(feature.id)">
+            <td>
+              <a href="@routes.Features.deleteFeature(feature.id)">
+                <button class="btn btn-danger">Delete</button>
+              </a>
+            </td>
+          </form>
         </tr>
       }
         <tr>

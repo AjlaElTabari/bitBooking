@@ -116,6 +116,10 @@ public class Users extends Controller {
         return ok(adminpanel.render());
     }
 
+    public Result logManager(){
+        return ok(managerpanel.render());
+    }
+
     public Result logOut(){
         session().clear();
         return ok(list.render(hotels));
@@ -125,19 +129,31 @@ public class Users extends Controller {
     public Result showAdminHotels() {
         List<Hotel> hotels = finder.all();
         return ok (adminhotels.render(hotels));
-
-
     }
 
+    /*shows the list of users to admin*/
     public Result showAdminUsers(){
         List<App_User> users = userFinder.all();
         return ok(adminusers.render(users));
     }
-
+    /*shows the list of features to admin*/
     public Result showAdminFeatures(){
         List<Feature> features = featureFinder.all();
         return ok(adminfeatures.render(features));
 
+    }
+
+    /*shows the list of hotels to hotel manager*/
+    public Result showManagerHotels() {
+        List<Hotel> hotels = finder.all();
+        return ok (managerhotels.render(hotels));
+    }
+
+    /*This method allows admin to delete user*/
+    public Result deleteUser(String email){
+        App_User user = App_User.getUserByEmail(email);
+        Ebean.delete(user);
+        return redirect(routes.Users.showAdminUsers());
     }
 
 }

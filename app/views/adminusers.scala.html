@@ -50,7 +50,13 @@
         <td>@user.lastname</td>
         <td>@user.email</td>
         <td></td>
-        <td><button class="btn btn-danger">Delete</button></td>
+          <form method="delete" action="@routes.Users.deleteUser(user.email)">
+            <td>
+              <a href="@routes.Users.deleteUser(user.email)">
+                <button class="btn btn-danger">Delete</button>
+              </a>
+            </td>
+          </form>
         <td>
           <select class="form-control">
           <option>Buyer</option>

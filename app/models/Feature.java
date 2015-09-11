@@ -27,4 +27,11 @@ public class Feature extends Model {
 
     }
 
+    public static Feature findFeaturelById(Integer id) {
+        Feature feature = finder.where().eq("id", id).findUnique();
+
+        return feature;
+    }
+
+
 }

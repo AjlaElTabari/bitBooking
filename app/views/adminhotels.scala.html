@@ -49,12 +49,18 @@
                 <td>@hotel.location</td>
                 <td>@hotel.description</td>
 
-                <td>
-                    <button class="btn btn-danger">Delete</button>
-                </td>
-                <td> </td>
+                <form method="delete" action="@routes.Hotels.deleteHotelAdmin(hotel.id)">
+                    <td>
+                        <a href="@routes.Hotels.deleteHotelAdmin(hotel.id)">
+                            <button class="btn btn-danger">Delete</button>
+                        </a>
+                    </td>
+                </form>
+
             </tr>
         }
+
+
       </tbody>
     </table>
   </div>
