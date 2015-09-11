@@ -57,12 +57,19 @@
               </a>
             </td>
           </form>
+          <form method="post" action="@routes.Users.setRole(user.email)"  >
           <td>
-            <select class="form-control">
-              <option>Buyer</option>
-              <option>Seller</option>
-              <option>Hotel Manager</option>
-            </select> </td>
+            @*<select class="form-control" >*@
+              @*<option name="usertype"  value="buyer">Buyer</option>*@
+              @*<option name="usertype" value="seller">Seller</option>*@
+              @*<option name="usertype" value="hotelmanager">Hotel Manager</option>*@
+            @*</select>*@
+            <button name="usertype" onclick="@routes.Users.setRole(user.email)" value="buyer">Buyer</button>
+            <button name="usertype" onclick="@routes.Users.setRole(user.email)" value="seller">Seller</button>
+            <button name="usertype" onclick="@routes.Users.setRole(user.email)" value="hotelmanager">Hotel Manager</button>
+          </td>
+
+          </form>
         </tr>
       }
       </tbody>
