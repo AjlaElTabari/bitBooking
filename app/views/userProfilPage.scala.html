@@ -1,14 +1,21 @@
 @(user: App_User)
   @main("User profile"){
-    <div class="container" style="padding-top: 60px;background-color: white">
+    <div class="container" style="padding-top: 60px;background-color: white" xmlns="http://www.w3.org/1999/html">
       <div class="row">
         <div class="col-md-10">
           <h1 class="page-header"> Edit Profile</h1>
         </div>
         <div class="col-md-2">
-          <div class="button">
-            <button class="btn btn-danger" style="height:100px">WHAT?</button>
-          </div>
+         @if(session().get("userTypeId").toInt == 3) {
+           <div class="button">
+            <a href="@routes.Users.logAdmin()"> <button class="btn btn-danger" style="height : 100px">ADMIN PANEL</button></a>
+           </div>
+         }
+          @if(session().get("userTypeId").toInt == 6) {
+            <div class="button">
+              <a href="@routes.Users.showManagerHotels()"> <button class="btn btn-danger" style="height : 100px">MANAGER PANEL</button></a>
+            </div>
+          }
         </div>
       </div>
 
@@ -73,9 +80,6 @@
               <div class="col-md-8">
 
                 <input value="Save Changes" type="submit"href="@routes.Users.updateUser(user.email)">
-
-                <span></span>
-                <input class="btn btn-default" value="Back" type="reset">
               </div>
             </div>
           </form>
