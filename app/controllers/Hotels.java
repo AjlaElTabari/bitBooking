@@ -30,15 +30,23 @@ public class Hotels extends Controller {
             return ok(hotel.toString());
     }
 
-    public Result deleteHotel(Hotel hotel) {
-        Ebean.delete(hotel);
+    public Result updateHotel(Integer id) {
 
-        return ok("Nesto");
-    }
 
-    public List<Hotel> listOfHotels() {
-        List<Hotel> hotels = finder.all();
-            return hotels;
+        Hotel hotel = Hotel.findHotelById(id);
+        Form<Hotel> hotelForm1 = hotelForm.bindFromRequest();
+
+        String name = hotelForm1.bindFromRequest().field("name").value();
+        String location = hotelForm1.bindFromRequest().field("location").value();
+        String description = hotelForm1.bindFromRequest().field("description").value();
+
+        hotel.name = name;
+        hotel.location = location;
+        hotel.description = description;
+
+        Ebean.update(hotel);
+
+        return ok(hotel.toString());
     }
 
     public List<Feature> listOfFeatures(){

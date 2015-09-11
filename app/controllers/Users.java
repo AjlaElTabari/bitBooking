@@ -117,4 +117,33 @@ public class Users extends Controller {
         session().clear();
         return ok(list.render(hotels));
     }
+
+    public Result updateUser(String email) {
+        Form<App_User> boundForm = userForm.bindFromRequest();
+        App_User user = App_User.getUserByEmail(email);
+        //getting the values from the fields
+        String pass1 = boundForm.bindFromRequest().field("password").value();
+        String pass2 = boundForm.bindFromRequest().field("passwordretype").value();
+        String name = boundForm.bindFromRequest().field("firstname").value();
+        String lastname = boundForm.bindFromRequest().field("lastname").value();
+        String phone = boundForm.bindFromRequest().field("phoneNumber").value();
+
+
+        if(name != null) {
+            user.firstname = name;
+        }
+        if(lastname != null){
+            user.lastname = lastname;
+        }
+        if(pass1 != null && pass1.equals(pass2)) {
+            user.password = pass1;
+            user.hashPass();
+        }
+        if(phone != null) {
+            user.phoneNumber = phone;
+        }
+        Ebean.update(user);
+
+        return ok(name+"\n"+lastname+"\n"+pass1);
+    }
 }
