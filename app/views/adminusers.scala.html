@@ -39,16 +39,37 @@
           <th>Name</th>
           <th>Last Name</th>
           <th>Email</th>
+          <th>Role</th>
           <th></th>
         </tr>
       </thead>
 
       <tbody>
       @for(user <- users){
+
         <tr>
           <td>@user.firstname</td>
           <td>@user.lastname</td>
           <td>@user.email</td>
+         @if(user.userTypeId ==6){
+
+          <td>Hotel Manager</td>
+          }
+          @if(user.userTypeId ==5){
+
+            <td>Seller</td>
+          }
+          @if(user.userTypeId ==4){
+
+            <td>Buyer</td>
+          }
+          @if(user.userTypeId ==3){
+
+            <td>Admin</td>
+          }
+
+
+
           <td></td>
           <form method="delete" action="@routes.Users.deleteUser(user.email)">
             <td>

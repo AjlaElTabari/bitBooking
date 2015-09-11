@@ -43,8 +43,11 @@
                     <hr/>
                     <div class="row">
                         <div class="col-md-6">
+                            <br>
+                            <h3>Features</h3>
                             @for(feature <- features){
                             <div>
+
                                 <span>
                                     <input  id="@feature.id" name="@feature.name" type="checkbox"/>
                                     <label for="@feature.name">@feature.name</label>
