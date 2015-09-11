@@ -27,7 +27,7 @@ public class Hotels extends Controller {
         Hotel hotel = boundForm.get();
 
         Ebean.save(hotel);
-            return ok(hotel.toString());
+            return redirect(routes.Application.index());
     }
 
     public Result updateHotel(Integer id) {
@@ -45,7 +45,7 @@ public class Hotels extends Controller {
 
         Ebean.update(hotel);
 
-        return ok(hotel.toString());
+        return redirect(routes.Hotels.showHotel(hotel.id));
     }
 
     public List<Feature> listOfFeatures(){

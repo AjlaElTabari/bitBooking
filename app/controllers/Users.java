@@ -80,7 +80,7 @@ public class Users extends Controller {
                 user = boundForm.get();
                 user.hashPass();
                 Ebean.save(user);
-                return ok(registrationmessage.render());
+                return redirect(routes.Application.index());
             }catch (Exception e){
                 flash("error", "Email already exist in our database, please try with another email!");
                 return ok(register.render(boundForm));
@@ -183,7 +183,7 @@ public class Users extends Controller {
         if(lastname != null){
             user.lastname = lastname;
         }
-        if(pass1 != null && pass1.equals(pass2)) {
+        if(!pass1.equals("") && pass1.equals(pass2)) {
             user.password = pass1;
             user.hashPass();
         }
@@ -192,6 +192,6 @@ public class Users extends Controller {
         }
         Ebean.update(user);
 
-        return ok(name+"\n"+lastname+"\n"+pass1);
+        return redirect(routes.Users.editUser(user.email));
     }
 }

@@ -19,7 +19,7 @@ public class Features extends Controller {
 
         Feature feature = boundForm.get();
         Ebean.save(feature);
-        return ok();
+        return redirect(routes.Features.insertFeature());
     }
     public Result deleteFeature(Integer id){
         Feature feature = Feature.findFeaturelById(id);
