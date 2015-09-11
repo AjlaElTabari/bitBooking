@@ -1,7 +1,9 @@
 package controllers;
 
 import com.avaje.ebean.Ebean;
+import com.avaje.ebean.Model;
 import models.App_User;
+import models.Feature;
 import models.Hotel;
 import play.mvc.Result;
 import play.data.Form;
@@ -15,7 +17,17 @@ import java.util.List;
  */
 public class Users extends Controller {
     private static final Form<App_User> userForm = Form.form(App_User.class);
+
     private static List<Hotel> hotels = Hotel.finder.all();
+    private static Model.Finder<String, Hotel> finder = new Model.Finder<>(String.class, Hotel.class);
+
+    private static List<App_User> users = App_User.finder.all();
+    private static Model.Finder<String, App_User> userFinder = new Model.Finder<>(String.class, App_User.class);
+
+    private static List<Feature> features = Feature.finder.all();
+    private static Model.Finder<String, Feature> featureFinder = new Model.Finder<>(String.class, Feature.class);
+
+
 
 
     /*opening register form */
@@ -112,11 +124,47 @@ public class Users extends Controller {
     public Result logAdmin() {
         return ok(adminpanel.render());
     }
+    public Result logManager(){
+        return ok(managerpanel.render());
+    }
 
     public Result logOut() {
         session().clear();
         return ok(list.render(hotels));
     }
+    public Result showAdminHotels(){
+        List<Hotel> hotels = finder.all();
+        return ok(adminhotels.render(hotels));
+    }
+
+    /*shows the list of users to admin*/
+    public Result showAdminUsers(){
+        List<App_User> users = userFinder.all();
+        return ok(adminusers.render(users));
+    }
+    /*shows the list of features to admin*/
+    public Result showAdminFeatures(){
+        List<Feature> features = featureFinder.all();
+        return ok(adminfeatures.render(features));
+
+    }
+    /*shows the list of hotels to hotel manager*/
+    public Result showManagerHotels() {
+        List<Hotel> hotels = finder.all();
+        return ok (managerhotels.render(hotels));
+    }
+
+    /*This method allows admin to delete user*/
+    public Result deleteUser(String email){
+        App_User user = App_User.getUserByEmail(email);
+        Ebean.delete(user);
+        return redirect(routes.Users.showAdminUsers());
+    }
+
+
+
+
+
 
     public Result updateUser(String email) {
         Form<App_User> boundForm = userForm.bindFromRequest();

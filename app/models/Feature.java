@@ -10,6 +10,8 @@ import javax.persistence.*;
  */
 @Entity
 public class Feature extends Model {
+    public static Finder<String, Feature> finder = new Finder<>(String.class, Feature.class);
+
     @Id
     public Integer id;
     public String name;
@@ -21,6 +23,12 @@ public class Feature extends Model {
         this.id = id;
         this.name = name;
 
+    }
+
+    public static Feature findFeaturelById(Integer id) {
+        Feature feature = finder.where().eq("id", id).findUnique();
+
+        return feature;
     }
 
 }

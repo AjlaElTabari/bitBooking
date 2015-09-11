@@ -21,4 +21,10 @@ public class Features extends Controller {
         Ebean.save(feature);
         return ok();
     }
+    public Result deleteFeature(Integer id){
+        Feature feature = Feature.findFeaturelById(id);
+        Ebean.delete(feature);
+
+        return redirect(routes.Users.showAdminFeatures());
+    }
 }

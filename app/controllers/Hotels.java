@@ -32,7 +32,6 @@ public class Hotels extends Controller {
 
     public Result updateHotel(Integer id) {
 
-
         Hotel hotel = Hotel.findHotelById(id);
         Form<Hotel> hotelForm1 = hotelForm.bindFromRequest();
 
@@ -62,5 +61,28 @@ public class Hotels extends Controller {
     public Result editHotel(Integer id) {
         Hotel hotel = Hotel.findHotelById(id);
         return ok(editHotel.render(hotel));
+    }
+
+    /*This method allows hotel manager to delete hotels*/
+    public Result deleteHotel(Integer id) {
+        Hotel hotel = Hotel.findHotelById(id);
+        Ebean.delete(hotel);
+
+        return redirect(routes.Users.showManagerHotels());
+    }
+
+    /*This method allows admin to delete hotels*/
+    public Result deleteHotelAdmin(Integer id) {
+        Hotel hotel = Hotel.findHotelById(id);
+        Ebean.delete(hotel);
+
+        return redirect(routes.Users.showAdminHotels());
+    }
+
+
+
+    public List<Hotel> listOfHotels() {
+        List<Hotel> hotels = finder.all();
+        return hotels;
     }
 }
