@@ -107,7 +107,7 @@ public class Users extends Controller {
             session().clear();
             session("email", email);
             session("name", user.firstname);
-            session("id", user.userTypeId.toString());
+            session("userTypeId", user.userTypeId.toString());
 
             return ok(userProfilPage.render(user));
         }

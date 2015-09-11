@@ -1,6 +1,7 @@
 @(hotel: Hotel)
 @main("Edit Hotel") {
 
+@if(session().get("userTypeId").toInt == 5) {
     <meta charset="UTF-8">
     <div class="row">
         <form method="post" action="@routes.Hotels.updateHotel(hotel.id)">
@@ -34,5 +35,5 @@
             <img src="http://placehold.it/500x400" alt=""/>
         </div>
     </div>
-
+}
 }

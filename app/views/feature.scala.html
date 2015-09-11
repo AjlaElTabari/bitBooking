@@ -5,6 +5,8 @@
         <meta charset="utf-8">
         <title>Insert feature</title>
     </head>
+
+    @if(session().get("userTypeId").toInt == 3) {
     <body>
         @helper.form(action = routes.Features.insertFeature()) {
             <label>name</label>
@@ -12,4 +14,5 @@
             <button name="submit" onclick="insertFeature()">submit</button>
         }
     </body>
+}
 </html>

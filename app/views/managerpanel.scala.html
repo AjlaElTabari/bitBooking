@@ -1,6 +1,8 @@
 @import helper._
 @main("Manager"){
   <div class="container">
+
+    @if(session().get("userTypeId").toInt == 3) {
     <div class="col-md-12">
       <div class="col-md-4">
         <br/>
@@ -13,5 +15,6 @@
       </div>
 
     </div>
+    }
   </div>
 }
