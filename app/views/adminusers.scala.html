@@ -1,8 +1,7 @@
 @(users: List[App_User])
 @main("Admin"){
   <div class="container" style="background-color: #204d74">
-
-    @if(session().get("userTypeId").toInt == 3) {
+  @if(session().get("userTypeId").toInt == 3) {
     <div class="row">
       <div class="col-md-4">
         <br/>
@@ -11,7 +10,6 @@
             Hotels
           </button>
         </a>
-
       </div>
       <div class="col-md-4">
         <br/>
@@ -20,7 +18,6 @@
             Users
           </button>
         </a>
-
       </div>
       <div class="col-md-4">
         <br/>
@@ -32,73 +29,64 @@
       </div>
     </div>
     <hr/>
+    <div class="container" style="background-color: seashell;width: 90%;margin-bottom: 5%">
+      <div class="col-md-12">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Last Name</th>
+              <th>Email</th>
+              <th>Role</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+          @for(user <- users){
+            @if(user.userTypeId != 3) {
+              <tr>
+                <td>@user.firstname</td>
+                <td>@user.lastname</td>
+                <td>@user.email</td>
+                @if(user.userTypeId == 6) {
+                  <td>Hotel Manager</td>
+                }
+                @if(user.userTypeId == 5) {
+                  <td>Seller</td>
+                }
+                @if(user.userTypeId == 4) {
+                  <td>Buyer</td>
+                }
+                @if(user.userTypeId == 3) {
+                  <td>Admin</td>
+                }
+                <td></td>
+                <form method="delete" action="@routes.Users.deleteUser(user.email)">
+                  <td>
+                    <a href="@routes.Users.deleteUser(user.email)">
+                      <button class="btn btn-danger">Delete</button>
+                    </a>
+                  </td>
+                </form>
+                <form method="post" action="@routes.Users.setRole(user.email)" >
+                  <td>
+                    @*<select class="form-control" >*@
+                    @*<option name="usertype" value="buyer">Buyer</option>*@
+                    @*<option name="usertype" value="seller">Seller</option>*@
+                    @*<option name="usertype" value="hotelmanager">Hotel Manager</option>*@
+                    @*</select>*@
+                    <button name="usertype" onclick="@routes.Users.setRole(user.email)" value="buyer">Buyer</button>
+                    <button name="usertype" onclick="@routes.Users.setRole(user.email)" value="seller">Seller</button>
+                    <button name="usertype" onclick="@routes.Users.setRole(user.email)" value="hotelmanager">Hotel Manager</button>
+                  </td>
+                </form>
+              </tr>
+            }
+          }
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
-
-  <div class="container">
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Last Name</th>
-          <th>Email</th>
-          <th>Role</th>
-          <th></th>
-        </tr>
-      </thead>
-
-      <tbody>
-      @for(user <- users){
-
-        <tr>
-          <td>@user.firstname</td>
-          <td>@user.lastname</td>
-          <td>@user.email</td>
-         @if(user.userTypeId ==6){
-
-          <td>Hotel Manager</td>
-          }
-          @if(user.userTypeId ==5){
-
-            <td>Seller</td>
-          }
-          @if(user.userTypeId ==4){
-
-            <td>Buyer</td>
-          }
-          @if(user.userTypeId ==3){
-
-            <td>Admin</td>
-          }
-
-
-
-          <td></td>
-          <form method="delete" action="@routes.Users.deleteUser(user.email)">
-            <td>
-              <a href="@routes.Users.deleteUser(user.email)">
-                <button class="btn btn-danger">Delete</button>
-              </a>
-            </td>
-          </form>
-          <form method="post" action="@routes.Users.setRole(user.email)"  >
-          <td>
-            @*<select class="form-control" >*@
-              @*<option name="usertype"  value="buyer">Buyer</option>*@
-              @*<option name="usertype" value="seller">Seller</option>*@
-              @*<option name="usertype" value="hotelmanager">Hotel Manager</option>*@
-            @*</select>*@
-            <button name="usertype" onclick="@routes.Users.setRole(user.email)" value="buyer">Buyer</button>
-            <button name="usertype" onclick="@routes.Users.setRole(user.email)" value="seller">Seller</button>
-            <button name="usertype" onclick="@routes.Users.setRole(user.email)" value="hotelmanager">Hotel Manager</button>
-          </td>
-
-          </form>
-        </tr>
-      }
-      </tbody>
-    </table>
 }
-  </div>
-
-
-}
+i}

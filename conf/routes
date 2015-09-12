@@ -5,7 +5,6 @@
 # Home page
 GET         /                                 @controllers.Application.index()
 GET         /login                            @controllers.Application.index()
-GET         /registrationmessage              @controllers.Application.registrationmessage()
 GET         /register                         @controllers.Users.register()
 GET         /addhotel                         @controllers.Application.registerHotel()
 GET         /edit_user/:email                 @controllers.Users.editUser(email: String)

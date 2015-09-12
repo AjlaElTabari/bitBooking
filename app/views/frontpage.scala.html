@@ -2,104 +2,90 @@
 
 @(content: Html)(implicit user: App_User = SessionHelper.getCurrentUser(ctx))
 @import helper._
-
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="@routes.Assets.versioned("/Sminka1/css/heroic-features.css")"/>
         <link rel="stylesheet" href="@routes.Assets.versioned("/bootstrap/css/bootstrap.css")"/>
-
         <link rel="stylesheet" href="@routes.Assets.versioned("/stylesheets/frontpage.css")"/>
         <link rel="stylesheet" href="@routes.Assets.versioned("/bootstrap/css/bootstrap-theme.css")"/>
         <link rel="stylesheet" href="@routes.Assets.versioned("/bootstrap/js/bootstrap.js")"/>
         <script src="@routes.Assets.versioned("/javascripts/frontpage.js")"></script>
         <title> bitBooking</title>
     </head>
-
-
-        <body style="background-color: white">
-
-            <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-                <div class="container">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapsible">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand text-danger" href="#">
-                            bitBooking
-                        </a>
-                    </div>
-                    <div class="navbar-collapse collapse" id="navbar-collapsible">
-                        <ul class="nav navbar-nav navbar-left">
-                            <li></li>
-                            <li><a href="#section1">Home</a></li>
-                            <li><a href="#section2">About</a></li>
-                            <li><a href="#section3">Contact</a></li>
-                            <li><a href="#section4">Hotels</a></li>
-                            <li><a href="#section5">Galery</a></li>
-                            <li><a href="#section6">Last minute</a></li>
-                            <li>&nbsp;</li>
-                        </ul>
-                        <ul class="nav navbar-nav navbar-right">
-                        @if(session().get("email") == null) {
-                            <li><a href="@routes.Application.index()" data-toggle="modal" data-target="#myModal">Log in</a></li>
-
-                        }else{
-                            <li><a href="@routes.Users.editUser(user.email)" data-toggle="modal" data-target="#myModal">@session().get("name")</a></li>
-                            <li><a href="@routes.Users.logOut()" data-toggle="modal" data-target="#myModal">Log out</a></li>
-                        }
-                        </ul>
-                    </div>
-                </div>
-            </nav>
+    <body style="background-color: white">
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
             <div class="container">
-
-                    <!-- Jumbotron Header -->
-                <header class="jumbotron hero-spacer">
-                    <h1>A Warm Welcome!</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, ipsam, eligendi, in quo sunt possimus non incidunt odit vero aliquid similique quaerat nam nobis illo aspernatur vitae fugiat numquam repellat.</p>
-                    <p><a class="btn btn-primary btn-large">Call to action!</a>
-                    </p>
-                </header>
-
-                <hr>
-
-                    <!-- Title -->
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h3>Latest Features</h3>
-                    </div>
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapsible">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand text-danger" href="#">
+                        bitBooking
+                    </a>
                 </div>
-                    <!-- /.row -->
-                <div class="row text-center">
-                @content
+                <div class="navbar-collapse collapse" id="navbar-collapsible">
+                    <ul class="nav navbar-nav navbar-left">
+                        <li></li>
+                        <li><a href="#section1">Home</a></li>
+                        <li><a href="#section2">About</a></li>
+                        <li><a href="#section3">Contact</a></li>
+                        <li><a href="#section4">Hotels</a></li>
+                        <li><a href="#section5">Galery</a></li>
+                        <li><a href="#section6">Last minute</a></li>
+                        <li>&nbsp;</li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                    @if(session().get("email") == null) {
+                        <li><a href="@routes.Application.index()" data-toggle="modal" data-target="#myModal">Log in</a></li>
+
+                    }else{
+                        <li><a href="@routes.Users.editUser(user.email)" data-toggle="modal" data-target="#myModal">@session().get("name")</a></li>
+                        <li><a href="@routes.Users.logOut()" data-toggle="modal" data-target="#myModal">Log out</a></li>
+                    }
+                    </ul>
                 </div>
-
-                <hr>
-
-                    <!-- Footer -->
-                <div id="footer" style="text-align: center;background-color: #c9e2b3">
-                    <div class="container">
-                        <p class="text-muted">2015 Team Rocket Inc.<br><a href="#">bitBooking.ba</a></p>
-                    </div>
-                </div>
-
             </div>
-            @if(session().get("email") == null) {
+        </nav>
+        <div class="container" style="background-color: #f5e79e">
+                <!-- Jumbotron Header -->
+            <header class="jumbotron hero-spacer">
+                <h1>A Warm Welcome!</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, ipsam, eligendi, in quo sunt possimus non incidunt odit vero aliquid similique quaerat nam nobis illo aspernatur vitae fugiat numquam repellat.</p>
+                <p><a class="btn btn-primary btn-large">Call to action!</a>
+                </p>
+            </header>
+            <hr>
+                <!-- Title -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3>Latest Features</h3>
+                </div>
+            </div>
+                <!-- /.row -->
+            <div class="row text-center">
+            @content
+            </div>
+        </div>
+            <!-- Footer -->
+        <div id="footer" style="text-align: center;background-color: #e7e7e7">
+            <div class="container">
+                <p class="text-muted">2015 Team Rocket Inc.<br><a href="#">bitBooking.ba</a></p>
+            </div>
+        </div>
+        @if(session().get("email") == null) {
             <header>
 
                 <div id="ac-wrapper">
                 @helper.form(action=routes.Users.login()) {
                     <div>
                         <div id="popup">
-
                             <input type="button" value="X" id="x-button" onclick="PopUp();">
-
                             <div class = "login-popup">
                                 <div>
                                     <label for = "Username">Email: </label>
@@ -132,21 +118,11 @@
                 }
                 </div>
             </header>
-            }
-                <!-- /.container -->
-
-                <!-- jQuery -->
-            <script src="js/jquery.js"></script>
-
-                <!-- Bootstrap Core JavaScript -->
-            <script src="js/bootstrap.min.js"></script>
-
-
-
-
-
-
-
-        </body>
-
+        }
+            <!-- /.container -->
+            <!-- jQuery -->
+        <script src="js/jquery.js"></script>
+            <!-- Bootstrap Core JavaScript -->
+        <script src="js/bootstrap.min.js"></script>
+    </body>
 </html>

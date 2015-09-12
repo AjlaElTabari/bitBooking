@@ -1,60 +1,41 @@
 @(hotels: List[Hotel])
 @main("Manager"){
-  <div class="container">
-
-    @if(session().get("userTypeId").toInt == 6) {
-    <div class="col-md-12">
-      <div class="col-md-4">
-        <br/>
-        <a href="@routes.Users.showManagerHotels()">
-          <button class="btn-danger" style="width: 100%;height: 200px; font-size: 30px">
-            Hotels
-          </button>
-        </a>
-
-      </div>
-
-
-    </div>
-    <div class="container">
-      <table class="table table-hover">
-        <thead>
+  <div class="container" style="background-color:  #f5e79e">
+  @if(session().get("userTypeId").toInt == 6) {
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Location</th>
+          <th>Description</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        @for(hotel <- hotels){
           <tr>
-            <th>Name</th>
-            <th>Location</th>
-            <th>Description</th>
-            <th></th>
+            <td>@hotel.name</td>
+            <td>@hotel.location</td>
+            <td>@hotel.description</td>
+            <form method="delete" action="@routes.Hotels.deleteHotel(hotel.id)">
+              <td>
+                <a href="@routes.Hotels.deleteHotel(hotel.id)">
+                  <button class="btn btn-danger">Delete</button>
+                </a>
+              </td>
+            </form>
+
           </tr>
-        </thead>
-
-        <tbody>
-
-          @for(hotel <- hotels){
-            <tr>
-              <td>@hotel.name</td>
-              <td>@hotel.location</td>
-              <td>@hotel.description</td>
-              <form method="delete" action="@routes.Hotels.deleteHotel(hotel.id)">
-                <td>
-                  <a href="@routes.Hotels.deleteHotel(hotel.id)">
-                    <button class="btn btn-danger">Delete</button>
-                  </a>
-                </td>
-              </form>
-
-            </tr>
-          }
-
-          <tr>
-            <td>
-              <a href="@routes.Hotels.insertHotel()">
-                <button class="btn btn-success">Add</button>
-              </a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    }
-  </div>
+        }
+        <tr>
+          <td>
+            <a href="@routes.Hotels.insertHotel()">
+              <button class="btn btn-success">Add</button>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 }
+  </div>
+i}

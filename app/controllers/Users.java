@@ -123,7 +123,7 @@ public class Users extends Controller {
     }
 
     public Result logManager() {
-        return ok(managerpanel.render());
+        return ok(managerhotels.render(hotels));
     }
 
     public Result logOut() {

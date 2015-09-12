@@ -1,39 +1,38 @@
 @(hotel: Hotel)
 @main("Edit Hotel") {
-
-@if(session().get("userTypeId").toInt == 5) {
-    <meta charset="UTF-8">
-    <div class="row">
-        <form method="post" action="@routes.Hotels.updateHotel(hotel.id)">
-        <form role="form">
-            <div class="col-md-6">
-
-                <div class="form-group">
-                    <label for="InputName">Hotel name:</label>
-                    <div class="input-group">
-                        <input type="text" class="form-control" name="name" id="InputName" placeholder="Hotel Name" style="width : 350 px" required value="@hotel.name" >
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="address">Address:</label>
-                    <div class="input-group">
-                        <input type="text" class="form-control" name="location" id="address" placeholder="Address" style="width : 350 px" value="@hotel.location">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="description">Description:</label>
-                    <textarea class="form-control" rows="10" style="width : 700 px ; resize : none" id="description" name="description">@hotel.description</textarea>
-                </div>
-
-                <div class="form-group">
-                    <input type="submit" name="submit" id="submit" value="Edit Hotel" class="btn btn-info" href="@routes.Hotels.updateHotel(hotel.id)">
+    @if(session().get("userTypeId").toInt == 5) {
+        <meta charset="UTF-8">
+        <div class="container" style="background-color : #f5e79e">
+            <div class="row">
+                <form method="post" action="@routes.Hotels.updateHotel(hotel.id)">
+                    <form role="form">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="InputName">Hotel name:</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="name" id="InputName" placeholder="Hotel Name" style="width : 350 px" required value="@hotel.name" >
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="address">Address:</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="location" id="address" placeholder="Address" style="width : 350 px" value="@hotel.location">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Description:</label>
+                                <textarea class="form-control" rows="10" style="width : 700 px ; resize : none" id="description" name="description">@hotel.description</textarea>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" name="submit" id="submit" value="Edit Hotel" class="btn btn-info" href="@routes.Hotels.updateHotel(hotel.id)">
+                            </div>
+                        </div>
+                    </form>
+                </form>
+                <div class="col-md-6" style="margin-top: 2%">
+                    <img src="http://placehold.it/500x400" alt=""/>
                 </div>
             </div>
-        </form>
-        </form>
-        <div class="col-md-6">
-            <img src="http://placehold.it/500x400" alt=""/>
         </div>
-    </div>
-}
+    }
 }
