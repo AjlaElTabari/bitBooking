@@ -131,4 +131,9 @@ public class App_User extends Model {
         return user;
     }
 
+    @Override
+    public String toString() {
+        return String.format("%s, %s", firstname, lastname);
+    }
+
 }

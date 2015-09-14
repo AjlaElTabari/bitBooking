@@ -105,9 +105,9 @@ public class Users extends Controller {
             return badRequest(list.render(hotels));
         } else {
             session().clear();
-            session("email", email);
-            session("name", user.firstname);
-            session("userTypeId", user.userTypeId.toString());
+            response().setCookie("email", email);
+            response().setCookie("name", user.firstname);
+            response().setCookie("userTypeId", user.userTypeId.toString());
 
             return ok(userProfilPage.render(user));
         }
@@ -119,7 +119,18 @@ public class Users extends Controller {
     }
 
     public Result logAdmin() {
-        return ok(adminpanel.render());
+        Integer usrType = null;
+        try {
+            usrType = Integer.parseInt(request().cookies().get("userTypeId").value());
+        } catch (Exception e) {
+            return ok(list.render(hotels));
+        }
+
+        if (usrType == 3) {
+            return ok(adminpanel.render());
+        } else {
+            return ok(list.render(hotels));
+        }
     }
 
     public Result logManager() {
