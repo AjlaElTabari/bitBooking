@@ -1,5 +1,6 @@
 @(hotel: Hotel)
 @main("Edit Hotel") {
+
     @if(session().get("userTypeId").toInt == 5) {
         <meta charset="UTF-8">
         <div class="container" style="background-color : #f5e79e">
@@ -29,10 +30,10 @@
                         </div>
                     </form>
                 </form>
-                <div class="col-md-6" style="margin-top: 2%">
+                <div class="col-md-6" style="margin-top : 2 %">
                     <img src="http://placehold.it/500x400" alt=""/>
                 </div>
             </div>
         </div>
     }
-}
+  }

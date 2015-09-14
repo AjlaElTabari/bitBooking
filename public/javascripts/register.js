@@ -155,7 +155,7 @@ function numberLength(){
 function isNumber(){
     var number = document.getElementById("phone-number").value;
 
-    if(/\D/.test(number)){
+    if(/\D/.test(number) ){
         document.getElementById('number_error').innerHTML="Number can contain only digits(0-9)!";
         document.getElementById('submit').disable="true";
         return false;
