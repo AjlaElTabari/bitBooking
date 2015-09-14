@@ -37,42 +37,49 @@
               @flash.get("error");
             </div>
           }
+          @if(flash.containsKey("success")) {
+            <div class="alert alert-success alert-dismissable">
+              <a class="panel-close close" data-dismiss="alert">×</a>
+              <i class="fa fa-coffee"></i>
+              @flash.get("success");
+            </div>
+          }
           <h3>Personal info</h3>
           <form class="form-horizontal" role="form" method="post" action="@routes.Users.updateUser(user.email)">
             <div class="form-group">
               <label class="col-lg-3 control-label">First name:</label>
               <div class="col-lg-8">
-                <input class="form-control" name="firstname" placeholder="Name" type="text" value="@user.firstname">
+                <input class="form-control" name="firstname" required placeholder="Name" type="text" value="@user.firstname">
               </div>
             </div>
             <div class="form-group">
               <label class="col-lg-3 control-label">Last name:</label>
               <div class="col-lg-8">
-                <input class="form-control" name="lastname" placeholder="Last name"  type="text" value="@user.lastname">
+                <input class="form-control" name="lastname" required placeholder="Last name"  type="text" value="@user.lastname">
               </div>
             </div>
             <div class="form-group">
               <label class="col-lg-3 control-label">Email:</label>
               <div class="col-lg-8">
-                <input class="form-control" name="email" placeholder="example&#example.com" type="text" value="@user.email">
+                <input class="form-control" name="email" required placeholder="example&#example.com" type="text" value="@user.email">
               </div>
             </div>
             <div class="form-group">
               <label class="col-md-3 control-label">Password:</label>
               <div class="col-md-8">
-                <input class="form-control" name="password" placeholder="Password" type="password" value="">
+                <input class="form-control" name="password"  placeholder="Password" type="password" value="">
               </div>
             </div>
             <div class="form-group">
               <label class="col-md-3 control-label">Confirm password:</label>
               <div class="col-md-8">
-                <input class="form-control" name="passwordretype" placeholder="Retype password" type="password" value="">
+                <input class="form-control" name="passwordretype"  placeholder="Retype password" type="password" value="">
               </div>
             </div>
             <div class="form-group">
               <label class="col-md-3 control-label">Phone number:</label>
               <div class="col-md-8">
-                <input class="form-control" name="phoneNumber" placeholder="+12345678910" type="text" value="@user.phoneNumber">
+                <input class="form-control" name="phoneNumber" required placeholder="+12345678910" type="text" value="@user.phoneNumber">
               </div>
             </div>
             <div class="form-group">

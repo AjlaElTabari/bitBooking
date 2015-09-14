@@ -24,22 +24,22 @@
                     <input type="password" id="password" name = "password" value="@userForm.bindFromRequest().field("password").value()" placeholder="min 6 characters" required onblur="checkPasswordLength();" >
                     <div id="password_error"></div>
                         <!--label and input field for password confirmation-->
-                    <label for="password">Confirm Password: </label>
+                    <label for="password">Confirm password: </label>
                     <input type="password" id="password-retype" name="passwordretype" value="@userForm.bindFromRequest().field("passwordretype").value()" placeholder="Please confirm your password" required onblur="checkPasswordMatch();" >
                     <div id="password2_error"></div>
                         <!--label and input for name-->
-                    <label for="name">First Name:</label>
+                    <label for="name">First name:</label>
                     <input type="text" id="name" name="firstname" value="@userForm.bindFromRequest().field("firstname").value()" placeholder="Please enter your name" required onblur="checkName(); checkNameLength();">
                     <div id="name_error"></div>
                     <div id="namelength_error"></div>
                         <!--label and input for lastname-->
-                    <label for="last-name">Last Name:</label>
-                    <input type="text" id="last-name" name="lastname" value="@userForm.bindFromRequest().field("lastname").value()" placeholder="Please enter your lastname" required onblur="checkLastname(); checkLastnameLength();">
+                    <label for="last-name">Last name:</label>
+                    <input type="text" id="last-name" name="lastname" value="@userForm.bindFromRequest().field("lastname").value()" placeholder="Please enter your last name" required onblur="checkLastname(); checkLastnameLength();">
                     <div id="lastname_error"></div>
                     <div id="lastnamelength_error"></div>
                         <!--label and input for lastname-->
-                    <label for="phone-number">Phone Number:</label>
-                    <input type="text" id="phone-number" name="phoneNumber" value="@userForm.bindFromRequest().field("phoneNumber").value()" placeholder="Please enter your number" onblur="isNumber();">
+                    <label for="phone-number">Phone number:</label>
+                    <input type="text" id="phone-number" required name="phoneNumber" value="@userForm.bindFromRequest().field("phoneNumber").value()" placeholder="Please enter your number" onblur="isNumber();">
                     <div id="numberlength_error"></div>
                     <div id="number_error"></div>
 
