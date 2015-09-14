@@ -55,7 +55,7 @@ public class Users extends Controller {
             flash("error", "Password must be at least 6 characters long!");
             return ok(register.render(boundForm));
 
-        } else if ((!name.matches("^[a-zA-Z]+$")) || (!lastname.matches("^[a-zA-Z]+$"))) {
+        } else if ((!name.matches("^[a-zA-Z\\s]*$")) || (!lastname.matches("^[a-zA-Z\\s]*$"))) {
             flash("error", "Name and last name must contain letters only!");
             return ok(register.render(boundForm));
 
@@ -174,23 +174,23 @@ public class Users extends Controller {
         String phone = boundForm.bindFromRequest().field("phoneNumber").value();
 
         if (!pass1.equals(pass2)) {
-            flash("error", "Passwords don't match!");
+            flash("error", "Passwords don't match");
             return ok(userProfilPage.render(user));
 
-        } else if ((!name.matches("^[a-zA-Z]+$")) || (!lastname.matches("^[a-zA-Z]+$"))) {
-            flash("error", "Name and last name must contain letters only!");
+        } else if ((!name.matches("^[a-zA-Z\\s]*$")) || (!lastname.matches("^[a-zA-Z\\s]*$"))) {
+            flash("error", "Name and last name must contain letters only");
             return ok(userProfilPage.render(user));
 
         } else if (name.length() < 2 || lastname.length() < 2) {
-            flash("error", "Name and last name must be at least 2 letters long!");
+            flash("error", "Name and last name must be at least 2 letters long");
             return ok(userProfilPage.render(user));
 
         } else if (phone.length() > 15) {
-            flash("error", "Phone number can't be more than 15 digits long!");
+            flash("error", "Phone number can't be more than 15 digits long");
             return ok(userProfilPage.render(user));
 
         } else if (phone.matches("^[a-zA-Z]+$")) {
-            flash("error", "Phone number must contain digits only!");
+            flash("error", "Phone number must contain digits only");
             return ok(userProfilPage.render(user));
 
         } else {
@@ -205,11 +205,11 @@ public class Users extends Controller {
 
                 Ebean.update(user);
 
-                flash("success", "Your data was updated!");
+                flash("success", "Your data was updated");
                 return redirect(routes.Users.editUser(user.email));
 
             }catch(Exception e){
-                flash("error", "You didn't fill the form corectly, please try again!");
+                flash("error", "You didn't fill the form corectly, please try again");
                 return ok(userProfilPage.render(user));
             }
         }
