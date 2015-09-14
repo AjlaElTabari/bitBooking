@@ -73,7 +73,7 @@ function checkName(){
 
         return true;
     } else  {
-        document.getElementById('name_error').innerHTML="Name must have alphabet characters only!";
+        document.getElementById('name_error').innerHTML="Name must have letters only!";
         document.getElementById('submit').disable="true";
         return false;
     }
@@ -92,7 +92,7 @@ function checkLastname(){
         document.getElementById('submit').disable="false";
         return true;
     } else  {
-        document.getElementById('lastname_error').innerHTML="Last Name must have alphabet characters only!";
+        document.getElementById('lastname_error').innerHTML="Last Name must have letters only!";
         document.getElementById('submit').disable="true";
         return false;
     }
