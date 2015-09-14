@@ -9,10 +9,10 @@ import views.html.*;
 import java.util.List;
 
 public class Application extends Controller {
-  public static  List<Hotel> hotels = Hotel.finder.all();
 
     /*opening a front page on start*/
     public Result index() {
+        List<Hotel> hotels = Hotel.finder.all();
         return ok(list.render(hotels));
     }
     public Result registerHotel(){
