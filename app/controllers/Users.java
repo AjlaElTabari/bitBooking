@@ -55,7 +55,7 @@ public class Users extends Controller {
             flash("error", "Password must be at least 6 characters long!");
             return ok(register.render(boundForm));
 
-        } else if ((!name.matches("^[a-zA-Z]+$/")) && (!lastname.matches("^[a-zA-Z]+$"))) {
+        } else if ((!name.matches("^[a-zA-Z]+$")) || (!lastname.matches("^[a-zA-Z]+$"))) {
             flash("error", "Name and last name must contain letters only!");
             return ok(register.render(boundForm));
 
@@ -79,7 +79,7 @@ public class Users extends Controller {
                 Ebean.save(user);
                 return redirect(routes.Application.index());
             } catch (Exception e) {
-                flash("error", "Email already exist in our database, please try with another email!");
+                flash("error", "Password allready exists in our database, please try again!");
                 return ok(register.render(boundForm));
             }
         }
@@ -173,23 +173,46 @@ public class Users extends Controller {
         String lastname = boundForm.bindFromRequest().field("lastname").value();
         String phone = boundForm.bindFromRequest().field("phoneNumber").value();
 
+        if (!pass1.equals(pass2)) {
+            flash("error", "Passwords don't match!");
+            return ok(userProfilPage.render(user));
 
-        if (name != null) {
-            user.firstname = name;
-        }
-        if (lastname != null) {
-            user.lastname = lastname;
-        }
-        if (!pass1.equals("") && pass1.equals(pass2)) {
-            user.password = pass1;
-            user.hashPass();
-        }
-        if (phone != null) {
-            user.phoneNumber = phone;
-        }
-        Ebean.update(user);
+        } else if ((!name.matches("^[a-zA-Z]+$")) || (!lastname.matches("^[a-zA-Z]+$"))) {
+            flash("error", "Name and last name must contain letters only!");
+            return ok(userProfilPage.render(user));
 
-        return redirect(routes.Users.editUser(user.email));
+        } else if (name.length() < 2 || lastname.length() < 2) {
+            flash("error", "Name and last name must be at least 2 letters long!");
+            return ok(userProfilPage.render(user));
+
+        } else if (phone.length() > 15) {
+            flash("error", "Phone number can't be more than 15 digits long!");
+            return ok(userProfilPage.render(user));
+
+        } else if (phone.matches("^[a-zA-Z]+$")) {
+            flash("error", "Phone number must contain digits only!");
+            return ok(userProfilPage.render(user));
+
+        } else {
+
+            try {
+                user.firstname = name;
+                user.lastname = lastname;
+                user.password = pass1;
+                user.hashPass();
+                user.phoneNumber = phone;
+
+
+                Ebean.update(user);
+
+                flash("success", "Your data was updated!");
+                return redirect(routes.Users.editUser(user.email));
+
+            }catch(Exception e){
+                flash("error", "You didn't fill the form corectly, please try again!");
+                return ok(userProfilPage.render(user));
+            }
+        }
     }
 
 
