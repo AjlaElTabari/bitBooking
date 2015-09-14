@@ -46,13 +46,14 @@
                             <td>@hotel.name</td>
                             <td>@hotel.location</td>
                             <td>@hotel.description</td>
-                            <form method="delete" action="@routes.Hotels.deleteHotelAdmin(hotel.id)">
+                            @*<form method="delete" action="@routes.Hotels.deleteHotelAdmin(hotel.id)">*@
                                 <td>
-                                    <a href="@routes.Hotels.deleteHotelAdmin(hotel.id)">
-                                        <button class="btn btn-danger">Delete</button>
+                                    <a onclick=" return deleteConfirmation()" href="@routes.Hotels.deleteHotelAdmin(hotel.id)">
+                                        <button class="btn btn-danger" >Delete</button>
                                     </a>
                                 </td>
-                            </form>
+                            @*</form>*@
+
                         </tr>
                     }
                     </tbody>
