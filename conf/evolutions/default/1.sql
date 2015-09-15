@@ -4,7 +4,7 @@
 # --- !Ups
 
 create table app_user (
-  id                        integer auto_increment not null,
+  id                        integer not null,
   firstname                 varchar(255),
   lastname                  varchar(255),
   email                     varchar(255),
@@ -16,13 +16,13 @@ create table app_user (
 ;
 
 create table feature (
-  id                        integer auto_increment not null,
+  id                        integer not null,
   name                      varchar(255),
   constraint pk_feature primary key (id))
 ;
 
 create table hotel (
-  id                        integer auto_increment not null,
+  id                        integer not null,
   name                      varchar(255),
   location                  varchar(255),
   description               varchar(255),
@@ -37,6 +37,12 @@ create table hotel_feature (
   feature_id                     integer not null,
   constraint pk_hotel_feature primary key (hotel_id, feature_id))
 ;
+create sequence app_user_seq;
+
+create sequence feature_seq;
+
+create sequence hotel_seq;
+
 
 
 
@@ -46,15 +52,21 @@ alter table hotel_feature add constraint fk_hotel_feature_feature_02 foreign key
 
 # --- !Downs
 
-SET FOREIGN_KEY_CHECKS=0;
+SET REFERENTIAL_INTEGRITY FALSE;
 
-drop table app_user;
+drop table if exists app_user;
 
-drop table feature;
+drop table if exists feature;
 
-drop table hotel;
+drop table if exists hotel;
 
-drop table hotel_feature;
+drop table if exists hotel_feature;
 
-SET FOREIGN_KEY_CHECKS=1;
+SET REFERENTIAL_INTEGRITY TRUE;
+
+drop sequence if exists app_user_seq;
+
+drop sequence if exists feature_seq;
+
+drop sequence if exists hotel_seq;
 

@@ -76,7 +76,7 @@ public class Users extends Controller {
             try {
                 user = boundForm.get();
                 user.hashPass();
-                Ebean.save(user);
+                user.save();
                 return redirect(routes.Application.index());
             } catch (Exception e) {
                 flash("error", "Password allready exists in our database, please try again!");
