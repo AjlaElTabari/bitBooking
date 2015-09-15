@@ -6,12 +6,12 @@
           <h1 class="page-header"> Edit Profile</h1>
         </div>
         <div class="col-md-2">
-         @if(session().get("userTypeId").toInt == 3) {
+         @if(user.userTypeId == 3) {
            <div class="button">
             <a href="@routes.Users.logAdmin()"> <button class="btn btn-danger" style="height : 100px">ADMIN PANEL</button></a>
            </div>
          }
-          @if(session().get("userTypeId").toInt == 6) {
+          @if(user.userTypeId == 6) {
             <div class="button">
               <a href="@routes.Users.showManagerHotels()"> <button class="btn btn-danger" style="height : 100px">MANAGER PANEL</button></a>
             </div>
@@ -32,14 +32,14 @@
         <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
           @if(flash.containsKey("error")) {
             <div class="alert alert-danger alert-dismissable">
-              <a class="panel-close close" data-dismiss="alert">×</a>
+              <a class="panel-close close" data-dismiss="alert">ï¿½</a>
               <i class="fa fa-coffee"></i>
               @flash.get("error");
             </div>
           }
           @if(flash.containsKey("success")) {
             <div class="alert alert-success alert-dismissable">
-              <a class="panel-close close" data-dismiss="alert">×</a>
+              <a class="panel-close close" data-dismiss="alert">ï¿½</a>
               <i class="fa fa-coffee"></i>
               @flash.get("success");
             </div>

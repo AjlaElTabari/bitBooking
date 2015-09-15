@@ -6,7 +6,7 @@
         <title>Insert feature</title>
     </head>
 
-    @if(session().get("userTypeId").toInt == 3) {
+    @if(Integer.parseInt(request().cookies().get("userTypeId").value()) == 3) {
     <body>
         @helper.form(action = routes.Features.insertFeature()) {
             <label>name</label>
