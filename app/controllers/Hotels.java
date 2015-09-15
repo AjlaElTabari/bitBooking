@@ -8,10 +8,8 @@ import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.editHotel;
-import views.html.hotel;
-import views.html.list;
-import views.html.main;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -26,8 +24,18 @@ public class Hotels extends Controller {
         Form<Hotel> boundForm = hotelForm.bindFromRequest();
         Hotel hotel = boundForm.get();
 
+
+        List<Feature> features = new ArrayList<Feature>();
+        for(Feature f: hotel.features){
+            if(f.id != null){
+                features.add(Feature.findFeatureById(f.id));
+
+            }
+        }
+        hotel.features = features;
+
         Ebean.save(hotel);
-            return redirect(routes.Application.index());
+        return redirect(routes.Application.index());
     }
 
     public Result updateHotel(Integer id) {

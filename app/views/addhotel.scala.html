@@ -47,7 +47,7 @@
                     @for(feature <- features){
                     <div>
                     <span>
-                        <input  id="@feature.id" name="@feature.name" type="checkbox"/>
+                        <input  name="@feature.id" value="@feature.name" type="checkbox" checked/>
                         <label for="@feature.name">@feature.name</label>
                     </span>
                     </div>
