@@ -87,7 +87,7 @@ public class Users extends Controller {
 
     /**
      * Collects user info from the login form, calls method for authentication,
-     * and if it is successful, logs the user in. Stores the data in the session
+     * and if it is successful, logs the user in. Stores the data in the cookies
      * and redirect user to the corresponding profile page.
      *
      * @return
@@ -104,7 +104,6 @@ public class Users extends Controller {
             flash("error", "Incorrect email or password! Please try again!");
             return badRequest(list.render(hotels));
         } else {
-            session().clear();
             response().setCookie("email", email);
             response().setCookie("name", user.firstname);
             response().setCookie("userTypeId", user.userTypeId.toString());
@@ -138,7 +137,9 @@ public class Users extends Controller {
     }
 
     public Result logOut() {
-        session().clear();
+        response().discardCookie("email");
+        response().discardCookie("name");
+        response().discardCookie("userTypeId");
         return ok(list.render(hotels));
     }
 

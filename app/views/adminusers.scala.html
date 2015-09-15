@@ -1,7 +1,7 @@
 @(users: List[App_User])
 @main("Admin"){
   <div class="container" style="background-color: #204d74">
-  @if(session().get("userTypeId").toInt == 3) {
+    @if(Integer.parseInt(request().cookies().get("userTypeId").value()) == 3) {
     <div class="row">
       <div class="col-md-4">
         <br/>

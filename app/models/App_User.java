@@ -97,8 +97,8 @@ public class App_User extends Model {
 
     /**
      * Checks if user with provided email exists in database.
-     * Should be used when using an email from the session,
-     * to be sure that email from session exists in the database.
+     * Should be used when using an email from the cookies,
+     * to be sure that email from cookies exists in the database.
      *
      * @param email
      * @returns App_User object if user exists, and NULL if doesn't.
