@@ -137,10 +137,12 @@ public class Users extends Controller {
     }
 
     public Result logOut() {
+
         response().discardCookie("email");
         response().discardCookie("name");
         response().discardCookie("userTypeId");
-        return ok(list.render(hotels));
+
+        return redirect(routes.Application.index());
     }
 
     public Result showAdminHotels() {
