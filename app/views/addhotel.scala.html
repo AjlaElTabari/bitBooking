@@ -24,9 +24,15 @@
                     <label for="description">Description:</label>
                     <textarea class="form-control" rows="10" style="width: 350px;resize: none" id="description" name="description"></textarea>
                 </div>
+                <div>
+                    @for(feature <- features) {
+                        <input type="checkbox" name="@feature.name" value="@feature.name"> @feature.name <br>
+                    }
+                </div>
                 <div class="form-group">
                     <input type="submit" name="submit" id="submit" value="Register" class="btn btn-info" onclick="insertHotel()">
                 </div>
+                <br>
             </div>
         </form>
         <div class="col-md-6">
@@ -47,8 +53,8 @@
                     @for(feature <- features){
                     <div>
                     <span>
-                        <input  id="@feature.id" name="@feature.name" type="checkbox"/>
-                        <label for="@feature.name">@feature.name</label>
+                        <input  name="@feature.id" value="@feature.id" value="true" type="checkbox"/>
+                        <label for="@feature.id">@feature.name</label>
                     </span>
                     </div>
                     }

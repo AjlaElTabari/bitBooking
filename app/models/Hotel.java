@@ -27,18 +27,18 @@ public class Hotel extends Model {
     public String coordinateX;
     public String coordinateY;
 
-    @ManyToMany(cascade=CascadeType.ALL)
-    public List<Feature> feature;
+    @ManyToMany
+    public List<Feature> features;
 
 
-    public Hotel(Integer id, String name, String location, String description, String coordinateX, String coordinateY, List<Feature> feature){
+    public Hotel(Integer id, String name, String location, String description, String coordinateX, String coordinateY){
         this.id = id;
         this.name = name;
         this.location = location;
         this.description = description;
         this.coordinateX = coordinateX;
         this.coordinateY = coordinateY;
-        this.feature = feature;
+
     }
 
     public static Hotel findHotelById(Integer id) {
@@ -49,7 +49,7 @@ public class Hotel extends Model {
     @Override
     public String toString()
     {
-        return (id.toString() + " " + name + " " + feature);
+        return (id.toString() + " " + name );
     }
 
 }

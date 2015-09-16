@@ -79,7 +79,7 @@ public class Users extends Controller {
                 user.save();
                 return redirect(routes.Application.index());
             } catch (Exception e) {
-                flash("error", "Password allready exists in our database, please try again!");
+                flash("error", "Email allready exists in our database, please try again!");
                 return ok(register.render(boundForm));
             }
         }

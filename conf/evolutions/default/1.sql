@@ -52,9 +52,9 @@ drop table app_user;
 
 drop table feature;
 
-drop table hotel;
-
 drop table hotel_feature;
+
+drop table hotel;
 
 SET FOREIGN_KEY_CHECKS=1;
 

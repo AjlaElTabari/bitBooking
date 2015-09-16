@@ -22,9 +22,11 @@ public class Features extends Controller {
         return redirect(routes.Features.insertFeature());
     }
     public Result deleteFeature(Integer id){
-        Feature feature = Feature.findFeaturelById(id);
+        Feature feature = Feature.findFeatureById(id);
         Ebean.delete(feature);
 
         return redirect(routes.Users.showAdminFeatures());
     }
+
+
 }
