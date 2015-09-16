@@ -76,6 +76,7 @@
                 <p class="text-muted">2015 Team Rocket Inc.<br><a href="#">bitBooking.ba</a></p>
             </div>
         </div>
+        @if(request().cookies().get("email") == null) {
             <header>
 
                 <div id="ac-wrapper">
@@ -115,7 +116,7 @@
                 }
                 </div>
             </header>
-
+        }
             <!-- /.container -->
             <!-- jQuery -->
         <script src="js/jquery.js"></script>

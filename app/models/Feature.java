@@ -8,9 +8,6 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
-/**
- * Created by Edvin on 9/6/2015.
- */
 @Entity
 public class Feature extends Model {
     public static Finder<String, Feature> finder = new Finder<>(String.class, Feature.class);
