@@ -37,4 +37,8 @@ public class Feature extends Model {
         return feature;
     }
 
+    public String toString() {
+        return name;
+    }
+
 }

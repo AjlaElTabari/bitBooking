@@ -4,20 +4,21 @@ import com.avaje.ebean.Ebean;
 import com.avaje.ebean.Model;
 import models.Feature;
 import models.Hotel;
+import play.Logger;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.editHotel;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 
 public class Hotels extends Controller {
 
     private static final Form<Hotel> hotelForm = Form.form(Hotel.class);
-    private static Model.Finder<String, Hotel> finder = new Model.Finder<>(String.class, Hotel.class);
-    public static Model.Finder<String, Feature> featureFinder = new Model.Finder<>(String.class,Feature.class);
+    private static Model.Finder<String, Hotel> finder = new Model.Finder<>(Hotel.class);
+    public static Model.Finder<String, Feature> featureFinder = new Model.Finder<>(Feature.class);
+
 
     public Result insertHotel() {
 
@@ -25,13 +26,19 @@ public class Hotels extends Controller {
         Hotel hotel = boundForm.get();
 
 
-        List<Feature> features = new ArrayList<Feature>();
-        for(Feature f: hotel.features){
-            if(f.id != null){
-                features.add(Feature.findFeatureById(f.id));
+        List<Feature> features = listOfFeatures();
+        //Getting values from checkboxes
+        List<String> checkBoxValues = new ArrayList<>();
+        for (int i = 0; i < features.size(); i++) {
+            String feature = boundForm.bindFromRequest().field(features.get(i).name).value();
+            checkBoxValues.add(feature);
 
-            }
         }
+
+        //Removing null elements from list
+        //checkBoxValues
+        features.removeAll(Collections.singleton(null));
+
         hotel.features = features;
 
         Ebean.save(hotel);
