@@ -31,15 +31,29 @@ public class Hotels extends Controller {
         List<String> checkBoxValues = new ArrayList<>();
         for (int i = 0; i < features.size(); i++) {
             String feature = boundForm.bindFromRequest().field(features.get(i).name).value();
-            checkBoxValues.add(feature);
 
+            if (feature != null) {
+                checkBoxValues.add(feature);
+            }
         }
+
+        List<Feature> featuresForHotel = new ArrayList<Feature>();
+
+        for (int i = 0; i < checkBoxValues.size(); i++) {
+            for (int j = 0; j < features.size(); j++) {
+                if (features.get(j).name.equals(checkBoxValues.get(i))) {
+                    featuresForHotel.add(features.get(i));
+                }
+            }
+        }
+
+        Logger.debug(featuresForHotel.toString());
 
         //Removing null elements from list
         //checkBoxValues
         features.removeAll(Collections.singleton(null));
 
-        hotel.features = features;
+        hotel.features = featuresForHotel;
 
         Ebean.save(hotel);
         return redirect(routes.Application.index());

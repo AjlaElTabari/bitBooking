@@ -5,11 +5,9 @@ import java.util.Map;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import models.App_User;
-import models.Feature;
-import models.Hotel;
-import models.UserType;
 import org.junit.*;
 
+import controllers.routes;
 import play.mvc.*;
 import play.test.*;
 import play.data.DynamicForm;
@@ -22,6 +20,7 @@ import play.twirl.api.Content;
 
 import static play.test.Helpers.*;
 import static org.junit.Assert.*;
+import static org.fest.assertions.Assertions.*;
 
 
 /**
@@ -130,6 +129,7 @@ public class ApplicationTest {
     // Gordan
 
     @Test
+<<<<<<< HEAD
     public void nonExistantFeature(){
         Feature f = Feature.findFeaturelById(-3);
 
@@ -144,6 +144,41 @@ public class ApplicationTest {
         //f.icon = null;
         f.id = -3;
         f.save();
+=======
+    public void checkSavingIntoBase(){
+
+        running(fakeApplication(), new Runnable() {
+            @Override
+            public void run() {
+                App_User user = new App_User("Ajla", "El Tamburi", "ajla@tamburica.com", "ajla555", "546545");
+
+                user.save();
+            }
+        });
+
+    }
+
+    @Test
+    public void checkReadingFromTheBase(){
+
+        running(fakeApplication(), new Runnable() {
+            @Override
+            public void run() {
+                App_User user = App_User.existsInDB("ajla@tamburica.com");
+                assertNull(user);
+            }
+        });
+
+    }
+
+    @Test
+    public void testIndex() {
+        running(fakeApplication(), () -> {
+            Result result = route(routes.Application.index());
+            assertThat(result.status()).isEqualTo(OK);
+            //assertThat(result.redirectLocation()).isEqualTo("");
+        });
+>>>>>>> fixed inserting features issue
     }
 
     @Test
