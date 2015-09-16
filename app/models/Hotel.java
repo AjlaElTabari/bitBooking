@@ -33,8 +33,7 @@ public class Hotel extends Model {
     @OneToMany
     public List<Image> images;
     public List<Room> rooms;
-    public Hotel(Integer id, String name, String location, String description, String coordinateX, String coordinateY, List<Feature> feature,List<Image> images, List<Room> rooms){
-
+    public Hotel(Integer id, String name, String location, String description, String coordinateX, String coordinateY, List<Feature> features ,List<Image> images, List<Room> rooms){
 
 
         this.id = id;
@@ -44,8 +43,10 @@ public class Hotel extends Model {
         this.coordinateX = coordinateX;
         this.coordinateY = coordinateY;
 
-        this.features = feature;
+        this.features = features;
         this.images = images;
+
+        this.features = features;
         this.rooms = rooms;
 
 
@@ -56,10 +57,10 @@ public class Hotel extends Model {
 
         return hotel;
     }
+
     @Override
-    public String toString()
-    {
-        return (id.toString() + " " + name );
+    public String toString() {
+        return (id.toString() + " " + name);
     }
 
 }

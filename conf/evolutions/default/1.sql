@@ -31,7 +31,7 @@ create table hotel (
   constraint pk_hotel primary key (id))
 ;
 
-<<<<<<< HEAD
+
 create table image (
   id                        integer auto_increment not null,
   public_id                 varchar(255),
@@ -39,13 +39,13 @@ create table image (
   secret_image_url          varchar(255),
   hotel_id                  integer,
   constraint pk_image primary key (id))
-=======
+
 create table room (
   id                        integer auto_increment not null,
   description               varchar(255),
   hotel_id                  integer,
   constraint pk_room primary key (id))
->>>>>>> rooms
+
 ;
 
 
@@ -86,7 +86,11 @@ drop table feature;
 drop table hotel_feature;
 
 
+
 drop table image;
+
+
+drop table hotel;
 
 
 drop table room;
