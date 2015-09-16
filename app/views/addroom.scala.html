@@ -1,0 +1,42 @@
+@(features: List[Feature])
+@import helper._
+@main("Add room") {
+    <div class="container" style="background-color : #f5e79e">
+        <h3>Add room</h3>
+        <hr/>
+        @helper.form(action = routes.Rooms.insertRoom()) {
+            <div class="row">
+                <form role="form">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="description">Description:</label>
+                            <textarea class="form-control" rows="10" style="width : 350 px ; resize : none" id="description" name="description"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" name="submit" id="submit" value="Register" class="btn btn-info" onclick="insertRoom()">
+                        </div>
+                    </div>
+                </form>
+                <div class="col-md-6">
+
+                    <hr/>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <br>
+                            <h3>Features</h3>
+                            @for(feature <- features) {
+                                <div>
+                                    <span>
+                                        <input id="@feature.id" name="@feature.name" type="checkbox"/>
+                                        <label for="@feature.name">@feature.name</label>
+                                    </span>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+}

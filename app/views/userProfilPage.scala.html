@@ -16,6 +16,13 @@
               <a href="@routes.Users.showManagerHotels()"> <button class="btn btn-danger" style="height : 100px">MANAGER PANEL</button></a>
             </div>
           }
+          @if(user.userTypeId == 5){
+            <div class="button">
+
+              <a href="@routes.Rooms.showSellerHotels()"><button class="btn btn-danger" style="height : 100px">YOUR HOTELS</button></a>
+
+            </div>
+          }
         </div>
       </div>
 
