@@ -4,41 +4,41 @@ import com.avaje.ebean.Model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import java.util.List;
 
 /**
- * Created by Zeljko Miljevic on 9/14/2015.
+ * Created by User on 9/16/2015.
  */
 @Entity
 public class Room extends Model {
+    public static Finder<String, Room> finder = new Finder<String, Room>(Room.class);
 
-    /*
-     *Room atributes
-     */
     @Id
     public Integer id;
-    public Integer numberOfBeds;
     public String description;
+
+    @ManyToMany
+    public List<Feature> features;
+
     @ManyToOne
     public Hotel hotel;
 
-    /*
-     *Default constructor
-     */
-    public Room(Integer id, Integer numberOfBeds, String description, Hotel hotel) {
+    public Room(){
+
+    }
+    public Room (Integer id, String description, List<Feature> features, Hotel hotel){
         this.id = id;
-        this.numberOfBeds = numberOfBeds;
-        this.description = description;
+        this.description= description;
+        this.features = features;
         this.hotel = hotel;
     }
+    public static Room findRoomById(Integer id) {
+        Room room = finder.where().eq("id", id).findUnique();
 
-    @Override
-    public String toString() {
-        return "Room{" +
-                "id=" + id +
-                ", numberOfBeds=" + numberOfBeds +
-                ", description='" + description + '\'' +
-                ", hotel=" + hotel +
-                '}';
+        return room;
+
     }
 }

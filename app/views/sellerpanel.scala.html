@@ -1,0 +1,20 @@
+@(hotels: List[Hotel])
+@main("Seller panel")
+<div class="container" style="background-color : #204d74">
+@if(Integer.parseInt(request().cookies().get("userTypeId").value()) == 3) {
+
+    @for(hotel <- hotels) {
+        <tr>
+            <td>@hotel.name</td>
+            <td>@hotel.location</td>
+
+            <td>
+                <a onclick="" href="@routes.Rooms.editRoom(room.id)">
+                    <button class="btn btn-danger" >Edit</button>
+                </a>
+            </td>
+
+        </tr>
+    }
+}
+</div>

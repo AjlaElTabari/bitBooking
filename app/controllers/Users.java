@@ -148,6 +148,7 @@ public class Users extends Controller {
     public Result showAdminHotels() {
         List<Hotel> hotels = finder.all();
         return ok(adminhotels.render(hotels));
+
     }
 
     /*shows the list of users to admin*/

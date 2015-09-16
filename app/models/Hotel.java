@@ -17,7 +17,7 @@ import java.util.ArrayList;
  */
 @Entity
 public class Hotel extends Model {
-    public static Finder<String, Hotel> finder = new Finder<>(String.class, Hotel.class);
+    public static Finder<String, Hotel> finder = new Finder<>(Hotel.class);
 
     @Id
     public Integer id;
@@ -32,8 +32,10 @@ public class Hotel extends Model {
 
     @OneToMany
     public List<Image> images;
+    public List<Room> rooms;
+    public Hotel(Integer id, String name, String location, String description, String coordinateX, String coordinateY, List<Feature> feature,List<Image> images, List<Room> rooms){
 
-    public Hotel(Integer id, String name, String location, String description, String coordinateX, String coordinateY, List<Feature> feature,List<Image> images){
+
 
         this.id = id;
         this.name = name;
@@ -41,8 +43,12 @@ public class Hotel extends Model {
         this.description = description;
         this.coordinateX = coordinateX;
         this.coordinateY = coordinateY;
+
         this.features = feature;
         this.images = images;
+        this.rooms = rooms;
+
+
     }
 
     public static Hotel findHotelById(Integer id) {
