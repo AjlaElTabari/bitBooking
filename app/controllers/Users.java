@@ -104,11 +104,11 @@ public class Users extends Controller {
             flash("error", "Incorrect email or password! Please try again!");
             return badRequest(list.render(hotels));
         } else {
-            response().setCookie("email", email);
+            response().setCookie("email", user.email);
             response().setCookie("name", user.firstname);
             response().setCookie("userTypeId", user.userTypeId.toString());
 
-            return ok(userProfilPage.render(user));
+            return redirect(routes.Users.editUser(user.email));
         }
     }
 

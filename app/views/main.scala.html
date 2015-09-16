@@ -46,7 +46,7 @@
                             <li><a href="@routes.Application.index()" data-toggle="modal" data-target="#myModal">Log in</a></li>
 
                         }else{
-                            <li><a href="@routes.Users.editUser(request().cookies().get("email").value())" data-toggle="modal" data-target="#myModal">@request().cookies().get("name").value()</a></li>
+                            <li><a href='@routes.Users.editUser(request().cookies().get("email").value())' data-toggle="modal" data-target="#myModal">@request().cookies().get("name").value()</a></li>
                             <li><a href="@routes.Users.logOut()" data-toggle="modal" data-target="#myModal">Log out</a></li>
                         }
                     </ul>
