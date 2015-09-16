@@ -1,18 +1,16 @@
-@import controllers.SessionHelper
-
-@(content: Html)(implicit user: App_User = SessionHelper.getCurrentUser(ctx))
+@(content: Html)
 @import helper._
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="@routes.Assets.versioned("/Sminka1/css/heroic-features.css")"/>
-        <link rel="stylesheet" href="@routes.Assets.versioned("/bootstrap/css/bootstrap.css")"/>
-        <link rel="stylesheet" href="@routes.Assets.versioned("/stylesheets/frontpage.css")"/>
-        <link rel="stylesheet" href="@routes.Assets.versioned("/bootstrap/css/bootstrap-theme.css")"/>
-        <link rel="stylesheet" href="@routes.Assets.versioned("/bootstrap/js/bootstrap.js")"/>
-        <script src="@routes.Assets.versioned("/javascripts/frontpage.js")"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="@routes.Assets.versioned("/Sminka1/css/heroic-features.css")"/>
+    <link rel="stylesheet" href="@routes.Assets.versioned("/bootstrap/css/bootstrap.css")"/>
+    <link rel="stylesheet" href="@routes.Assets.versioned("/stylesheets/frontpage.css")"/>
+    <link rel="stylesheet" href="@routes.Assets.versioned("/bootstrap/css/bootstrap-theme.css")"/>
+    <link rel="stylesheet" href="@routes.Assets.versioned("/bootstrap/js/bootstrap.js")"/>
+    <script src="@routes.Assets.versioned("/javascripts/frontpage.js")"></script>
         <title> bitBooking</title>
     </head>
     <body style="background-color: white">
@@ -41,11 +39,11 @@
                         <li>&nbsp;</li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                    @if(session().get("email") == null) {
+                    @if(request().cookies().get("email") == null) {
                         <li><a href="@routes.Application.index()" data-toggle="modal" data-target="#myModal">Log in</a></li>
 
-                    }else{
-                        <li><a href="@routes.Users.editUser(user.email)" data-toggle="modal" data-target="#myModal">@session().get("name")</a></li>
+                    } else {
+                        <li><a href="@routes.Users.editUser(request().cookies().get("email").value())" data-toggle="modal" data-target="#myModal">@request().cookies().get("name").value()</a></li>
                         <li><a href="@routes.Users.logOut()" data-toggle="modal" data-target="#myModal">Log out</a></li>
                     }
                     </ul>
@@ -78,7 +76,8 @@
                 <p class="text-muted">2015 Team Rocket Inc.<br><a href="#">bitBooking.ba</a></p>
             </div>
         </div>
-        @if(session().get("email") == null) {
+
+        @if(request().cookies().get("email") == null) {
             <header>
 
                 <div id="ac-wrapper">
@@ -122,7 +121,7 @@
             <!-- /.container -->
             <!-- jQuery -->
         <script src="js/jquery.js"></script>
-            <!-- Bootstrap Core JavaScript -->
-        <script src="js/bootstrap.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
     </body>
 </html>

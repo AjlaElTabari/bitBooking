@@ -6,7 +6,7 @@
         <hr/>
         <div class="row">
             <div class="col-md-4">
-                @if(session().get("userTypeId").toInt == 5) {
+                @if(Integer.parseInt(request().cookies().get("userTypeId").value()) == 5) {
                     <a href="@routes.Hotels.editHotel(hotel.id)" ><button class="btn btn-warning">EDIT</button> </a>
                 }                <hr/>
                 <div class="text-center">

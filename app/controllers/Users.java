@@ -87,7 +87,7 @@ public class Users extends Controller {
 
     /**
      * Collects user info from the login form, calls method for authentication,
-     * and if it is successful, logs the user in. Stores the data in the session
+     * and if it is successful, logs the user in. Stores the data in the cookies
      * and redirect user to the corresponding profile page.
      *
      * @return
@@ -104,10 +104,9 @@ public class Users extends Controller {
             flash("error", "Incorrect email or password! Please try again!");
             return badRequest(list.render(hotels));
         } else {
-            session().clear();
-            session("email", email);
-            session("name", user.firstname);
-            session("userTypeId", user.userTypeId.toString());
+            response().setCookie("email", email);
+            response().setCookie("name", user.firstname);
+            response().setCookie("userTypeId", user.userTypeId.toString());
 
             return ok(userProfilPage.render(user));
         }
@@ -119,7 +118,18 @@ public class Users extends Controller {
     }
 
     public Result logAdmin() {
-        return ok(adminpanel.render());
+        Integer usrType = null;
+        try {
+            usrType = Integer.parseInt(request().cookies().get("userTypeId").value());
+        } catch (Exception e) {
+            return ok(list.render(hotels));
+        }
+
+        if (usrType == 3) {
+            return ok(adminpanel.render());
+        } else {
+            return ok(list.render(hotels));
+        }
     }
 
     public Result logManager() {
@@ -127,8 +137,12 @@ public class Users extends Controller {
     }
 
     public Result logOut() {
-        session().clear();
-        return ok(list.render(hotels));
+
+        response().discardCookie("email");
+        response().discardCookie("name");
+        response().discardCookie("userTypeId");
+
+        return redirect(routes.Application.index());
     }
 
     public Result showAdminHotels() {
