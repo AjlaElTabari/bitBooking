@@ -82,5 +82,10 @@
             <button type="button" class="btn btn-success">Post</button>
             </div>
         </div>
+        <div class="row">
+            @for( i <- 1 to hotel.images.size()){
+                <img src="@hotel.images.get(i).getThumbnail">
+                }
+        </div>
     </div>
 }

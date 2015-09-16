@@ -5,6 +5,7 @@ import com.avaje.ebean.Model;
 import models.Feature;
 import models.Hotel;
 import play.Logger;
+import models.Image;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -12,6 +13,14 @@ import views.html.editHotel;
 
 import java.util.*;
 
+import views.html.hotel;
+import views.html.list;
+import views.html.main;
+import play.mvc.Http.MultipartFormData;
+
+import java.io.File;
+import java.util.List;
+import play.Logger;
 
 public class Hotels extends Controller {
 
@@ -24,7 +33,6 @@ public class Hotels extends Controller {
 
         Form<Hotel> boundForm = hotelForm.bindFromRequest();
         Hotel hotel = boundForm.get();
-
 
         List<Feature> features = listOfFeatures();
         //Getting values from checkboxes
@@ -55,9 +63,19 @@ public class Hotels extends Controller {
 
         hotel.features = featuresForHotel;
 
+        MultipartFormData body = request().body().asMultipartFormData();
+        MultipartFormData.FilePart filePart = body.getFile("image");
+        if(filePart != null){
+            Logger.debug("Content type: " + filePart.getContentType());
+            Logger.debug("Key: " + filePart.getKey());
+            File file = filePart.getFile();
+            Image image = Image.create(file);
+            hotel.images.add(image);
+        }
         Ebean.save(hotel);
         return redirect(routes.Application.index());
     }
+
 
     public Result updateHotel(Integer id) {
 

@@ -30,15 +30,19 @@ public class Hotel extends Model {
     @ManyToMany
     public List<Feature> features;
 
+    @OneToMany
+    public List<Image> images;
 
-    public Hotel(Integer id, String name, String location, String description, String coordinateX, String coordinateY){
+    public Hotel(Integer id, String name, String location, String description, String coordinateX, String coordinateY, List<Feature> feature,List<Image> images){
+
         this.id = id;
         this.name = name;
         this.location = location;
         this.description = description;
         this.coordinateX = coordinateX;
         this.coordinateY = coordinateY;
-
+        this.features = feature;
+        this.images = images;
     }
 
     public static Hotel findHotelById(Integer id) {

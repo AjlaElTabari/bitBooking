@@ -31,12 +31,23 @@ create table hotel (
   constraint pk_hotel primary key (id))
 ;
 
+create table image (
+  id                        integer auto_increment not null,
+  public_id                 varchar(255),
+  image_url                 varchar(255),
+  secret_image_url          varchar(255),
+  hotel_id                  integer,
+  constraint pk_image primary key (id))
+;
+
 
 create table hotel_feature (
   hotel_id                       integer not null,
   feature_id                     integer not null,
   constraint pk_hotel_feature primary key (hotel_id, feature_id))
 ;
+alter table image add constraint fk_image_hotel_1 foreign key (hotel_id) references hotel (id) on delete restrict on update restrict;
+create index ix_image_hotel_1 on image (hotel_id);
 
 
 
@@ -54,7 +65,11 @@ drop table feature;
 
 drop table hotel_feature;
 
+<<<<<<< Updated upstream
 drop table hotel;
+=======
+drop table image;
+>>>>>>> Stashed changes
 
 SET FOREIGN_KEY_CHECKS=1;
 
