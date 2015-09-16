@@ -1,7 +1,7 @@
 @(hotel: Hotel)
 @main("Edit Hotel") {
 
-    @if(session().get("userTypeId").toInt == 5) {
+@if(Integer.parseInt(request().cookies().get("userTypeId").value()) == 5) {
         <meta charset="UTF-8">
         <div class="container" style="background-color : #f5e79e">
             <div class="row">
