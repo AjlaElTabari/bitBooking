@@ -43,6 +43,7 @@ create table image (
 create table room (
   id                        integer auto_increment not null,
   description               varchar(255),
+  number_of_beds            integer,
   hotel_id                  integer,
   constraint pk_room primary key (id))
 
