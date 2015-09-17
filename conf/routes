@@ -3,45 +3,13 @@
 # ~~~~
 
 # Home page
-GET         /                                 @controllers.Application.index()
-GET         /login                            @controllers.Application.index()
-GET         /register                         @controllers.Users.register()
-GET         /addhotel                         @controllers.Application.registerHotel()
-GET         /edit_user/:email                 @controllers.Users.editUser(email: String)
-GET         /admin                            @controllers.Users.logAdmin()
-GET         /feature                          @controllers.Application.insertFeature()
-GET         /logout                           @controllers.Users.logOut()
-GET         /hotel/:id                        @controllers.Hotels.showHotel(id: Integer)
-GET         /editHotel/:id                    @controllers.Hotels.editHotel(id: Integer)
-GET         /admin/adminhotels                @controllers.Users.showAdminHotels()
-GET         /admin/adminusers                 @controllers.Users.showAdminUsers()
-GET         /admin/adminfeatures              @controllers.Users.showAdminFeatures()
-
-GET         /manager/managerhotels/:id        @controllers.Hotels.deleteHotel(id: Integer)
-
-GET         /manager                          @controllers.Users.logManager()
-GET         /manager/managerhotels            @controllers.Users.showManagerHotels()
-GET         /admin/adminhotels/:id            @controllers.Hotels.deleteHotelAdmin(id: Integer)
-GET         /admin/adminusers/:email          @controllers.Users.deleteUser(email: String)
-GET         /admin/adminfeatures/:id          @controllers.Features.deleteFeature(id: Integer)
-
-GET         /editFeature/:id                  @controllers.Features.editfeature(id: Integer)
-
-GET         /room/:id                         @controllers.Rooms.showRoom(id: Integer)
-GET         /editroom/:id                     @controllers.Rooms.editRoom(id: Integer)
-GET         /seller/sellerpanel               @controllers.Rooms.showSellerHotels()
+GET         /                           @controllers.Application.index()
+GET         /loginmessage               @controllers.Application.loginmessage()
+GET         /registrationmessage        @controllers.Application.registrationmessage()
+GET         /register                   @controllers.Application.register()
 
 # Map static resources from the /public folder to the /assets URL path
-GET         /assets/*file                     controllers.Assets.versioned(path="/public", file: Asset)
+GET         /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
 
-POST        /register/                        @controllers.Users.insertUser()
-POST        /frontpage                        @controllers.Users.login()
-POST        /addhotel                         @controllers.Hotels.insertHotel()
-POST        /feature                          @controllers.Features.insertFeature()
-POST        /update/:email                    @controllers.Users.updateUser(email:String)
-POST        /editHotel/:id                    @controllers.Hotels.updateHotel(id: Integer)
-POST        /admin/adminusers/:email          @controllers.Users.setRole(email: String)
-
-POST        /addroom                          @controllers.Rooms.insertRoom()
-POST        /editroom/:id                     @controllers.Rooms.updateRoom(id: Integer)
-POST        /editFeature/:id                  @controllers.Features.updateFeature(id: Integer)
+POST        /register/                  @controllers.Users.insertUser()
+POST        /frontpage                  @controllers.Users.login()
