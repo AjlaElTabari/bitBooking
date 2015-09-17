@@ -6,12 +6,14 @@ import com.avaje.ebean.Model;
 import models.Feature;
 import models.Hotel;
 import models.Room;
+import play.api.mvc.Rendering;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.addroom;
 import views.html.editRoom;
 import views.html.sellerpanel;
+import views.html.showRooms;
 
 import java.util.List;
 
@@ -56,7 +58,8 @@ public class Rooms extends Controller {
     public Result deleteRoom(Integer id){
         Room room = Room.findRoomById(id);
         Ebean.delete(room);
-        return ok("Neka poruka");
+      return redirect("/showRooms");
+
     }
 
     public Result editRoom(Integer id) {
@@ -64,7 +67,7 @@ public class Rooms extends Controller {
         return ok(editRoom.render(room));
     }
 
-
+//Ti pozivas ovu metodu..
     public Result showRoom (Integer id) {
         Room room = Room.findRoomById(id);
         return ok(views.html.room.render(room));
