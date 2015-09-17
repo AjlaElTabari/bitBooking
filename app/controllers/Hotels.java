@@ -40,9 +40,13 @@ public class Hotels extends Controller {
         for (int i = 0; i < features.size(); i++) {
             String feature = boundForm.bindFromRequest().field(features.get(i).name).value();
 
+
             if (feature != null) {
                 checkBoxValues.add(feature);
             }
+
+
+            Logger.debug(checkBoxValues.toString());
         }
 
         List<Feature> featuresForHotel = new ArrayList<Feature>();
@@ -50,16 +54,12 @@ public class Hotels extends Controller {
         for (int i = 0; i < checkBoxValues.size(); i++) {
             for (int j = 0; j < features.size(); j++) {
                 if (features.get(j).name.equals(checkBoxValues.get(i))) {
-                    featuresForHotel.add(features.get(i));
+                    featuresForHotel.add(features.get(j));
                 }
             }
         }
 
-        Logger.debug(featuresForHotel.toString());
 
-        //Removing null elements from list
-        //checkBoxValues
-        features.removeAll(Collections.singleton(null));
 
         hotel.features = featuresForHotel;
 
@@ -99,7 +99,7 @@ public class Hotels extends Controller {
         return redirect(routes.Hotels.showHotel(hotel.id));
     }
 
-    public List<Feature> listOfFeatures(){
+    public List<Feature> listOfFeatures() {
         List<Feature> features = featureFinder.all();
         return features;
     }
