@@ -32,8 +32,8 @@ public class Features extends Controller {
         return redirect(routes.Users.showAdminFeatures());
     }
     public Result editfeature(Integer id){
-        Feature f = Feature.findFeatureById(id);
-        return ok(editFeature.render(f));
+        Feature feature = Feature.findFeatureById(id);
+        return ok(editFeature.render(feature));
     }
 
     public Result updateFeature(Integer id){

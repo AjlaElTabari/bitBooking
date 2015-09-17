@@ -9,6 +9,7 @@ import models.Room;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
+import views.html.addroom;
 import views.html.editRoom;
 import views.html.sellerpanel;
 
@@ -25,10 +26,13 @@ public class Rooms extends Controller {
     public static Model.Finder<String, Hotel> hotelFinder = new Model.Finder<String, Hotel>(Hotel.class);
 
 
-    public Result insertRoom() {
+    public Result insertRoom(Integer hotelId) {
 
         Form<Room> boundForm = roomForm.bindFromRequest();
         Room room = boundForm.get();
+        Hotel hotel = Hotel.findHotelById(hotelId);
+
+        room.hotel = hotel;
 
         Ebean.save(room);
         return redirect(routes.Application.index());
@@ -69,5 +73,10 @@ public class Rooms extends Controller {
         List<Hotel> hotels = hotelFinder.all();
         return ok(sellerpanel.render(hotels));
 
+    }
+    public Result addRoom(Integer hotelId){
+            List<Feature> features = Feature.finder.all();
+
+        return ok(addroom.render(features, hotelId));
     }
 }

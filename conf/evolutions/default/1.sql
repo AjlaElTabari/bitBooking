@@ -21,8 +21,6 @@ create table comment (
   hotel_id                  integer,
   title                     varchar(255),
   content                   varchar(255),
-  create_time               varchar(255),
-
   rating                    integer,
   constraint pk_comment primary key (id))
 ;
@@ -57,6 +55,7 @@ create table room (
   id                        integer auto_increment not null,
   description               varchar(255),
   number_of_beds            integer,
+  name                      varchar(255),
   hotel_id                  integer,
   constraint pk_room primary key (id))
 ;

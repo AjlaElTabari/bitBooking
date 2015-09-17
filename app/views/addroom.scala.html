@@ -1,60 +1,71 @@
-@(features: List[Feature])
+@(features: List[Feature])(hotelId: Integer)
 @import helper._
 @main("Add room") {
-    <div class="container" style="background-color : #f5e79e">
-        <h3>Add room</h3>
+    <div class="container" style="background-color: #f5e79e">
+        <h3>Adding a room to a hotel</h3>
         <hr/>
-        @helper.form(action = routes.Rooms.insertRoom()) {
+        @helper.form(action = routes.Rooms.insertRoom(hotelId)) {
             <div class="row">
                 <form role="form">
                     <td class="col-md-6">
+                        <div class="text-center">
+                            <img src="http://placehold.it/400x300" class="img-responsive img-thumbnail" alt=""/>
+                            <h6 style="text-align: center">Picture description</h6>
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Name:</label>
+                            <input class="form-control" rows="10" style="width: 350px ; resize : none" id="name" name="name">
+                        </div>
+
                         <div class="form-group">
                             <label for="description">Description:</label>
-                            <textarea class="form-control" rows="10" style="width : 350px ; resize : none" id="description" name="description"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="numberOfBeds">Number of beds :</label>
-                            <input type="number" ; resize: none id="numberOfBeds" name="numberOfBeds"></input>
+                            <textarea class="form-control" rows="10" style="width: 350px ; resize : none" id="description" name="description"></textarea>
                         </div>
 
-                        <form method="post" action="" >
-                            <td>
-                                <select name="numberOfBeds" class="form-control" onchange="" >
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
 
-                                </select>
-
-                            </td>
-                            <td class="form-group">
-                                <input type="submit" name="submit" id="submit" value="Register" class="btn btn-info" onclick="insertRoom()">
-                            </td>
-                        </form>
-
-            </form>
-            <div class="col-md-6">
-
-                <hr/>
-                <div class="row">
-                    <div class="col-md-6">
-                        <br>
-                        <h3>Features</h3>
-                        @for(feature <- features) {
-                            <div>
-                                <span>
-                                    <input id="@feature.id" name="@feature.name" type="checkbox"/>
-                                    <label for="@feature.name">@feature.name</label>
-                                </span>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <br>
+                                <h3>Features</h3>
+                                @for(feature <- features) {
+                                    <div>
+                                        <span>
+                                            <input id="@feature.id" name="@feature.name" type="checkbox"/>
+                                            <label for="@feature.name">@feature.name</label>
+                                        </span>
+                                    </div>
+                                }
                             </div>
-                        }
-                    </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="numberOfBeds">Number of beds:</label>
+                            <form method="post" action="" >
+                                <td>
+                                    <select name="numberOfBeds" class="form-control" onchange="" >
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+
+                                    </select>
+
+                                </td>
+
+                                <td class="form-group">
+                                    <input type="submit" name="submit" id="submit" value="Add Room" class="btn btn-info" onclick="@routes.Rooms.insertRoom(hotelId)">
+                                </td>
+                            </form>
+                        </div>
+                </form>
+                <div class="col-md-6">
+
+                    <hr/>
+
                 </div>
             </div>
-        </div>
-}
+        }
     </div>
 
 }

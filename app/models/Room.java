@@ -19,7 +19,8 @@ public class Room extends Model {
     @Id
     public Integer id;
     public String description;
-    public  Integer numberOfBeds;
+    public Integer numberOfBeds;
+    public String name;
     @ManyToMany
     public List<Feature> features;
 
@@ -29,10 +30,11 @@ public class Room extends Model {
     public Room(){
 
     }
-    public Room (Integer id, String description, List<Feature> features, Hotel hotel, Integer numberOfBeds){
+    public Room (Integer id, String description,String name, List<Feature> features, Hotel hotel, Integer numberOfBeds){
         this.id = id;
         this.description= description;
         this.features = features;
+        this.name = name;
         this.hotel = hotel;
         this.numberOfBeds= numberOfBeds;
     }

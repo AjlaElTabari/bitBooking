@@ -27,9 +27,13 @@ GET         /admin/adminfeatures/:id          @controllers.Features.deleteFeatur
 
 GET         /editFeature/:id                  @controllers.Features.editfeature(id: Integer)
 
+GET         /addroom/:hotelId                 @controllers.Rooms.addRoom(hotelId: Integer)
+
 GET         /room/:id                         @controllers.Rooms.showRoom(id: Integer)
 GET         /editroom/:id                     @controllers.Rooms.editRoom(id: Integer)
 GET         /seller/sellerpanel               @controllers.Rooms.showSellerHotels()
+
+GET         /showRooms/:hotelId               @controllers.Hotels.showRooms(hotelId: Integer)
 
 # Map static resources from the /public folder to the /assets URL path
 GET         /assets/*file                     controllers.Assets.versioned(path="/public", file: Asset)
@@ -42,6 +46,7 @@ POST        /update/:email                    @controllers.Users.updateUser(emai
 POST        /editHotel/:id                    @controllers.Hotels.updateHotel(id: Integer)
 POST        /admin/adminusers/:email          @controllers.Users.setRole(email: String)
 
-POST        /addroom                          @controllers.Rooms.insertRoom()
+
 POST        /editroom/:id                     @controllers.Rooms.updateRoom(id: Integer)
 POST        /editFeature/:id                  @controllers.Features.updateFeature(id: Integer)
+POST        /addroom/:hotelId                 @controllers.Rooms.insertRoom(hotelId: Integer)
