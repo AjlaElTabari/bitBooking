@@ -1,126 +1,74 @@
-@(content: Html)
-@import helper._
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="@routes.Assets.versioned("/Sminka1/css/heroic-features.css")"/>
-    <link rel="stylesheet" href="@routes.Assets.versioned("/bootstrap/css/bootstrap.css")"/>
-    <link rel="stylesheet" href="@routes.Assets.versioned("/stylesheets/frontpage.css")"/>
-    <link rel="stylesheet" href="@routes.Assets.versioned("/bootstrap/css/bootstrap-theme.css")"/>
-    <link rel="stylesheet" href="@routes.Assets.versioned("/bootstrap/js/bootstrap.js")"/>
-    <script src="@routes.Assets.versioned("/javascripts/frontpage.js")"></script>
-        <title> bitBooking</title>
-    </head>
-    <body style="background-color: white">
-        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapsible">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand text-danger" href="#">
-                        bitBooking
-                    </a>
-                </div>
-                <div class="navbar-collapse collapse" id="navbar-collapsible">
-                    <ul class="nav navbar-nav navbar-left">
-                        <li></li>
-                        <li><a href="#section1">Home</a></li>
-                        <li><a href="#section2">About</a></li>
-                        <li><a href="#section3">Contact</a></li>
-                        <li><a href="#section4">Hotels</a></li>
-                        <li><a href="#section5">Gallery</a></li>
-                        <li><a href="#section6">Last minute</a></li>
-                        <li>&nbsp;</li>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                    @if(request().cookies().get("email") == null) {
-                        <li><a href="@routes.Application.index()" data-toggle="modal" data-target="#myModal">Log in</a></li>
+@import helper._
+        <html>
 
-                    } else {
-                        <li><a href="@routes.Users.editUser(request().cookies().get("email").value())" data-toggle="modal" data-target="#myModal">@request().cookies().get("name").value()</a></li>
-                        <li><a href="@routes.Users.logOut()" data-toggle="modal" data-target="#myModal">Log out</a></li>
-                    }
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <div class="container" style="background-color: #f5e79e">
-                <!-- Jumbotron Header -->
-            <header class="jumbotron hero-spacer">
-                <h1>A Warm Welcome!</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, ipsam, eligendi, in quo sunt possimus non incidunt odit vero aliquid similique quaerat nam nobis illo aspernatur vitae fugiat numquam repellat.</p>
-                <p><a class="btn btn-primary btn-large">Call to action!</a>
-                </p>
-            </header>
-            <hr>
-                <!-- Title -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <h3>Latest Features</h3>
-                </div>
-            </div>
-                <!-- /.row -->
-            <div class="row text-center">
-            @content
-            </div>
-        </div>
-            <!-- Footer -->
-        <div id="footer" style="text-align: center;background-color: #e7e7e7">
-            <div class="container">
-                <p class="text-muted">2015 Team Rocket Inc.<br><a href="#">bitBooking.ba</a></p>
-            </div>
-        </div>
-        @if(request().cookies().get("email") == null) {
+            <head>
+
+                <meta charset="utf-8">
+                <!--connecting front page html with css and java script-->
+                <link rel = "stylesheet" href="@routes.Assets.versioned("stylesheets/frontpage.css")">
+                <script src="@routes.Assets.versioned("javascripts/frontpage.js")"> </script>
+            </head>
+
+
+
+            <body>
+                <!--creating header and pop up window-->
+                <!--header contains title and log in button-->
+                <!--pop up contains fields for user name, password, log in button, and link to sign in-->
             <header>
 
-                <div id="ac-wrapper">
-                @helper.form(action=routes.Users.login()) {
-                    <div>
-                        <div id="popup">
-                            <input type="button" value="X" id="x-button" onclick="PopUp();">
-                            <div class = "login-popup">
-                                <div>
-                                    <label for = "Username">Email: </label>
-                                </div>
-                                <div>
-                                    <input type = "email" id = "username"
-                                    name = "email" placeholder="email">
-                                </div>
-                                <div>
-                                    <label for = "password">Password: </label>
-                                </div>
-                                <div>
-                                    <input type ="password" id ="password"
-                                    name = "password" placeholder="password">
-                                </div>
-                                <label id="error-message">
-                                @if(flash.containsKey("error")){
-                                    @flash.get("error")
-                                }
-                                </label>
-                                <div>
-                                    <input type="submit" class="submit" name="submit" value="Log in" onClick="PopUp()" />
-                                </div>
-                                <br>
-                                <hr>
-                                <label>No account yet? <a id ="here" href="register">Register here</a></label>
+        <h1 id = "title">bitBooking.ba <button type="button" id="login-button-header"  class="btn btn-default" onclick="logIn()">Log In</button> </h1>
+
+        <div id="ac-wrapper">
+            @helper.form(action=routes.Users.login()) {
+                <div>
+                    <div id="popup">
+
+                        <input type="button" value="X" id="x-button" onclick="PopUp();">
+
+                        <div class = "login-popup">
+                            <div>
+                                <label for = "Username">Email: </label>
                             </div>
+
+                            <input type = "email" id = "username"
+                            name = "email" placeholder="email">
+                            <br>
+
+                            <div>
+                                <label for = "password">Password: </label>
+                            </div>
+
+                            <input type = "password" id ="password"
+                            name = "password" placeholder="password">
+                            <br>
+                            <label id="error-message">
+                            @if(flash.containsKey("error")){
+                                @flash.get("error")
+                            }
+                            </label>
+
+                            <div>
+                                <input type="submit" class="submit" name="submit" value="Log in" onClick=" PopUp()" />
+
+                            </div>
+                            <br>
+
+
+                            <hr>
+                            <label>No account yet? <a id ="here" href="register">Register here</a></label>
+
+
+
                         </div>
                     </div>
-                }
                 </div>
-            </header>
-        }
-            <!-- /.container -->
-            <!-- jQuery -->
-        <script src="js/jquery.js"></script>
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+            }
+        </div>
+
+    </header>
+                    <!---->
     </body>
+
 </html>

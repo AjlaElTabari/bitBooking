@@ -1,29 +1,26 @@
 package controllers;
 
-import models.App_User;
-import models.Feature;
-import models.Hotel;
+import play.*;
 import play.mvc.*;
+
 import views.html.*;
-
-
-import java.util.List;
 
 public class Application extends Controller {
 
     /*opening a front page on start*/
     public Result index() {
-        List<Hotel> hotels = Hotel.finder.all();
-        return ok(list.render(hotels));
+        return ok(frontpage.render());
     }
-    public Result registerHotel(){
-        List<Feature> features = Hotels.featureFinder.all();
-        List<App_User> users = App_User.getUsersByUserTypeId(5);
-        return ok(addhotel.render(features, users));
+    /*opening a login in message*/
+    public Result loginmessage() {
+        return ok(loginmessage.render());
     }
-
-    public Result insertFeature(){
-        return ok(feature.render());
+    /*opening a refistration message*/
+    public Result registrationmessage() {
+        return ok(registrationmessage.render());
     }
-
+    /*opening register form */
+    public Result register(){
+        return ok(register.render());
+    }
 }
