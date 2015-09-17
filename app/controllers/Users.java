@@ -18,7 +18,7 @@ import java.util.List;
 public class Users extends Controller {
     private static final Form<App_User> userForm = Form.form(App_User.class);
 
-    private static List<Hotel> hotels = Hotel.finder.all();
+    private static List<Hotel> hotels = Hotel.allHotels();
     private static Model.Finder<String, Hotel> finder = new Model.Finder<>(String.class, Hotel.class);
 
     private static List<App_User> users = App_User.finder.all();
@@ -107,6 +107,7 @@ public class Users extends Controller {
             response().setCookie("email", user.email);
             response().setCookie("name", user.firstname);
             response().setCookie("userTypeId", user.userTypeId.toString());
+            response().setCookie("userId", user.id.toString());
 
             return redirect(routes.Users.editUser(user.email));
         }
@@ -141,6 +142,7 @@ public class Users extends Controller {
         response().discardCookie("email");
         response().discardCookie("name");
         response().discardCookie("userTypeId");
+        response().discardCookie("userId");
 
         return redirect(routes.Application.index());
     }

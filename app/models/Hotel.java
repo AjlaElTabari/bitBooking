@@ -3,10 +3,6 @@ package models;
 
 import com.avaje.ebean.Model;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import java.util.List;
 import javax.persistence.*;
 
@@ -17,7 +13,8 @@ import java.util.ArrayList;
  */
 @Entity
 public class Hotel extends Model {
-    public static Finder<String, Hotel> finder = new Finder<>(String.class, Hotel.class);
+
+    private static Finder<String, Hotel> finder = new Finder<>(Hotel.class);
 
     @Id
     public Integer id;
@@ -33,7 +30,10 @@ public class Hotel extends Model {
     @OneToMany
     public List<Image> images;
 
-    public Hotel(Integer id, String name, String location, String description, String coordinateX, String coordinateY, List<Feature> feature,List<Image> images){
+    @OneToMany(mappedBy = "hotel")
+    private List<Comment> comments;
+
+    public Hotel(Integer id, String name, String location, String description, String coordinateX, String coordinateY, List<Feature> feature,List<Image> images,List<Comment> comments){
 
         this.id = id;
         this.name = name;
@@ -43,6 +43,7 @@ public class Hotel extends Model {
         this.coordinateY = coordinateY;
         this.features = feature;
         this.images = images;
+        this.comments = comments;
     }
 
     public static Hotel findHotelById(Integer id) {
@@ -50,6 +51,11 @@ public class Hotel extends Model {
 
         return hotel;
     }
+
+    public static List<Hotel> allHotels() {
+        return Hotel.finder.all();
+    }
+
     @Override
     public String toString()
     {

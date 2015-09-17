@@ -15,21 +15,23 @@ public class Comments extends Controller {
 
     public Result insertComment() {
         Form<Comment> boundForm = commentForm.bindFromRequest();
+
+
         Comment comment = boundForm.get();
 
         Ebean.save(comment);
-        return redirect(routes.Comment.insertComment());
+        return ok("Radi");
     }
-
-    public Result editComment(Integer id) {
-        Comment comment = Comment.findCommentById(id);
-        return ok(editComment.render(comment));
-    }
-
-    public Result deleteComment(Integer id) {
-        Comment comment = Comment.findCommentById(id);
-        Ebean.delete(comment);
-
-        return redirect(routes.Comment.deleteComment());
-    }
+//
+//    public Result editComment(Integer id) {
+//        Comment comment = Comment.findCommenotById(id);
+//        return ok(editComment.render(comment));
+//    }
+//
+//    public Result deleteComment(Integer id) {
+//        Comment comment = Comment.findCommentById(id);
+//        Ebean.delete(comment);
+//
+//        return redirect(routes.Comment.deleteComment());
+//    }
 }

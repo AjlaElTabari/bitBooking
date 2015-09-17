@@ -5,10 +5,8 @@ import com.avaje.ebean.Model;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import java.util.Date;
 
-/**
- * Created by Zeljko Miljevic on 9/13/2015.
- */
 @Entity
 public class Comment extends Model {
 
@@ -18,24 +16,24 @@ public class Comment extends Model {
     @Id
     public Integer id;
     @ManyToOne
-    public Integer user_id;
+    public App_User user;
     @ManyToOne
-    public Integer hotel_id;
+    public Hotel hotel;
+
     public String title;
     public String content;
-    public String create_time;
+    public String commentDate;
     public Integer rating;
 
     /*
      *Default constructor
      */
-    public Comment(Integer id, Integer user_id, Integer hotel_id, String title, String content, String create_time, Integer rating) {
+    public Comment(Integer id, App_User user, Hotel hotel, String title, String content, Integer rating) {
         this.id = id;
-        this.user_id = user_id;
-        this.hotel_id = hotel_id;
+        this.user = user;
+        this.hotel = hotel;
         this.title = title;
         this.content = content;
-        this.create_time = create_time;
         this.rating = rating;
     }
 
@@ -43,11 +41,11 @@ public class Comment extends Model {
     public String toString() {
         return "Comment{" +
                 "id=" + id +
-                ", user_id=" + user_id +
-                ", hotel_id=" + hotel_id +
+                ", user=" + user.firstname +
+                ", hotel=" + hotel.name +
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
-                ", create_time='" + create_time + '\'' +
+                ", date='" + commentDate + '\'' +
                 ", rating=" + rating +
                 '}';
     }

@@ -12,7 +12,7 @@ public class Application extends Controller {
 
     /*opening a front page on start*/
     public Result index() {
-        List<Hotel> hotels = Hotel.finder.all();
+        List<Hotel> hotels = Hotel.allHotels();
         return ok(list.render(hotels));
     }
     public Result registerHotel(){

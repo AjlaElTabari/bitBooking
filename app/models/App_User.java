@@ -4,10 +4,8 @@ import org.mindrot.jbcrypt.BCrypt;
 import com.avaje.ebean.Model;
 import play.data.validation.Constraints;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import java.util.List;
 
 /**
  * Model of App_User. App_User is a person who sign up into database on bitBooking.com web page
@@ -51,6 +49,8 @@ public class App_User extends Model {
     @ManyToOne
     public Integer userTypeId = USR_TYPE_BUYER;
 
+    @OneToMany(mappedBy = "user")
+    public List<Comment> comments;
 
     /**
      * Default constructor
@@ -67,13 +67,13 @@ public class App_User extends Model {
      * @param password    - App_User's password.
      * @param phoneNumber - App_User's phone number.
      */
-    public App_User(String firstName, String lastName, String email, String password, String phoneNumber) {
+    public App_User(String firstName, String lastName, String email, String password, String phoneNumber,List<Comment> comments) {
         this.firstname = firstName;
         this.lastname = lastName;
         this.email = email;
         this.password = password;
-        System.out.println(this.password);
         this.phoneNumber = phoneNumber;
+        this.comments=comments;
     }
 
     /**
