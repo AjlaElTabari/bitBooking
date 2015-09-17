@@ -31,8 +31,9 @@ public class Hotel extends Model {
     @ManyToMany
     public List<Feature> features;
 
-    @OneToMany
+    @OneToMany(mappedBy = "hotel")
     public List<Image> images;
+    @OneToMany
     public List<Room> rooms;
 
     public Hotel(Integer id, String name, String location, String description, String coordinateX, String coordinateY,

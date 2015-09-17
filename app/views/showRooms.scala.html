@@ -1,0 +1,15 @@
+@(rooms: List[Room])(hotel: Hotel)
+@main("Show rooms"){
+
+    @for(room <- rooms){
+    @if(room.hotel == hotel) {
+        <tr>
+
+            <td>@room.name</td>
+            <td>@room.description</td>
+            <td>@room.numberOfBeds</td>
+        </tr>
+    }
+    }
+
+}

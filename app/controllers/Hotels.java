@@ -4,18 +4,16 @@ import com.avaje.ebean.Ebean;
 import com.avaje.ebean.Model;
 import models.Feature;
 import models.Hotel;
+import models.Room;
 import play.Logger;
 import models.Image;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
-import views.html.editHotel;
+import views.html.*;
 
 import java.util.*;
 
-import views.html.hotel;
-import views.html.list;
-import views.html.main;
 import play.mvc.Http.MultipartFormData;
 
 import java.io.File;
@@ -27,7 +25,7 @@ public class Hotels extends Controller {
     private static final Form<Hotel> hotelForm = Form.form(Hotel.class);
     private static Model.Finder<String, Hotel> finder = new Model.Finder<>(Hotel.class);
     public static Model.Finder<String, Feature> featureFinder = new Model.Finder<>(Feature.class);
-
+    public static Model.Finder<String, Room> roomFinder = new Model.Finder<String, Room>(Room.class);
 
     public Result insertHotel() {
 
@@ -133,5 +131,10 @@ public class Hotels extends Controller {
     public List<Hotel> listOfHotels() {
         List<Hotel> hotels = finder.all();
         return hotels;
+    }
+    public Result showRooms(Integer hotelId){
+        List<Room> rooms = Room.finder.all();
+        Hotel hotel = Hotel.findHotelById(hotelId);
+        return ok(showRooms.render(rooms, hotel));
     }
 }
