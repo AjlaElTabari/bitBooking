@@ -34,8 +34,10 @@ public class Hotel extends Model {
     @OneToMany
     public List<Image> images;
     public List<Room> rooms;
+
     public Hotel(Integer id, String name, String location, String description, String coordinateX, String coordinateY,
                  Integer sellerId, List<Feature> features ,List<Image> images, List<Room> rooms){
+
 
 
         this.id = id;

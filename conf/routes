@@ -25,6 +25,8 @@ GET         /admin/adminhotels/:id            @controllers.Hotels.deleteHotelAdm
 GET         /admin/adminusers/:email          @controllers.Users.deleteUser(email: String)
 GET         /admin/adminfeatures/:id          @controllers.Features.deleteFeature(id: Integer)
 
+GET         /editFeature/:id                  @controllers.Features.editfeature(id: Integer)
+
 GET         /room/:id                         @controllers.Rooms.showRoom(id: Integer)
 GET         /editroom/:id                     @controllers.Rooms.editRoom(id: Integer)
 GET         /seller/sellerpanel               @controllers.Rooms.showSellerHotels()
@@ -42,3 +44,4 @@ POST        /admin/adminusers/:email          @controllers.Users.setRole(email: 
 
 POST        /addroom                          @controllers.Rooms.insertRoom()
 POST        /editroom/:id                     @controllers.Rooms.updateRoom(id: Integer)
+POST        /editFeature/:id                  @controllers.Features.updateFeature(id: Integer)

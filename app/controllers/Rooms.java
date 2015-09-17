@@ -40,8 +40,10 @@ public class Rooms extends Controller {
         Form<Room> roomForm1 = roomForm.bindFromRequest();
 
         String description = roomForm1.bindFromRequest().field("description").value();
+        Integer numberOfBeds = Integer.parseInt(roomForm1.bindFromRequest().field("numberOfBeds").value());
 
         room.description = description;
+        room.numberOfBeds = numberOfBeds;
 
         Ebean.update(room);
 
