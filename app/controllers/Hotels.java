@@ -72,6 +72,10 @@ public class Hotels extends Controller {
             Image image = Image.create(file);
             hotel.images.add(image);
         }
+
+        Integer sellerId = Integer.parseInt(boundForm.bindFromRequest().field("seller").value());
+
+        hotel.sellerId = sellerId;
         Ebean.save(hotel);
         return redirect(routes.Application.index());
     }
@@ -125,8 +129,6 @@ public class Hotels extends Controller {
 
         return redirect(routes.Users.showAdminHotels());
     }
-
-
 
     public List<Hotel> listOfHotels() {
         List<Hotel> hotels = finder.all();

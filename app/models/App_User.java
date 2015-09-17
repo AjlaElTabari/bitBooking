@@ -8,6 +8,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Model of App_User. App_User is a person who sign up into database on bitBooking.com web page
@@ -134,6 +136,11 @@ public class App_User extends Model {
     @Override
     public String toString() {
         return String.format("%s, %s", firstname, lastname);
+    }
+
+    public static List<App_User> getUsersByUserTypeId(Integer userTypeId) {
+        List<App_User> users = finder.where().eq("userTypeId", userTypeId).findList();
+        return users;
     }
 
 }

@@ -26,6 +26,7 @@ public class Hotel extends Model {
     public String description;
     public String coordinateX;
     public String coordinateY;
+    public Integer sellerId;
 
     @ManyToMany
     public List<Feature> features;
@@ -33,7 +34,8 @@ public class Hotel extends Model {
     @OneToMany
     public List<Image> images;
     public List<Room> rooms;
-    public Hotel(Integer id, String name, String location, String description, String coordinateX, String coordinateY, List<Feature> features ,List<Image> images, List<Room> rooms){
+    public Hotel(Integer id, String name, String location, String description, String coordinateX, String coordinateY,
+                 Integer sellerId, List<Feature> features ,List<Image> images, List<Room> rooms){
 
 
         this.id = id;
@@ -42,6 +44,7 @@ public class Hotel extends Model {
         this.description = description;
         this.coordinateX = coordinateX;
         this.coordinateY = coordinateY;
+        this.sellerId = sellerId;
 
         this.features = features;
         this.images = images;
