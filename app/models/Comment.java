@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
  */
 @Entity
 public class Comment extends Model {
-
+    public static Finder<String, Comment> finder = new Finder<String, Comment>(Comment.class);
     /*
      *Comment atributes
      */
@@ -23,20 +23,23 @@ public class Comment extends Model {
     public Integer hotel_id;
     public String title;
     public String content;
-    public String create_time;
     public Integer rating;
 
     /*
      *Default constructor
      */
-    public Comment(Integer id, Integer user_id, Integer hotel_id, String title, String content, String create_time, Integer rating) {
+    public Comment(Integer id, Integer user_id, Integer hotel_id, String title, String content, Integer rating) {
         this.id = id;
         this.user_id = user_id;
         this.hotel_id = hotel_id;
         this.title = title;
         this.content = content;
-        this.create_time = create_time;
         this.rating = rating;
+    }
+
+    public static Comment findCommentById (Integer id){
+        Comment comment = finder.where().eq("id", id).findUnique();
+        return comment;
     }
 
     @Override
@@ -47,7 +50,6 @@ public class Comment extends Model {
                 ", hotel_id=" + hotel_id +
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
-                ", create_time='" + create_time + '\'' +
                 ", rating=" + rating +
                 '}';
     }

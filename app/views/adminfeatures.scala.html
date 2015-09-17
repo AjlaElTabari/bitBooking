@@ -44,7 +44,7 @@
                         @for(feature <- features) {
                             <tr>
                                 <td>@feature.name</td>
-                                <td>
+                                <td name="feature">
                                     <form method="delete" action="@routes.Features.deleteFeature(feature.id)">
                                         <a href="@routes.Features.deleteFeature(feature.id)">
                                             <button class="btn btn-danger">Delete</button>
@@ -52,7 +52,7 @@
                                     </form>
                                 </td>
                                 <td>
-                                    <a href="#">
+                                    <a href="@routes.Features.editfeature(feature.id)">
                                         <button class="btn btn-warning">Edit</button>
                                     </a>
                                 </td>

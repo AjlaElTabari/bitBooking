@@ -1,17 +1,19 @@
-package controllers;
 
-import com.avaje.ebean.Ebean;
-import models.Comment;
-import play.data.Form;
-import play.mvc.Controller;
-import play.mvc.Result;
-
-/**
- * Created by Zeljko Miljevic on 9/13/2015.
- */
-public class Comments extends Controller {
-
-    private static final Form<Comment> commentForm = Form.form(Comment.class);
+//package controllers;
+//
+//import com.avaje.ebean.Ebean;
+//import models.Comment;
+//import play.data.Form;
+//import play.mvc.Controller;
+//import play.mvc.Result;
+//
+///**
+// * Created by Zeljko Miljevic on 9/13/2015.
+// */
+//public class Comments extends Controller {
+//
+//    private static final Form<Comment> commentForm = Form.form(Comment.class);
+//
 
 //    public Result insertComment() {
 //        Form<Comment> boundForm = commentForm.bindFromRequest();
@@ -32,4 +34,6 @@ public class Comments extends Controller {
 //
 //        return redirect(routes.Comment.deleteComment());
 //    }
-}
+
+//}
+

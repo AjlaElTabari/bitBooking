@@ -22,6 +22,7 @@ create table comment (
   title                     varchar(255),
   content                   varchar(255),
   create_time               varchar(255),
+
   rating                    integer,
   constraint pk_comment primary key (id))
 ;
