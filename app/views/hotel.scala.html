@@ -33,17 +33,11 @@
                 <div>
                     <h4>Feature</h4>
                     <ul>
-                        <li>Feature1</li>
-                        <li>Feature2</li>
-                        <li>Feature3</li>
-                        <li>Feature4</li>
-                        <li>Feature5</li>
-                        <li>Feature6</li>
-                        <li>Feature7</li>
-                        <li>Feature8</li>
-                        <li>Feature9</li>
-                        <li>Feature10</li>
-                        <li>Feature11</li>
+                        @for(feature <- hotel.features) {
+                            <li>
+                                @feature.name
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>
