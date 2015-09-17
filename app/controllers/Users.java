@@ -107,6 +107,7 @@ public class Users extends Controller {
             response().setCookie("email", user.email);
             response().setCookie("name", user.firstname);
             response().setCookie("userTypeId", user.userTypeId.toString());
+            response().setCookie("userId", user.id.toString());
 
             return redirect(routes.Users.editUser(user.email));
         }
@@ -141,6 +142,7 @@ public class Users extends Controller {
         response().discardCookie("email");
         response().discardCookie("name");
         response().discardCookie("userTypeId");
+        response().discardCookie("userId");
 
         return redirect(routes.Application.index());
     }
@@ -228,6 +230,12 @@ public class Users extends Controller {
                 return ok(userProfilPage.render(user));
             }
         }
+    }
+
+    public Result getSellers() {
+        List<App_User> users = App_User.getUsersByUserTypeId(5);
+        List<Feature> features = Feature.finder.all();
+        return ok(addhotel.render(features, users));
     }
 
 

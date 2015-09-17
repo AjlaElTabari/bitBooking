@@ -1,5 +1,6 @@
 package controllers;
 
+import models.App_User;
 import models.Feature;
 import models.Hotel;
 import play.mvc.*;
@@ -17,7 +18,8 @@ public class Application extends Controller {
     }
     public Result registerHotel(){
         List<Feature> features = Hotels.featureFinder.all();
-        return ok(addhotel.render(features));
+        List<App_User> users = App_User.getUsersByUserTypeId(5);
+        return ok(addhotel.render(features, users));
     }
 
     public Result insertFeature(){

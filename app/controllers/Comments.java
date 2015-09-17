@@ -13,23 +13,23 @@ public class Comments extends Controller {
 
     private static final Form<Comment> commentForm = Form.form(Comment.class);
 
-    public Result insertComment() {
-        Form<Comment> boundForm = commentForm.bindFromRequest();
-        Comment comment = boundForm.get();
-
-        Ebean.save(comment);
-        return redirect(routes.Comment.insertComment());
-    }
-
-    public Result editComment(Integer id) {
-        Comment comment = Comment.findCommentById(id);
-        return ok(editComment.render(comment));
-    }
-
-    public Result deleteComment(Integer id) {
-        Comment comment = Comment.findCommentById(id);
-        Ebean.delete(comment);
-
-        return redirect(routes.Comment.deleteComment());
-    }
+//    public Result insertComment() {
+//        Form<Comment> boundForm = commentForm.bindFromRequest();
+//        Comment comment = boundForm.get();
+//
+//        Ebean.save(comment);
+//        return redirect(routes.Comment.insertComment());
+//    }
+//
+//    public Result editComment(Integer id) {
+//        Comment comment = Comment.findCommentById(id);
+//        return ok(editComment.render(comment));
+//    }
+//
+//    public Result deleteComment(Integer id) {
+//        Comment comment = Comment.findCommentById(id);
+//        Ebean.delete(comment);
+//
+//        return redirect(routes.Comment.deleteComment());
+//    }
 }

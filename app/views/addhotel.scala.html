@@ -1,4 +1,4 @@
-@(features: List[Feature])
+@(features: List[Feature])(users: List[App_User])
 @import helper._
 @main("Add hotel") {
     <div class="container" style="background-color: #f5e79e">
@@ -32,6 +32,13 @@
                 <div class="form-group">
                     <label>Image: </label>
                     <input type="file" name="image" class="form-control" required />
+                </div>
+                <div class="form-group">
+                    <select id="ddlsellers" name="seller">
+                        @for(user <- users) {
+                            <option value="@user.id">@user.email</option>
+                        }
+                    </select>
                 </div>
                 <div class="form-group">
                     <input type="submit" name="submit" id="submit" value="Register" class="btn btn-info" onclick="insertHotel()">
