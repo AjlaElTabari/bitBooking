@@ -1,19 +1,9 @@
-header{
-	height: 50px;
-	background-image: url(http://ish-tmc.org/wp-content/uploads/2013/02/light-blue-header.jpg);
-	width: 100%;
-}
-
 #title{
 	padding-left: 20%;
 	color: white;
 	padding-top: 5px;
 	margin-top: 0;
 	border-top: 0;
-}
-
-body{
-	margin: 0;
 }
 
 .cd-popup {
@@ -33,9 +23,10 @@ body{
 }
 #popup{
 	width: 20%;
-	height: 300px;
+	height: 310px;
 	min-width: 250px;
-	background: #F8F8F8;
+    background-color: white;
+	/*background: #F8F8F8;*/
 	border: 1px solid #000;
 	border-radius: 25px;
 	-moz-border-radius: 25px;
@@ -48,7 +39,7 @@ body{
     -webkit-transform: translate(-50%,-50%);
     transform: translate(-50%,-50%);
     font-family:sans-serif;
-   
+
 }
 #email{
 
@@ -58,7 +49,7 @@ body{
 #password{
     display: flex;
 	padding: 10px;
-    margin: 10px auto;
+    margin: 0;
     width: 90%;
     height: 3px;
     background-color:#FFF;
@@ -66,7 +57,7 @@ body{
 }
 #username{
     padding: 10px;
-    margin: 10px auto;
+    margin: 0px;
     width: 90%;
     height: 3px;
     background-color:#FFF;
@@ -113,7 +104,7 @@ body{
 
 #error-message{
     text-align: center;
-    margin-top: 100px;
+    margin-top: 20px;
     color: red;
     font-size: 11px;
 }

@@ -11,4 +11,5 @@ function logIn(){
     /**function that activate pop up**/
     /**document.getElementById('ac-wrapper').style.display="";**/
     window.location.href="/";
+
 }

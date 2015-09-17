@@ -1,0 +1,79 @@
+@(features: List[Feature])(users: List[App_User])
+@import helper._
+@main("Add hotel") {
+    <div class="container" style="background-color: #f5e79e">
+        <h3>Register your hotel</h3>
+        <hr/>
+        @helper.form(action = routes.Hotels.insertHotel(), 'enctype -> "multipart/form-data") {
+            <div class="row">
+                <form role="form">
+                    <div class="col-md-6">
+                <div class="form-group">
+                    <label for="InputName">Hotel name:</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="name" id="InputName" placeholder="Hotel Name" style="width: 350px" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="address">Address:</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="location" id="address" placeholder="Address" style="width: 350px">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description:</label>
+                    <textarea class="form-control" rows="10" style="width: 350px;resize: none" id="description" name="description"></textarea>
+                </div>
+                <div>
+                    @for(feature <- features) {
+                        <input type="checkbox" name="@feature.name" value="@feature.name"> @feature.name <br>
+                    }
+                </div>
+                <div class="form-group">
+                    <label>Image: </label>
+                    <input type="file" name="image" class="form-control" required />
+                </div>
+                <div class="form-group">
+                    <select id="ddlsellers" name="seller">
+                        @for(user <- users) {
+                            <option value="@user.id">@user.email</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="submit" name="submit" id="submit" value="Register" class="btn btn-info" onclick="insertHotel()">
+                </div>
+                <br>
+            </div>
+        </form>
+        <div class="col-md-6">
+            <input id="gLat" name="coordinateX" value="43.8534183">
+            <input id="gLng" name="coordinateY" value="18.37808399999">
+            <div id="mapCanvas" class="shrinked-map"></div>
+            <div id="infoPanel" style="display: none">
+                <b>Marker status:</b>
+                <div id="markerStatus"><i>Click and drag the marker.</i></div>
+                <b>Current position:</b>
+                <div id="info"></div>
+            </div>
+            <hr/>
+            <div class="row">
+                <div class="col-md-6">
+                    <br>
+                    <h3>Features</h3>
+                    @for(feature <- features){
+                    <div>
+                    <span>
+                        <input  name="@feature.id" value="@feature.id" value="true" type="checkbox"/>
+                        <label for="@feature.id">@feature.name</label>
+                    </span>
+                    </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+</div>
+
+}
