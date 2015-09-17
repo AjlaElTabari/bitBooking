@@ -84,7 +84,7 @@
             <div class="col-md-6">
                 <h3>Comments</h3>
                 <hr/>
-                <form action="@routes.Comments.insertComment()" method="POST">
+                <form action="@routes.Comments.insertComment(hotel.id)" method="POST">
                 <div class="form-group">
                     <div>
                         <label>User:</label>
@@ -92,8 +92,6 @@
                     </div>
                     <label for="usr">Title:</label>
                     <input type="text" class="form-control" id="usr" name="title">
-                    <input type="text" class="form-control" id="usrId" value='@Integer.parseInt(request.cookies.get("userId").value())' name="userId">
-                    <input type="text" class="form-control" id="htlId" value="@hotel.id" name="hotelId">
                     <label for="comment">Comment:</label>
                     <textarea class="form-control" rows="5" id="comment" style="resize: none" name="content"></textarea>
                     <label for="rate">Rate hotel:</label>

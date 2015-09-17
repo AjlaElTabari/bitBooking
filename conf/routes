@@ -35,4 +35,4 @@ POST        /feature                          @controllers.Features.insertFeatur
 POST        /update/:email                    @controllers.Users.updateUser(email:String)
 POST        /editHotel/:id                    @controllers.Hotels.updateHotel(id: Integer)
 POST        /admin/adminusers/:email          @controllers.Users.setRole(email: String)
-POST        /hotel                            @controllers.Comments.insertComment()
+POST        /hotel/:hotelId                   @controllers.Comments.insertComment(hotelId: Integer)
