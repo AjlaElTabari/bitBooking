@@ -50,3 +50,4 @@ POST        /admin/adminusers/:email          @controllers.Users.setRole(email: 
 POST        /editroom/:id                     @controllers.Rooms.updateRoom(id: Integer)
 POST        /editFeature/:id                  @controllers.Features.updateFeature(id: Integer)
 POST        /addroom/:hotelId                 @controllers.Rooms.insertRoom(hotelId: Integer)
+POST        /hotel/:hotelId                   @controllers.Comments.insertComment(hotelId: Integer)

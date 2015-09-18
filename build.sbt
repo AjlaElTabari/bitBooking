@@ -14,7 +14,8 @@ libraryDependencies ++= Seq(
   "org.easytesting" % "fest-assert" % "1.4" % Test,
   "mysql" % "mysql-connector-java" % "5.1.36",
   "org.mindrot" % "jbcrypt" % "0.3m",
-  "com.cloudinary" % "cloudinary" % "1.0.14"
+  "com.cloudinary" % "cloudinary" % "1.0.14",
+  "org.apache.directory.studio" % "org.apache.commons.io" % "2.4"
 )
 
 lazy val myProject = (project in file("."))

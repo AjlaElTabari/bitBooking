@@ -4,7 +4,7 @@
     <div class="container" style="background-color: #f5e79e">
         <h3>Register your hotel</h3>
         <hr/>
-        @helper.form(action = routes.Hotels.insertHotel(), 'enctype -> "multipart/form-data") {
+        @helper.form(action = routes.Hotels.insertHotel()) {
             <div class="row">
                 <form role="form">
                     <div class="col-md-6">
@@ -30,10 +30,6 @@
                     }
                 </div>
                 <div class="form-group">
-                    <label>Image: </label>
-                    <input type="file" name="image" class="form-control" required />
-                </div>
-                <div class="form-group">
                     <select id="ddlsellers" name="seller">
                         @for(user <- users) {
                             <option value="@user.id">@user.email</option>
@@ -43,7 +39,6 @@
                 <div class="form-group">
                     <input type="submit" name="submit" id="submit" value="Register" class="btn btn-info" onclick="insertHotel()">
                 </div>
-                <br>
             </div>
         </form>
         <div class="col-md-6">

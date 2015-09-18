@@ -31,13 +31,17 @@ public class Hotel extends Model {
     @ManyToMany
     public List<Feature> features;
 
-    @OneToMany(mappedBy = "hotel")
+    @OneToMany(cascade=CascadeType.ALL)
     public List<Image> images;
+
     @OneToMany
     public List<Room> rooms;
 
+    @OneToMany
+    public List<Comment> comments;
+
     public Hotel(Integer id, String name, String location, String description, String coordinateX, String coordinateY,
-                 Integer sellerId, List<Feature> features ,List<Image> images, List<Room> rooms){
+                 Integer sellerId, List<Feature> features ,List<Image> images, List<Room> rooms, List<Comment> comments){
 
 
 
@@ -48,12 +52,11 @@ public class Hotel extends Model {
         this.coordinateX = coordinateX;
         this.coordinateY = coordinateY;
         this.sellerId = sellerId;
-
         this.features = features;
         this.images = images;
-
         this.features = features;
         this.rooms = rooms;
+        this.comments = comments;
 
 
     }
