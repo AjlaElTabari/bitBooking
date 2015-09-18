@@ -15,9 +15,6 @@ import views.html.sellerpanel;
 
 import java.util.List;
 
-/**
- * Created by User on 9/16/2015.
- */
 public class Rooms extends Controller {
 
     public static final Form<Room> roomForm = Form.form(Room.class);

@@ -6,9 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-/**
- * Created by Zeljko Miljevic on 9/13/2015.
- */
 @Entity
 public class Comment extends Model {
     public static Finder<String, Comment> finder = new Finder<String, Comment>(Comment.class);

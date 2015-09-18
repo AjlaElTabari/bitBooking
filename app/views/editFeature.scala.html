@@ -5,7 +5,7 @@
     <div class="container" style="background-color: seashell;width: 90%;margin: 5%">
     @if(Integer.parseInt(request().cookies().get("userTypeId").value()) == 3) {
       @helper.form(action = routes.Features.updateFeature(feature.id)) {
-        <h1>Add feature</h1>
+        <h1>Update feature</h1>
         <hr/>
         <div class="col-md-6">
           <div>

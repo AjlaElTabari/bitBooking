@@ -3,13 +3,22 @@
     <div class="container" style="background-color: #204d74">
         <div class="container" style="background-color: seashell;width: 90%;margin: 5%">
         @if(Integer.parseInt(request().cookies().get("userTypeId").value()) == 3) {
-            @helper.form(action = routes.Features.insertFeature()) {
+            @helper.form(action = routes.Features.insertFeature(), 'enctype -> "multipart/form-data") {
                 <h1>Add feature</h1>
                 <hr/>
                 <div class="col-md-6">
                     <div>
                         <label>Name:</label>
                         <input name="name">
+                    </div>
+                    <div>
+                        <select name="roomOrHotel" class="form-control">
+                            <option value="true">Hotel</option>
+                            <option value="false">Room</option>
+                        </select>
+                    </div>
+                    <div>
+                        <input type="file" name="image" accept="image/*">
                     </div>
                     <hr/>
                     <h1>Icons</h1>

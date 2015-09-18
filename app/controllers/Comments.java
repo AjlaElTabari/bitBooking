@@ -9,9 +9,7 @@ import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
 
-/**
- * Created by Zeljko Miljevic on 9/13/2015.
- */
+
 public class Comments extends Controller {
 
     private static final Form<Comment> commentForm = Form.form(Comment.class);

@@ -15,13 +15,19 @@ public class Feature extends Model {
     @Id
     public Integer id;
     public String name;
+    public boolean roomOrHotel;
+    public String image;
 
     @ManyToMany(mappedBy = "features")
     public List<Hotel> hotels;
 
-    public Feature(Integer id, String name, List<Hotel> hotels){
+
+
+    public Feature(Integer id, String name, List<Hotel> hotels, String image,boolean roomOrHotel){
         this.id = id;
         this.name = name;
+        this.image = image;
+        this.roomOrHotel = roomOrHotel;
         this.hotels = new LinkedList<Hotel>(hotels);
         for(Hotel h: hotels){
             h.features.add(this);
