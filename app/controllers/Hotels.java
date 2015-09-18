@@ -2,11 +2,8 @@ package controllers;
 
 import com.avaje.ebean.Ebean;
 import com.avaje.ebean.Model;
-import models.Feature;
-import models.Hotel;
-import models.Room;
+import models.*;
 import play.Logger;
-import models.Image;
 import play.Play;
 import play.data.Form;
 import play.mvc.Controller;
@@ -117,7 +114,12 @@ public class Hotels extends Controller {
 
     public Result showHotel(Integer id) {
         Hotel hotel = Hotel.findHotelById(id);
-        return ok(views.html.hotel.render(hotel));
+        if (request().cookies().get("email") != null) {
+            return ok(views.html.hotel.render(hotel, Comment.userAlreadyCommentedThisHotel(request().cookies().get("email").value(), hotel)));
+        } else {
+            return ok(views.html.hotel.render(hotel, true));
+        }
+
     }
 
     public Result editHotel(Integer id) {

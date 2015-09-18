@@ -1,6 +1,7 @@
 package models;
 
 import com.avaje.ebean.Model;
+import scala.App;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -40,6 +41,16 @@ public class Comment extends Model {
     public static Comment findCommentById (Integer id){
         Comment comment = finder.where().eq("id", id).findUnique();
         return comment;
+    }
+
+    public static boolean userAlreadyCommentedThisHotel(String email, Hotel hotel) {
+        App_User user = App_User.getUserByEmail(email);
+        Comment comment = finder.where().eq("user_id", user.id).where().eq("hotel_id", hotel.id).findUnique();
+        if (comment != null) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
