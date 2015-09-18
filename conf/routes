@@ -34,6 +34,7 @@ GET         /editroom/:id                     @controllers.Rooms.editRoom(id: In
 GET         /seller/sellerpanel               @controllers.Rooms.showSellerHotels()
 
 GET         /showRooms/:hotelId               @controllers.Hotels.showRooms(hotelId: Integer)
+GET         /editRoom/:roomId                 @controllers.Prices.insertPrice(roomId: Integer)
 
 # Map static resources from the /public folder to the /assets URL path
 GET         /assets/*file                     controllers.Assets.versioned(path="/public", file: Asset)
@@ -51,3 +52,5 @@ POST        /editroom/:id                     @controllers.Rooms.updateRoom(id: 
 POST        /editFeature/:id                  @controllers.Features.updateFeature(id: Integer)
 POST        /addroom/:hotelId                 @controllers.Rooms.insertRoom(hotelId: Integer)
 POST        /hotel/:hotelId                   @controllers.Comments.insertComment(hotelId: Integer)
+POST        /editroom/:roomId                 @controllers.Prices.savePrice(roomId: Integer)
+GET         /deleteroom/:roomId               @controllers.Rooms.deleteRoom(roomId: Integer)
