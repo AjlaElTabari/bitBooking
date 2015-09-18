@@ -7,15 +7,18 @@ import models.Hotel;
 import models.Room;
 import play.Logger;
 import models.Image;
+import play.Play;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.*;
 
+import java.io.IOException;
 import java.util.*;
 
 import play.mvc.Http.MultipartFormData;
-
+import play.mvc.Http.MultipartFormData.FilePart;
+import org.apache.commons.io.FileUtils;
 import java.io.File;
 import java.util.List;
 import play.Logger;
@@ -38,11 +41,9 @@ public class Hotels extends Controller {
         for (int i = 0; i < features.size(); i++) {
             String feature = boundForm.bindFromRequest().field(features.get(i).name).value();
 
-
             if (feature != null) {
                 checkBoxValues.add(feature);
             }
-
 
             Logger.debug(checkBoxValues.toString());
         }
@@ -61,19 +62,11 @@ public class Hotels extends Controller {
 
         hotel.features = featuresForHotel;
 
-        MultipartFormData body = request().body().asMultipartFormData();
-        MultipartFormData.FilePart filePart = body.getFile("image");
-        if(filePart != null){
-            Logger.debug("Content type: " + filePart.getContentType());
-            Logger.debug("Key: " + filePart.getKey());
-            File file = filePart.getFile();
-            Image image = Image.create(file);
-            hotel.images.add(image);
-        }
 
         Integer sellerId = Integer.parseInt(boundForm.bindFromRequest().field("seller").value());
 
         hotel.sellerId = sellerId;
+
         Ebean.save(hotel);
         return redirect(routes.Application.index());
     }
@@ -91,6 +84,26 @@ public class Hotels extends Controller {
         hotel.name = name;
         hotel.location = location;
         hotel.description = description;
+
+
+        MultipartFormData body = request().body().asMultipartFormData();
+        List<FilePart> pictures = body.getFiles();
+
+        if (pictures != null) {
+            for (FilePart picture : pictures) {
+                String fileName = picture.getFilename();
+                File file = picture.getFile();
+
+                try {
+                    FileUtils.moveFile(file, new File(Play.application().path() + "/public/images/" + fileName));
+                    Image image = new Image(fileName,hotel,null);
+                    Ebean.save(image);
+                } catch (IOException ex) {
+                    Logger.info("Could not move file. " + ex.getMessage());
+                    flash("error", "Could not move file.");
+                }
+            }
+        }
 
         Ebean.update(hotel);
 

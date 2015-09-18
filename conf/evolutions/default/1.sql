@@ -44,9 +44,7 @@ create table hotel (
 
 create table image (
   id                        integer auto_increment not null,
-  public_id                 varchar(255),
-  image_url                 varchar(255),
-  secret_image_url          varchar(255),
+  path                      varchar(255),
   hotel_id                  integer,
   constraint pk_image primary key (id))
 ;
@@ -72,10 +70,14 @@ create table room_feature (
   feature_id                     integer not null,
   constraint pk_room_feature primary key (room_id, feature_id))
 ;
-alter table image add constraint fk_image_hotel_1 foreign key (hotel_id) references hotel (id) on delete restrict on update restrict;
-create index ix_image_hotel_1 on image (hotel_id);
-alter table room add constraint fk_room_hotel_2 foreign key (hotel_id) references hotel (id) on delete restrict on update restrict;
-create index ix_room_hotel_2 on room (hotel_id);
+alter table comment add constraint fk_comment_user_1 foreign key (user_id) references app_user (id) on delete restrict on update restrict;
+create index ix_comment_user_1 on comment (user_id);
+alter table comment add constraint fk_comment_hotel_2 foreign key (hotel_id) references hotel (id) on delete restrict on update restrict;
+create index ix_comment_hotel_2 on comment (hotel_id);
+alter table image add constraint fk_image_hotel_3 foreign key (hotel_id) references hotel (id) on delete restrict on update restrict;
+create index ix_image_hotel_3 on image (hotel_id);
+alter table room add constraint fk_room_hotel_4 foreign key (hotel_id) references hotel (id) on delete restrict on update restrict;
+create index ix_room_hotel_4 on room (hotel_id);
 
 
 

@@ -1,86 +1,124 @@
 @(hotel: Hotel)
+    @import helper._
     @main("Hotel") {
         <meta charset="UTF-16">
-    <div class="container" style="background-color : #f5e79e">
-        <h2 style="text-align : center"> @hotel.name </h2>
-        <hr/>
-        <div class="row">
-            <div class="col-md-4">
-                @if(request().cookies().get("email") != null) {
-                    @if(Integer.parseInt(request().cookies().get("userTypeId").value()) == 5) {
-                        <a href="@routes.Hotels.editHotel(hotel.id)" ><button class="btn btn-warning">EDIT</button> </a>
+        <div class="container" style="background-color : #f5e79e">
+            <h2 style="text-align : center"> @hotel.name </h2>
+            <hr/>
+            <div class="row">
+                <div class="col-md-4">
+                    @if(request().cookies().get("email") != null) {
+                        @if(Integer.parseInt(request().cookies().get("userTypeId").value()) == 5) {
+                            <a href="@routes.Hotels.editHotel(hotel.id)" ><button class="btn btn-warning">EDIT</button> </a>
+                        }
                     }
-                }
-                <hr/>
-                <div class="text-center">
-                    <img src="http://placehold.it/400x300" class="img-responsive img-thumbnail" alt=""/>
-                    <h6 style="text-align: center">Picture description</h6>
+                    <div class="text-center">
+                        <img src="http://placehold.it/400x300" class="img-responsive img-thumbnail" alt=""/>
+                        <h6 style="text-align : center">Picture description</h6>
+                    </div>
+
+
                 </div>
-                <hr/>
-                <div>
-                    <h5 value="@hotel.location">Hotel Adress:@hotel.location</h5>
+                <div class="col-md-8">
+                    <div>
+                        <div class="col-md-12" style="margin-bottom: 2%">
+                            <input id="gLat" name="coordinateX" value=@hotel.coordinateX>
+                            <input id="gLng" name="coordinateY" value=@hotel.coordinateY>
+                            <div id="mapCanvas" class="wide-map"></div>
+                            <div id="infoPanel" style="display : none">
+                                <b>Marker status:</b>
+                                <div id="markerStatus"><i>Click and drag the marker.</i></div>
+                                <b>Current position:</b>
+                                <div id="info"></div>
+                            </div>
+                            <br/>
+                        </div>
+                    </div>
+                    <div>
+                        <h5 value="@hotel.location">Hotel Adress: @hotel.location</h5>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-6">
-                <div>
-                    <h4>Description</h4>
-                    <br/>
-                    <p>
-                    @hotel.description
-                    </p>
+            </div><hr/>
+            <div class="row">
+                <div class="col-md-12">
+                    <div>
+                        <h4>Description</h4>
+                        <br/>
+                        <p>
+                        @hotel.description
+                        </p>
+                    </div>
                 </div>
-                <hr/>
-                <div>
+            </div><hr/>
+            <div class="row">
+                <div class="col-md-3">
                     <h4>Feature</h4>
                     <ul>
-                        @for(feature <- hotel.features) {
-                            <li>
-                                @feature.name
-                            </li>
-                        }
+                        <li>Feature1</li>
+                        <li>Feature2</li>
+                        <li>Feature3</li>
+                        <li>Feature4</li>
+                        <li>Feature5</li>
+                        <li>Feature6</li>
+                        <li>Feature7</li>
+                        <li>Feature8</li>
+                        <li>Feature9</li>
+                        <li>Feature10</li>
+                        <li>Feature11</li>
                     </ul>
                 </div>
-            </div>
-            <a href="@routes.Hotels.showRooms(hotel.id)" ><button class="btn btn-warning">view rooms</button> </a>
-        </div>
-        <div class="row">
-            <div class="col-md-12" style="margin-bottom: 2%">
-                <h6>Map</h6>
-                <input id="gLat" name="coordinateX" value=@hotel.coordinateX>
-                <input id="gLng" name="coordinateY" value=@hotel.coordinateY>
-                <div id="mapCanvas" class="wide-map"></div>
-                <div id="infoPanel" style="display : none">
-                    <b>Marker status:</b>
-                    <div id="markerStatus"><i>Click and drag the marker.</i></div>
-                    <b>Current position:</b>
-                    <div id="info"></div>
+                <div class="col-md-9">
+                    <h3>Gallery</h3>
+                    @for(image <- hotel.images){
+                        <div>
+                            <img src="@routes.Assets.versioned("images/" + image.path)" style="min-width: 200px;height: 100px"/>
+                        </div>
+                    }
                 </div>
-                <br/>
-            </div>
-
-        </div>
-        <div>
+            </div><hr/>
             <h3>Comments</h3>
-        </div>
-        <div class="form-group">
-            <div>
-                <label>User:</label>
-                <label>@request.cookies.get("name").value()</label>
-            </div>
+            <hr/>
+            <div class="row">
+                <div class="col-md-6">
+
+                    <form action="@routes.Comments.insertComment(hotel.id)" method="POST">
+                        <div class="form-group">
+                            <div>
+                                <label>User:</label>
+                                <label>@request.cookies.get("name").value()</label>
+                            </div>
+                            <label for="usr">Title:</label>
+                            <input type="text" class="form-control" id="usr" name="title">
+                            <label for="comment">Comment:</label>
+                            <textarea class="form-control" rows="5" id="comment" style="resize: none" name="content"></textarea>
+                            <label for="rate">Rate hotel:</label>
+                            <select id="rate" name="rating" class="form-control" onchange="" style="width: 70px">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                            <div style="text-align: right">
+                                <button type="submit" class="btn btn-success">Post</button>
+                            </div>
+                        </div>
 
 
-            <label for="usr">Title:</label>
-            <input type="text" class="form-control" id="usr">
-            <label for="comment">Comment:</label>
-            <textarea class="form-control" rows="5" id="comment"></textarea>
-            <div>
-            <button type="button" class="btn btn-success">Post</button>
+                    </form>
+                </div>
+                <div class="col-md-5" style="background-color: white;border: 1px solid black;margin: 5px">
+                    @for(comment <- hotel.comments){
+                        <div class="row">
+                            <h3 style="color: #269abc">@comment.user.firstname</h3>
+                            <h4 style="color: #ac2925;text-align: center">@comment.title</h4>
+                            <p>@comment.content</p>
+                            <h5>This user rated hotel with: @comment.rating</h5>
+                            <hr/>
+                        </div>
+                    }
+                </div>
             </div>
+
         </div>
-        <div class="row">
-            @for( i <- 1 to hotel.images.size()){
-                <img src="@hotel.images.get(i).getThumbnail">
-                }
-        </div>
-    </div>
-}
+    }
