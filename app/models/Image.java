@@ -1,6 +1,7 @@
 package models;
 
 import com.avaje.ebean.Model;
+import com.avaje.ebeaninternal.server.lib.util.Str;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -35,5 +36,9 @@ public class Image extends Model{
             paths.add(image.path);
         }
         return paths;
+    }
+
+    public String toString() {
+        return path + "\n";
     }
 }

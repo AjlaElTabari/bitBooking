@@ -1,4 +1,6 @@
-@(hotel: Hotel)
+@import models.Comment
+@import java.lang.Boolean
+@(hotel: Hotel)(hasCommented: Boolean)
     @import helper._
     @main("Hotel") {
         <meta charset="UTF-16">
@@ -54,59 +56,61 @@
                 <div class="col-md-3">
                     <h4>Feature</h4>
                     <ul>
-                        <li>Feature1</li>
-                        <li>Feature2</li>
-                        <li>Feature3</li>
-                        <li>Feature4</li>
-                        <li>Feature5</li>
-                        <li>Feature6</li>
-                        <li>Feature7</li>
-                        <li>Feature8</li>
-                        <li>Feature9</li>
-                        <li>Feature10</li>
-                        <li>Feature11</li>
+                       @for(feature <- hotel.features) {
+                           <li>
+                               @feature.name
+                           </li>
+                       }
                     </ul>
                 </div>
                 <div class="col-md-9">
                     <h3>Gallery</h3>
                     @for(image <- hotel.images){
-                        <div>
-                            <img src="@routes.Assets.versioned("images/" + image.path)" style="min-width: 200px;height: 100px"/>
-                        </div>
+                        <img src="@routes.Assets.versioned("images/" + image.path)" style="min-width: 200px;height: 100px;margin-right: 10px;"/>
                     }
                 </div>
             </div><hr/>
             <h3>Comments</h3>
             <hr/>
-            <div class="row">
-                <div class="col-md-6">
+            @if(request().cookies().get("email") != null) {
+                <div class="row">
+                    <div class="col-md-6">
 
-                    <form action="@routes.Comments.insertComment(hotel.id)" method="POST">
-                        <div class="form-group">
-                            <div>
-                                <label>User:</label>
-                                <label>@request.cookies.get("name").value()</label>
+                        <form action="@routes.Comments.insertComment(hotel.id)" method="POST">
+                            <div class="form-group">
+                                <div>
+                                    <label>User:</label>
+                                    <label>@request.cookies.get("name").value()</label>
+                                </div>
+                                <label for="usr">Title:</label>
+                                <input type="text" class="form-control" id="usr" name="title">
+                                <label for="comment">Comment:</label>
+                                <textarea class="form-control" rows="5" id="comment" style="resize: none" name="content"></textarea>
+                                <label for="rate">Rate hotel:</label>
+                                <select id="rate" name="rating" class="form-control" onchange="" style="width: 70px">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                                @if(hasCommented) {
+                                    <div style="text-align: right">
+                                        <h3>You already commented this hotel.</h3>
+                                        <button type="submit" class="btn btn-success" disabled>Post</button>
+                                    </div>
+                                }else{
+                                    <div style="text-align: right">
+                                        <button type="submit" class="btn btn-success">Post</button>
+                                    </div>
+                                }
                             </div>
-                            <label for="usr">Title:</label>
-                            <input type="text" class="form-control" id="usr" name="title">
-                            <label for="comment">Comment:</label>
-                            <textarea class="form-control" rows="5" id="comment" style="resize: none" name="content"></textarea>
-                            <label for="rate">Rate hotel:</label>
-                            <select id="rate" name="rating" class="form-control" onchange="" style="width: 70px">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                            </select>
-                            <div style="text-align: right">
-                                <button type="submit" class="btn btn-success">Post</button>
-                            </div>
-                        </div>
 
 
-                    </form>
-                </div>
+                        </form>
+                    </div>
+                }
+
                 <div class="col-md-5" style="background-color: white;border: 1px solid black;margin: 5px">
                     @for(comment <- hotel.comments){
                         <div class="row">

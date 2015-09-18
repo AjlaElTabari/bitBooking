@@ -2,6 +2,7 @@
 package controllers;
 
 import com.avaje.ebean.Ebean;
+import com.avaje.ebean.Model;
 import models.App_User;
 import models.Comment;
 import models.Hotel;
