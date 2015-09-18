@@ -2,11 +2,8 @@ package models;
 
 import com.avaje.ebean.Model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import java.util.List;
 
 @Entity
@@ -24,16 +21,20 @@ public class Room extends Model {
     @ManyToOne
     public Hotel hotel;
 
+    @OneToMany
+    public List<Price> prices;
+
     public Room(){
 
     }
-    public Room (Integer id, String description,String name, List<Feature> features, Hotel hotel, Integer numberOfBeds){
+    public Room (Integer id, String description,String name, List<Feature> features, Hotel hotel, Integer numberOfBeds, List<Price> prices){
         this.id = id;
         this.description= description;
         this.features = features;
         this.name = name;
         this.hotel = hotel;
         this.numberOfBeds= numberOfBeds;
+        this.prices = prices;
     }
     public static Room findRoomById(Integer id) {
         Room room = finder.where().eq("id", id).findUnique();

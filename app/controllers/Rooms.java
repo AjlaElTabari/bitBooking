@@ -12,6 +12,7 @@ import play.mvc.Result;
 import views.html.addroom;
 import views.html.editRoom;
 import views.html.sellerpanel;
+import views.html.showRooms;
 
 import java.util.List;
 
@@ -40,20 +41,23 @@ public class Rooms extends Controller {
         Room room = Room.findRoomById(id);
         Form<Room> roomForm1 = roomForm.bindFromRequest();
 
+        String name = roomForm1.bindFromRequest().field("name").value();
         String description = roomForm1.bindFromRequest().field("description").value();
-        Integer numberOfBeds = Integer.parseInt(roomForm1.bindFromRequest().field("numberOfBeds").value());
+//        Integer numberOfBeds = Integer.parseInt(roomForm1.bindFromRequest().field("numberOfBeds").value());
 
+        room.name = name;
         room.description = description;
-        room.numberOfBeds = numberOfBeds;
+//        room.numberOfBeds = numberOfBeds;
 
         Ebean.update(room);
 
-        return redirect(routes.Rooms.showRoom(room.id));
+        return redirect(routes.Prices.savePrice(id));
     }
     public Result deleteRoom(Integer id){
         Room room = Room.findRoomById(id);
+
         Ebean.delete(room);
-        return ok("Neka poruka");
+        return redirect(routes.Application.index());
     }
 
     public Result editRoom(Integer id) {
@@ -76,4 +80,5 @@ public class Rooms extends Controller {
 
         return ok(addroom.render(features, hotelId));
     }
+
 }

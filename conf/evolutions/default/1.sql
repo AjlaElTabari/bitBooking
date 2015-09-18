@@ -51,6 +51,15 @@ create table image (
   constraint pk_image primary key (id))
 ;
 
+create table price (
+  id                        integer auto_increment not null,
+  check_in                  datetime,
+  check_out                 datetime,
+  cost                      decimal(38),
+  room_id                   integer,
+  constraint pk_price primary key (id))
+;
+
 create table room (
   id                        integer auto_increment not null,
   description               varchar(255),
@@ -72,6 +81,7 @@ create table room_feature (
   feature_id                     integer not null,
   constraint pk_room_feature primary key (room_id, feature_id))
 ;
+<<<<<<< HEAD
 alter table comment add constraint fk_comment_user_1 foreign key (user_id) references app_user (id) on delete restrict on update restrict;
 create index ix_comment_user_1 on comment (user_id);
 alter table comment add constraint fk_comment_hotel_2 foreign key (hotel_id) references hotel (id) on delete restrict on update restrict;
@@ -80,6 +90,14 @@ alter table image add constraint fk_image_hotel_3 foreign key (hotel_id) referen
 create index ix_image_hotel_3 on image (hotel_id);
 alter table room add constraint fk_room_hotel_4 foreign key (hotel_id) references hotel (id) on delete restrict on update restrict;
 create index ix_room_hotel_4 on room (hotel_id);
+=======
+alter table image add constraint fk_image_hotel_1 foreign key (hotel_id) references hotel (id) on delete restrict on update restrict;
+create index ix_image_hotel_1 on image (hotel_id);
+alter table price add constraint fk_price_room_2 foreign key (room_id) references room (id) on delete restrict on update restrict;
+create index ix_price_room_2 on price (room_id);
+alter table room add constraint fk_room_hotel_3 foreign key (hotel_id) references hotel (id) on delete restrict on update restrict;
+create index ix_room_hotel_3 on room (hotel_id);
+>>>>>>> Prices and another 100 miracles
 
 
 
@@ -106,6 +124,8 @@ drop table hotel_feature;
 drop table hotel;
 
 drop table image;
+
+drop table price;
 
 drop table room;
 
