@@ -28,6 +28,8 @@ create table comment (
 create table feature (
   id                        integer auto_increment not null,
   name                      varchar(255),
+  room_or_hotel             tinyint(1) default 0,
+  image                     varchar(255),
   constraint pk_feature primary key (id))
 ;
 

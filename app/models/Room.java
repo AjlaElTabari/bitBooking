@@ -9,9 +9,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import java.util.List;
 
-/**
- * Created by User on 9/16/2015.
- */
 @Entity
 public class Room extends Model {
     public static Finder<String, Room> finder = new Finder<String, Room>(Room.class);
