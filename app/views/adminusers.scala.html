@@ -66,7 +66,7 @@
                 <td></td>
                 <form  method="delete" action="@routes.Users.deleteUser(user.email)">
                   <td>
-                    <a  onclick=" return deleteConfirmation()" href="@routes.Users.deleteUser(user.email)">
+                    <a  onclick="return deleteConfirmation()" href="@routes.Users.deleteUser(user.email)">
                       <button data-role="delete" class="btn btn-danger">Delete</button>
                     </a>
                     @*<a data-role="delete"  data-delete-parent="tr" href="@routes.Users.deleteUser(user.email)" class="btn btn-danger" role="button">*@

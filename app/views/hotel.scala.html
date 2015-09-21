@@ -1,76 +1,74 @@
 @import models.Comment
 @import java.lang.Boolean
 @(hotel: Hotel)(hasCommented: Boolean)
-    @import helper._
-    @main("Hotel") {
-        <meta charset="UTF-16">
-        <div class="container" style="background-color : #f5e79e">
-            <h2 style="text-align : center"> @hotel.name </h2>
-            <hr/>
-            <div class="row">
-                <div class="col-md-4">
-                    @if(request().cookies().get("email") != null) {
-                        @if(Integer.parseInt(request().cookies().get("userTypeId").value()) == 5) {
-                            <a href="@routes.Hotels.editHotel(hotel.id)" ><button class="btn btn-warning">EDIT</button> </a>
-                        }
+@import helper._
+@main("Hotel") {
+    <meta charset="UTF-16">
+    <div class="container" style="background-color : #f5e79e">
+        <h2 style="text-align : center"> @hotel.name </h2>
+        <hr/>
+        <div class="row">
+            <div class="col-md-4">
+                @if(request().cookies().get("email") != null) {
+                    @if(Integer.parseInt(request().cookies().get("userTypeId").value()) == 5) {
+                        <a href="@routes.Hotels.editHotel(hotel.id)" ><button class="btn btn-warning">EDIT</button> </a>
                     }
-                    <div class="text-center">
-                        <img src="http://placehold.it/400x300" class="img-responsive img-thumbnail" alt=""/>
-                        <h6 style="text-align : center">Picture description</h6>
-                    </div>
-
-
+                }
+                <div class="text-center">
+                    <img src="http://placehold.it/400x300" class="img-responsive img-thumbnail" alt=""/>
+                    <h6 style="text-align : center">Picture description</h6>
                 </div>
-                <div class="col-md-8">
-                    <div>
-                        <div class="col-md-12" style="margin-bottom: 2%">
-                            <input id="gLat" name="coordinateX" value=@hotel.coordinateX>
-                            <input id="gLng" name="coordinateY" value=@hotel.coordinateY>
-                            <div id="mapCanvas" class="wide-map"></div>
-                            <div id="infoPanel" style="display : none">
-                                <b>Marker status:</b>
-                                <div id="markerStatus"><i>Click and drag the marker.</i></div>
-                                <b>Current position:</b>
-                                <div id="info"></div>
-                            </div>
-                            <br/>
+
+
+            </div>
+            <div class="col-md-8">
+                <div>
+                    <div class="col-md-12" style="margin-bottom: 2%">
+                        <input id="gLat" name="coordinateX" value=@hotel.coordinateX>
+                        <input id="gLng" name="coordinateY" value=@hotel.coordinateY>
+                        <div id="mapCanvas" class="wide-map"></div>
+                        <div id="infoPanel" style="display : none">
+                            <b>Marker status:</b>
+                            <div id="markerStatus"><i>Click and drag the marker.</i></div>
+                            <b>Current position:</b>
+                            <div id="info"></div>
                         </div>
-                    </div>
-                    <div>
-                        <h5 value="@hotel.location">Hotel Adress: @hotel.location</h5>
-                    </div>
-                </div>
-            </div><hr/>
-            <div class="row">
-                <div class="col-md-12">
-                    <div>
-                        <h4>Description</h4>
                         <br/>
-                        <p>
-                        @hotel.description
-                        </p>
                     </div>
                 </div>
-            </div><hr/>
-            <div class="row">
-                <div class="col-md-3">
-                    <h4>Feature</h4>
-                    <ul>
-                       @for(feature <- hotel.features) {
-                           <li>
-                               @feature.name
-                               <img src="@routes.Assets.versioned("images/" + feature.image)"style="width: 50px;height: 50px"/>
-                           </li>
-                       }
-                    </ul>
+                <div>
+                    <h5 value="@hotel.location">Hotel Adress: @hotel.location</h5>
                 </div>
-<<<<<<< HEAD
-                <div class="col-md-9">
-                    <h3>Gallery</h3>
-                    @for(image <- hotel.images){
-                        <img src="@routes.Assets.versioned("images/" + image.path)" style="min-width: 200px;height: 100px;margin-right: 10px;"/>
-                    }
-=======
+            </div>
+        </div><hr/>
+        <div class="row">
+            <div class="col-md-12">
+                <div>
+                    <h4>Description</h4>
+                    <br/>
+                    <p>
+                    @hotel.description
+                    </p>
+                </div>
+            </div>
+        </div><hr/>
+        <div class="row">
+            <div class="col-md-3">
+                <h4>Feature</h4>
+                <ul>
+                @for(feature <- hotel.features) {
+                    <li>
+                        @feature.name
+                    <img src="@routes.Assets.versioned("images/" + feature.image)"style="width: 50px;height: 50px"/>
+                    </li>
+                }
+                </ul>
+            </div>
+            <div class="col-md-9">
+                <h3>Gallery</h3>
+                @for(image <- hotel.images){
+                    <img src="@routes.Assets.versioned("images/" + image.path)" style="min-width: 200px;height: 100px;margin-right: 10px;"/>
+                }
             </div>
             <a href="@routes.Hotels.showRooms(hotel.id)" ><button class="btn btn-warning">View rooms</button> </a>
         </div>
@@ -85,7 +83,7 @@
                     <div id="markerStatus"><i>Click and drag the marker.</i></div>
                     <b>Current position:</b>
                     <div id="info"></div>
->>>>>>> Prices and another 100 miracles
+                    >>>>>>> Prices and another 100 miracles
                 </div>
             </div><hr/>
             <h3>Comments</h3>
@@ -127,20 +125,27 @@
 
                         </form>
                     </div>
-                }
+                    }
 
-                <div class="col-md-5" style="background-color: white;border: 1px solid black;margin: 5px">
-                    @for(comment <- hotel.comments){
-                        <div class="row">
-                            <h3 style="color: #269abc">@comment.user.firstname</h3>
-                            <h4 style="color: #ac2925;text-align: center">@comment.title</h4>
-                            <p>@comment.content</p>
-                            <h5>This user rated hotel with: @comment.rating</h5>
-                            <hr/>
-                        </div>
+            <div class="col-md-5" style="background-color: white;border: 1px solid black;margin: 5px">
+            @for(comment <- hotel.comments){
+                <div class="row">
+                    <h3 style="color: #269abc">@comment.user.firstname</h3>
+                    <h4 style="color: #ac2925;text-align: center">@comment.title</h4>
+                    <p>@comment.content</p>
+                    <h5>This user rated hotel with: @comment.rating</h5>
+                    <hr>
+                    @if(Integer.parseInt(request().cookies().get("userTypeId").value()) == 3) {
+                        <form method="delete" action="@routes.Comments.deleteComment(comment.id)">
+                            <a onclick="return deleteConfirmation()" href="@routes.Comments.deleteComment(comment.id)">
+                                <button class="btn btn-danger">Delete</button>
+                            </a>
+                        </form>
                     }
                 </div>
+                    }
             </div>
-
         </div>
+        </div>
+    </div>
     }

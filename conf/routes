@@ -54,3 +54,4 @@ POST        /addroom/:hotelId                 @controllers.Rooms.insertRoom(hote
 POST        /hotel/:hotelId                   @controllers.Comments.insertComment(hotelId: Integer)
 POST        /editroom/:roomId                 @controllers.Prices.savePrice(roomId: Integer)
 GET         /deleteroom/:roomId               @controllers.Rooms.deleteRoom(roomId: Integer)
+GET         /deleteComment/:commentId         @controllers.Comments.deleteComment(commentId: Integer)

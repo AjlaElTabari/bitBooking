@@ -49,7 +49,7 @@
                                 </td>
                                 <td name="feature">
                                     <form method="delete" action="@routes.Features.deleteFeature(feature.id)">
-                                        <a href="@routes.Features.deleteFeature(feature.id)">
+                                        <a onclick="return deleteConfirmation()" href="@routes.Features.deleteFeature(feature.id)">
                                             <button class="btn btn-danger">Delete</button>
                                         </a>
                                     </form>

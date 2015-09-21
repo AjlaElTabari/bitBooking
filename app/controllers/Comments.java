@@ -2,7 +2,6 @@
 package controllers;
 
 import com.avaje.ebean.Ebean;
-import com.avaje.ebean.Model;
 import models.App_User;
 import models.Comment;
 import models.Hotel;
@@ -30,17 +29,14 @@ public class Comments extends Controller {
         return redirect(routes.Hotels.showHotel(comment.hotel.id));
     }
 
-//    public Result editComment(Integer id) {
-//        Comment comment = Comment.findCommentById(id);
-//        return ok(editComment.render(comment));
-//    }
-//
-//    public Result deleteComment(Integer id) {
-//        Comment comment = Comment.findCommentById(id);
-//        Ebean.delete(comment);
-//
-//        return redirect(routes.Comment.deleteComment());
-//    }
+
+
+    public Result deleteComment(Integer id) {
+        Comment comment = Comment.findCommentById(id);
+        comment.delete();
+
+        return redirect(routes.Hotels.showHotel(comment.hotel.id));
+    }
 
 }
 
