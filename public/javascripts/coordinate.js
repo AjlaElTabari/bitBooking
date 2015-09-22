@@ -1,5 +1,6 @@
 var geocoder = new google.maps.Geocoder();
 
+//this function is determining geocode position
 function geocodePosition(pos) {
   geocoder.geocode({
     latLng: pos
@@ -12,61 +13,78 @@ function geocodePosition(pos) {
   });
 }
 
+//this function is updating marker status
 function updateMarkerStatus(str) {
   document.getElementById('markerStatus').innerHTML = str;
 }
 
+//this function is updating marker position
 function updateMarkerPosition(latLng) {
-  document.getElementById('info').innerHTML = [
+  document.getElementById('latitude').innerHTML = [
     latLng.lat(),
     latLng.lng()
   ].join(', ');
-   document.getElementById('gLat').value = latLng.lat();
-   document.getElementById('gLng').value = latLng.lng();
+  document.getElementById('longitude').value = latLng.lat();
+  document.getElementById('latitude').value = latLng.lng();
 }
 
-function updateMarkerAddress(str) {
-  document.getElementById('address').innerHTML = str;
+//this function is updating coordinate
+function updateCoordinate(latLng) {
+  document.getElementById('latitude').value = latlng.lat;
+  document.getElementById('longitude').value = latlng.lng;
 }
+
+//this function is initializing the map
 
 function initialize() {
-  var latLng;
-  var x = document.getElementById('gLat').value;
-  var y = document.getElementById('gLng').value;
-
-  latLng = new google.maps.LatLng(x, y);
-
-  var map = new google.maps.Map(document.getElementById('mapCanvas'), {
+  var latLng = new google.maps.LatLng(43.8534183, 18.3780840);
+  var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 12,
     center: latLng,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   });
+
   var marker = new google.maps.Marker({
     position: latLng,
-    title: 'Click here to zoom',
     map: map,
-    draggable: true
+    animation: google.maps.Animation.BOUNCE,
+    title: 'Click to zoom',
+    draggable: false
+  });
+
+
+  google.maps.event.addListener(marker,'click',function() {
+    map.setZoom(16);
+    map.setCenter(marker.getPosition());
+    infowindow.open(map,marker);
+  });
+
+  //create circle options
+  var circleOptions = {
+    fillColor: 'white',
+    map: map,
+    center: latLng,
+    radius: 1000
+  };
+
+  //create circle
+  myCircle = new google.maps.Circle(circleOptions);
+
+  //when marker has completed the drag event
+  //recenter the circle on the marker.
+  google.maps.event.addListener(marker, 'dragend', function(){
+    myCircle.setCenter(this.position);
   });
 
   // Update current position info.
   updateMarkerPosition(latLng);
   geocodePosition(latLng);
 
-  // Add dragging event listeners.
-  google.maps.event.addListener(marker, 'dragstart', function() {
-    updateMarkerAddress('Dragging...');
-  });
 
   google.maps.event.addListener(marker, 'drag', function() {
-    updateMarkerStatus('Dragging...');
     updateMarkerPosition(marker.getPosition());
-  });
-
-  google.maps.event.addListener(marker, 'dragend', function() {
-    updateMarkerStatus('Drag ended');
-    geocodePosition(marker.getPosition());
   });
 }
 
-// Onload handler to fire off the app.
+// Onload handler to start the app.
 google.maps.event.addDomListener(window, 'load', initialize);

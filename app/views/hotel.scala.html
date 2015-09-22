@@ -21,22 +21,21 @@
 
 
                 </div>
+
                 <div class="col-md-8">
                     <div>
                         <div class="col-md-12" style="margin-bottom: 2%">
-                            <input id="gLat" name="coordinateX" value=@hotel.coordinateX>
-                            <input id="gLng" name="coordinateY" value=@hotel.coordinateY>
-                            <div id="mapCanvas" class="wide-map"></div>
+                            <input id="longitude" name="coordinateX" value=@hotel.coordinateX type="hidden">
+                            <input id="latitude" name="coordinateY" value=@hotel.coordinateY type="hidden">
+                            <div id="map" class="wide-map"></div>
                             <div id="infoPanel" style="display : none">
-                                <b>Marker status:</b>
-                                <div id="markerStatus"><i>Click and drag the marker.</i></div>
-                                <b>Current position:</b>
                                 <div id="info"></div>
                             </div>
                             <br/>
                         </div>
                     </div>
                     <div>
+
                         <h5 value="@hotel.location">Hotel Adress: @hotel.location</h5>
                     </div>
                 </div>
@@ -64,13 +63,13 @@
                        }
                     </ul>
                 </div>
-<<<<<<< HEAD
+
                 <div class="col-md-9">
                     <h3>Gallery</h3>
                     @for(image <- hotel.images){
                         <img src="@routes.Assets.versioned("images/" + image.path)" style="min-width: 200px;height: 100px;margin-right: 10px;"/>
                     }
-=======
+
             </div>
             <a href="@routes.Hotels.showRooms(hotel.id)" ><button class="btn btn-warning">View rooms</button> </a>
         </div>
@@ -85,7 +84,7 @@
                     <div id="markerStatus"><i>Click and drag the marker.</i></div>
                     <b>Current position:</b>
                     <div id="info"></div>
->>>>>>> Prices and another 100 miracles
+
                 </div>
             </div><hr/>
             <h3>Comments</h3>

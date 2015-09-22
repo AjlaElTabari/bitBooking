@@ -1,6 +1,7 @@
 @(features: List[Feature])(users: List[App_User])
 @import helper._
 @main("Add hotel") {
+    <script src = "@routes.Assets.versioned("/javascripts/coordinate2.js")"></script>
     <div class="container" style="background-color: #f5e79e">
         <h3>Register your hotel</h3>
         <hr/>
@@ -30,13 +31,13 @@
                     }
                 </div>
                 <div class="form-group">
-<<<<<<< HEAD
-=======
+
+
                     <label>Image: </label>
                     <input type="file" name="image" class="form-control"  />
                 </div>
                 <div class="form-group">
->>>>>>> Prices and another 100 miracles
+
                     <select id="ddlsellers" name="seller">
                         @for(user <- users) {
                             <option value="@user.id">@user.email</option>
@@ -48,17 +49,16 @@
                 </div>
             </div>
         </form>
-        <div class="col-md-6">
-            <input id="gLat" name="coordinateX" value="43.8534183">
-            <input id="gLng" name="coordinateY" value="18.37808399999">
-            <div id="mapCanvas" class="shrinked-map"></div>
-            <div id="infoPanel" style="display: none">
-                <b>Marker status:</b>
-                <div id="markerStatus"><i>Click and drag the marker.</i></div>
-                <b>Current position:</b>
+
+                <div class="col-md-6">
+            @*<input id="longitude" name="coordinateX" value=@hotel.coordinateX>*@
+            @*<input id="latitude" name="coordinateY"  value=@hotel.coordinateY>*@
+                 <div id="map" class="shrinked-map"></div>
+                    <div id="infoPanel" style="display: none">
                 <div id="info"></div>
             </div>
             <hr/>
+
             <div class="row">
                 <div class="col-md-6">
                     <br>
